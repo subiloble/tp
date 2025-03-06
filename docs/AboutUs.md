@@ -11,20 +11,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Ng Jia Quan
-
-<img src="images/quantin96.png" width="200px">
-
-<<<<<<< HEAD
-[[github](https://github.com/quantin96)]
-[[portfolio](team/ngjiaquan.md)]
-=======
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Chen Xinpeng
 
 <img src="images/xinpeng.png" width="200px">
@@ -34,13 +20,32 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Ng Jia Quan
+
+<img src="images/quantin96.png" width="200px">
+
+[[github](https://github.com/quantin96)]
+[[portfolio](team/quantin96.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### She Yuting
+
+<img src="images/sheyuting.png" width="200px">
+
+[[github](http://github.com/sheyuting)]
+[[portfolio](team/sheyuting.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
 ### Zhang Leran
 
 <img src="images/zlllllr.png" width="200px">
 
 [[github](http://github.com/zlllllr)]
 [[portfolio](team/zlllllr.md)]
->>>>>>> master
 
 * Role: Developer
 * Responsibilities: UI

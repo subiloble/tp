@@ -1,10 +1,6 @@
 ---
   layout: default.md
-<<<<<<<< HEAD:docs/team/ngjiaquan.md
-  title: "Ng Jia Quan's Project Portfolio Page"
-========
-  title: "Xinpeng's Project Portfolio Page"
->>>>>>>> master:docs/team/xinpeng.md
+  title: "She Yuting's Project Portfolio Page"
 ---
 
 ### Project: Mentorstack

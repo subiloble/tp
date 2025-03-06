@@ -1,6 +1,6 @@
 ---
   layout: default.md
-  title: "Xinpeng's Project Portfolio Page"
+  title: "Ng Jia Quan's Project Portfolio Page"
 ---
 
 ### Project: Mentorstack
