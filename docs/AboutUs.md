@@ -13,9 +13,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Xinpeng
 
-<img src="images/xinpeng.png" width="200px">
+<img src="images/subiloble.png" width="200px">
 
-[[github](http://github.com/subiloble)] [[portfolio](team/xinpeng.md)]
+[[github](http://github.com/subiloble)] [[portfolio](team/subiloble.md)]
 
 * Role: Developer
 * Responsibilities: Data
