@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/xinpeng.png" width="200px">
 
-[[github](http://github.com/subiloble)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/subiloble)] [[portfolio](team/xinpeng.md)]
 
 * Role: Developer
 * Responsibilities: Data
