@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Mentorstack Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,71 +274,166 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Computer science tutors who need an efficient system to organize student information and track student progress
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+Mentorstack helps CS tutors efficiently manage and track student contacts, attendance, participation, progress, and streamlines communication. It simplifies student management across different levels and courses while catering to tech-savvy users who may prefer a command-line interface.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                        | So that I can…​                                        |
+|----------|---------|-----------------------------------------------------|--------------------------------------------------------|
+| `* * *`  | tutor   | add a student’s details (name, email, course, year) | keep track of their information                        |
+| `* * *`  | tutor   | remove a student’s details                          | remove a student whose details no longer need to track |
+| `* * *`  | tutor   | edit a student’s details                            | update their information                               |
+| `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                             |
+| `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want          |
+| `* * *`  | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Mentorstack` and the **Actor** is the `tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add student details**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Tutor requests to add a new student
+2. System displays the required input format to add student information
+3. Tutor enters student's information
+4. System creates a new student profile
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 4a. Required information is missing.
+    * 4a1. System shows an error message.
+    * 4a2. System prompts the tutor to enter the missing information. Use case resumes at step 3.
+* 4b. Information input format is invalid.
+    * 4b1. System shows an error message.
+    * 4b2. System prompts the tutor to enter information. Use case resumes at step 3.
+*  4c. A student’s information already exists.
+    * 4c1. System shows an error message.
+    * 4c2. System prompts the tutor to add a new student or update the existing student. Use case resumes at step 3.
+
+**Use case: UC02 - Delete a student**
+
+**MSS**
+
+1.  Tutor requests to list students
+2.  System shows a list of students
+3.  Tutor requests to delete a specific student in the list
+4.  System deletes the person
+
+    Use case ends.
+
+**Use case: UC03 - Edit student details**
+
+**MSS**
+
+1.  User inputs the student ID and the updated information of the corresponding student
+2.  Mentorstack shows a message of successful updating
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given student ID is invalid.
+
+    * 2a1. Mentorstack shows an error message.
+
+      Use case ends.
+
+**Use case: UC04 - Search for students**
+
+**MSS**
+
+1.  User inputs the search key
+2.  Mentorstack shows a list of students that match the search key and are ready to further commands
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no matching student
+
+    * 2a1. Mentorstack shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC05 - View all students’ information by filter**
+
+**MSS**
+
+1.  Tutor enters the view_students command with an optional filter type and value.
+2.  Mentorstack retrieves a list of students matching the filter criteria.
+3.  Mentorstack displays a table of students retrieved.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filter or value is invalid.
+
+    * 1a1. Mentorstack shows an error message.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The list is empty.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. Mentorstack shows a message indicating no student satisfies the input requirements.
 
-      Use case resumes at step 2.
+  Use case ends.
+
+
+
+**Use case: UC06 - Undo an unintended operation**
+
+**Precondition**
+
+1. The user has performed at least one action that modifies the application state (e.g., adding, editing, or deleting student data).
+
+**MSS**
+
+1.  Tutor enters the undo command.
+2.  Mentorstack reverts the last operation that modified the data storage.
+3.  Mentorstack displays a success message.
+4.  Mentorstack displays a description for the operation that is undone.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no operation to undo - undo is not valid.
+
+    * 1a1. Mentorstack shows a message indicating no previous operation exists.
+
+  Use case ends.
 
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system will respond to any command within 3 seconds.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: CS educator using Mentorstack to manage students
+* **Student Profile**: A record containing a student’s personal details (name, email, phone, subjects)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
