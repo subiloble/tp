@@ -31,24 +31,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Chen Xinpeng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xinpeng.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/subiloble)] [[portfolio](team/xinpeng.md)]
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### She Yuting
 
@@ -56,6 +46,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/sheyuting)]
 [[portfolio](team/sheyuting.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
+### Zhang Leran
+
+<img src="images/zlllllr.png" width="200px">
+
+[[github](http://github.com/zlllllr)]
+[[portfolio](team/zlllllr.md)]
 
 * Role: Developer
 * Responsibilities: UI
