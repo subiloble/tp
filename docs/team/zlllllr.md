@@ -1,15 +1,11 @@
 ---
   layout: default.md
-<<<<<<<< HEAD:docs/team/ngjiaquan.md
-  title: "Ng Jia Quan's Project Portfolio Page"
-========
-  title: "Xinpeng's Project Portfolio Page"
->>>>>>>> master:docs/team/xinpeng.md
+  title: "Zhang Leran's Project Portfolio Page"
 ---
 
 ### Project: Mentorstack
 
-Mentorstack is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
