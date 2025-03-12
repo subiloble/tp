@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
-import seedu.mentorstack.model.person.Address;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;

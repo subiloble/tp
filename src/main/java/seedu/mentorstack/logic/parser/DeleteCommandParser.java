@@ -1,10 +1,8 @@
 package seedu.mentorstack.logic.parser;
 
-import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import seedu.mentorstack.model.person.Email;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

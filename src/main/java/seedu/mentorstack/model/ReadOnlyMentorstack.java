@@ -6,7 +6,7 @@ import seedu.mentorstack.model.person.Person;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyMentorstack{
+public interface ReadOnlyMentorstack {
 
     /**
      * Returns an unmodifiable view of the persons list.

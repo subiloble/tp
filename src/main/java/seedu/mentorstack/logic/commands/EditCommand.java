@@ -1,11 +1,9 @@
 package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,8 +19,11 @@ import seedu.mentorstack.commons.util.ToStringBuilder;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
-import seedu.mentorstack.model.person.*;
-import seedu.mentorstack.model.tag.Tag;
+import seedu.mentorstack.model.person.Name;
+import seedu.mentorstack.model.person.Phone;
+import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Subjects;
 
 /**
  * Edits the details of an existing person in the address book.

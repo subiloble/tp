@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+//import javax.security.auth.Subject;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.commons.util.StringUtil;
@@ -16,7 +17,6 @@ import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Subjects;
 import seedu.mentorstack.model.tag.Tag;
 
-import javax.security.auth.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -125,6 +125,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String subjects} into a {@code Subjects}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjects} is invalid.
+     */
     public static Subjects parseSubject(String subjects) throws ParseException {
         requireNonNull(subjects);
         String trimmedTag = subjects.trim();
@@ -135,7 +141,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> subjects} into a {@code Set<Subjects>}.
      */
     public static Set<Subjects> parseSubjects(Collection<String> subjects) throws ParseException {
         requireNonNull(subjects);

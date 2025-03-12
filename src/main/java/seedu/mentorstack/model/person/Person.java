@@ -50,7 +50,9 @@ public class Person {
      * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Subjects> getSubjects() { return Collections.unmodifiableSet(subjects); }
+    public Set<Subjects> getSubjects() {
+        return Collections.unmodifiableSet(subjects);
+    }
 
     /**
      * Returns true if both persons have the same name.

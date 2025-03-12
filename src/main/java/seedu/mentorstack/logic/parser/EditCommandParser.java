@@ -6,8 +6,8 @@ import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +19,6 @@ import seedu.mentorstack.logic.commands.EditCommand;
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.Subjects;
-import seedu.mentorstack.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
