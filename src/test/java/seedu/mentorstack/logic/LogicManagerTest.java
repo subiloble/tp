@@ -3,7 +3,6 @@ package seedu.mentorstack.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.mentorstack.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -25,7 +24,7 @@ import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.UserPrefs;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.storage.JsonAddressBookStorage;
@@ -152,7 +151,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+            public void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -166,8 +165,8 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + EMAIL_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withTags("CS2100").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

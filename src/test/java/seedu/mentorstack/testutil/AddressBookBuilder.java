@@ -1,6 +1,6 @@
 package seedu.mentorstack.testutil;
 
-import seedu.mentorstack.model.AddressBook;
+import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.person.Person;
 
 /**
@@ -10,13 +10,13 @@ import seedu.mentorstack.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private Mentorstack addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new Mentorstack();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(Mentorstack addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public Mentorstack build() {
         return addressBook;
     }
 }

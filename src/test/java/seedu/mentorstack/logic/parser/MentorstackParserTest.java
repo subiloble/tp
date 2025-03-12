@@ -23,15 +23,16 @@ import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.testutil.EditPersonDescriptorBuilder;
 import seedu.mentorstack.testutil.PersonBuilder;
 import seedu.mentorstack.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class MentorstackParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final MentorstackParser parser = new MentorstackParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -49,8 +50,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + "e1032467@gmail.com");
+        assertEquals(new DeleteCommand(new Email("e1032467@gmail.com")), command);
     }
 
     @Test
