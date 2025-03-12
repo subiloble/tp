@@ -13,7 +13,10 @@ import seedu.mentorstack.model.person.Address;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Phone;
+import seedu.mentorstack.model.person.Subjects;
 import seedu.mentorstack.model.tag.Tag;
+
+import javax.security.auth.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +123,26 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Subjects parseSubject(String subjects) throws ParseException {
+        requireNonNull(subjects);
+        String trimmedTag = subjects.trim();
+        if (!Subjects.isValidSubjectName(trimmedTag)) {
+            throw new ParseException(Subjects.MESSAGE_CONSTRAINTS);
+        }
+        return new Subjects(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Subjects> parseSubjects(Collection<String> subjects) throws ParseException {
+        requireNonNull(subjects);
+        final Set<Subjects> subjectSet = new HashSet<>();
+        for (String subjectName : subjects) {
+            subjectSet.add(parseSubject(subjectName));
+        }
+        return subjectSet;
     }
 }
