@@ -50,14 +50,14 @@ public class Subjects {
 
     @Override
     public int hashCode() {
-            return subjectName.hashCode();
-        }
+        return subjectName.hashCode();
+    }
 
     /**
     * Format state as text for viewing.
     */
     public String toString() {
-            return '[' + subjectName + ']';
-        }
+        return '[' + subjectName + ']';
+    }
 
 }

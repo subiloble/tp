@@ -19,10 +19,10 @@ import seedu.mentorstack.commons.util.ToStringBuilder;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
-import seedu.mentorstack.model.person.Name;
-import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Subjects;
 
 /**

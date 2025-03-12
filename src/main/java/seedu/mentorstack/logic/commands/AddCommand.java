@@ -1,10 +1,11 @@
 package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
+
 
 import seedu.mentorstack.commons.util.ToStringBuilder;
 import seedu.mentorstack.logic.Messages;
