@@ -2,12 +2,10 @@ package seedu.mentorstack.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;

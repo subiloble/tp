@@ -2,18 +2,10 @@ package seedu.mentorstack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
-=======
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
->>>>>>> master
 import static seedu.mentorstack.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,11 +14,7 @@ import java.util.List;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
-<<<<<<< HEAD
-import seedu.mentorstack.model.AddressBook;
-=======
 import seedu.mentorstack.model.Mentorstack;
->>>>>>> master
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
