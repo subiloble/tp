@@ -10,11 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
 import seedu.mentorstack.commons.util.JsonUtil;
-<<<<<<< HEAD
-import seedu.mentorstack.model.AddressBook;
-=======
 import seedu.mentorstack.model.Mentorstack;
->>>>>>> master
 import seedu.mentorstack.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
