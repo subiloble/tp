@@ -47,3 +47,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: UI
+
+### Willie Tay
+
+<img src="images/ioubread.png" width="200px">
+
+[[github](http://github.com/ioubread)]
+[[portfolio](team/ioubread.md)]
+
+* Role: Developer
+* Responsibilities: [TBD]
