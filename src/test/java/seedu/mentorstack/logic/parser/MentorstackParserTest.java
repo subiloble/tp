@@ -23,7 +23,6 @@ import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.testutil.EditPersonDescriptorBuilder;

@@ -1,5 +1,10 @@
 package seedu.mentorstack.testutil;
 
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
+
 import java.util.Set;
 
 import seedu.mentorstack.logic.commands.AddCommand;
@@ -7,10 +12,6 @@ import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Subjects;
 
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 /**
  * A utility class for Person.
  */
