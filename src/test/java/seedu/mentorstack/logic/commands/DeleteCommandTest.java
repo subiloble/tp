@@ -3,18 +3,33 @@ package seedu.mentorstack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+<<<<<<< HEAD
+import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+=======
 import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.mentorstack.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.mentorstack.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
+>>>>>>> master
 import static seedu.mentorstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD
+import seedu.mentorstack.commons.core.index.Index;
+=======
+>>>>>>> master
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;
+<<<<<<< HEAD
+=======
 import seedu.mentorstack.model.person.Email;
+>>>>>>> master
 import seedu.mentorstack.model.person.Person;
 
 /**

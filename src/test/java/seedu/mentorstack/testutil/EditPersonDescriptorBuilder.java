@@ -5,11 +5,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
+<<<<<<< HEAD
+import seedu.mentorstack.model.person.Address;
+=======
+>>>>>>> master
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
+<<<<<<< HEAD
+import seedu.mentorstack.model.tag.Tag;
+=======
 import seedu.mentorstack.model.person.Subjects;
+>>>>>>> master
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

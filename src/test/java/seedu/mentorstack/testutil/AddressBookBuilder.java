@@ -1,6 +1,10 @@
 package seedu.mentorstack.testutil;
 
+<<<<<<< HEAD
+import seedu.mentorstack.model.AddressBook;
+=======
 import seedu.mentorstack.model.Mentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.person.Person;
 
 /**

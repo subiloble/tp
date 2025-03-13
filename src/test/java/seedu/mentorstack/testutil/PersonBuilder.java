@@ -3,11 +3,19 @@ package seedu.mentorstack.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+<<<<<<< HEAD
+import seedu.mentorstack.model.person.Address;
+=======
+>>>>>>> master
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
+<<<<<<< HEAD
+import seedu.mentorstack.model.tag.Tag;
+=======
 import seedu.mentorstack.model.person.Subjects;
+>>>>>>> master
 import seedu.mentorstack.model.util.SampleDataUtil;
 
 /**

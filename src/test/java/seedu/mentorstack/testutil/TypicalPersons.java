@@ -1,19 +1,33 @@
 package seedu.mentorstack.testutil;
 
+<<<<<<< HEAD
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+=======
+>>>>>>> master
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+<<<<<<< HEAD
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+=======
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_FRIEND;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+>>>>>>> master
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD
+import seedu.mentorstack.model.AddressBook;
+=======
 import seedu.mentorstack.model.Mentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.person.Person;
 
 /**

@@ -5,7 +5,11 @@ import static seedu.mentorstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD
+import seedu.mentorstack.model.AddressBook;
+=======
 import seedu.mentorstack.model.Mentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;

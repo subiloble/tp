@@ -18,9 +18,15 @@ import javafx.collections.ObservableList;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
+<<<<<<< HEAD
+import seedu.mentorstack.model.AddressBook;
+import seedu.mentorstack.model.Model;
+import seedu.mentorstack.model.ReadOnlyAddressBook;
+=======
 import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.testutil.PersonBuilder;
