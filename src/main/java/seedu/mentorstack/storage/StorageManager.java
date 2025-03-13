@@ -7,11 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.commons.exceptions.DataLoadingException;
-<<<<<<< HEAD
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-=======
 import seedu.mentorstack.model.ReadOnlyMentorstack;
->>>>>>> master
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.UserPrefs;
 

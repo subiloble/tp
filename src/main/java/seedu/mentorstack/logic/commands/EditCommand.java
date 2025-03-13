@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -17,6 +17,7 @@ import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.commons.util.CollectionUtil;
 import seedu.mentorstack.commons.util.ToStringBuilder;
 import seedu.mentorstack.logic.Messages;
+import seedu.mentorstack.logic.commands.Command;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Email;

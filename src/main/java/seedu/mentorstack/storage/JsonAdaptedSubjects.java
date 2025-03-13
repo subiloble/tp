@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
-<<<<<<<< HEAD:src/main/java/seedu/mentorstack/storage/JsonAdaptedTag.java
-========
 import seedu.mentorstack.model.person.Subjects;
->>>>>>>> master:src/main/java/seedu/mentorstack/storage/JsonAdaptedSubjects.java
 import seedu.mentorstack.model.tag.Tag;
 
 /**

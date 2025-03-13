@@ -12,11 +12,7 @@ import seedu.mentorstack.commons.exceptions.DataLoadingException;
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
 import seedu.mentorstack.commons.util.FileUtil;
 import seedu.mentorstack.commons.util.JsonUtil;
-<<<<<<< HEAD
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-=======
 import seedu.mentorstack.model.ReadOnlyMentorstack;
->>>>>>> master
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.

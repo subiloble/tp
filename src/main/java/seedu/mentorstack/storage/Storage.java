@@ -5,11 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.mentorstack.commons.exceptions.DataLoadingException;
-<<<<<<< HEAD
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-=======
 import seedu.mentorstack.model.ReadOnlyMentorstack;
->>>>>>> master
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.UserPrefs;
 

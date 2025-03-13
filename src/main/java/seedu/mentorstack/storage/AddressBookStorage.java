@@ -5,17 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.mentorstack.commons.exceptions.DataLoadingException;
-<<<<<<< HEAD
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-
-/**
- * Represents a storage for {@link seedu.mentorstack.model.AddressBook}.
-=======
 import seedu.mentorstack.model.ReadOnlyMentorstack;
 
 /**
  * Represents a storage for {@link seedu.mentorstack.model.Mentorstack}.
->>>>>>> master
  */
 public interface AddressBookStorage {
 

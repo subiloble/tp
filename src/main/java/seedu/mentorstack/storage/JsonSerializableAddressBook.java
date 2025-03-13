@@ -9,13 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
-<<<<<<< HEAD
-import seedu.mentorstack.model.AddressBook;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-=======
 import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
->>>>>>> master
 import seedu.mentorstack.model.person.Person;
 
 /**

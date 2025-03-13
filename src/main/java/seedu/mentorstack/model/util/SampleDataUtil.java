@@ -4,22 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-<<<<<<< HEAD
-import seedu.mentorstack.model.AddressBook;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
-import seedu.mentorstack.model.person.Address;
-=======
 import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
->>>>>>> master
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
-<<<<<<< HEAD
-=======
 import seedu.mentorstack.model.person.Subjects;
->>>>>>> master
 import seedu.mentorstack.model.tag.Tag;
 
 /**
