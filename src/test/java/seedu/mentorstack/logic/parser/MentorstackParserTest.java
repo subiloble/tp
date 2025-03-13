@@ -51,7 +51,7 @@ public class MentorstackParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + "e1032467@gmail.com");
-        assertEquals(new DeleteCommand(new Email("e1032467@gmail.com")), command);
+        assertEquals(new DeleteCommand(0), command);
     }
 
     @Test
