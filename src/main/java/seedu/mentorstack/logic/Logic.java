@@ -7,7 +7,7 @@ import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.person.Person;
 
 /**
@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.mentorstack.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMentorstack getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

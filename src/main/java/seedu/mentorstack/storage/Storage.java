@@ -5,7 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.mentorstack.commons.exceptions.DataLoadingException;
+<<<<<<< HEAD
 import seedu.mentorstack.model.ReadOnlyAddressBook;
+=======
+import seedu.mentorstack.model.ReadOnlyMentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.UserPrefs;
 
@@ -24,9 +28,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyMentorstack> readAddressBook() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyMentorstack addressBook) throws IOException;
 
 }

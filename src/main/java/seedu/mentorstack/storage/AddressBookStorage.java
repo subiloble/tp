@@ -5,10 +5,17 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.mentorstack.commons.exceptions.DataLoadingException;
+<<<<<<< HEAD
 import seedu.mentorstack.model.ReadOnlyAddressBook;
 
 /**
  * Represents a storage for {@link seedu.mentorstack.model.AddressBook}.
+=======
+import seedu.mentorstack.model.ReadOnlyMentorstack;
+
+/**
+ * Represents a storage for {@link seedu.mentorstack.model.Mentorstack}.
+>>>>>>> master
  */
 public interface AddressBookStorage {
 
@@ -18,28 +25,28 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AddressBook data as a {@link ReadOnlyMentorstack}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyMentorstack> readAddressBook() throws DataLoadingException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyMentorstack> readAddressBook(Path filePath) throws DataLoadingException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyMentorstack} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyMentorstack addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveAddressBook(ReadOnlyMentorstack)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath) throws IOException;
 
 }

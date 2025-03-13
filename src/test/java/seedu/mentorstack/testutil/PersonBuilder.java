@@ -3,12 +3,19 @@ package seedu.mentorstack.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+<<<<<<< HEAD
 import seedu.mentorstack.model.person.Address;
+=======
+>>>>>>> master
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
+<<<<<<< HEAD
 import seedu.mentorstack.model.tag.Tag;
+=======
+import seedu.mentorstack.model.person.Subjects;
+>>>>>>> master
 import seedu.mentorstack.model.util.SampleDataUtil;
 
 /**
@@ -19,13 +26,12 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_SUB = "CS2103";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Set<Subjects> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,8 +40,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        tags.add(new Subjects(DEFAULT_SUB));
     }
 
     /**
@@ -45,8 +51,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = new HashSet<>(personToCopy.getSubjects());
     }
 
     /**
@@ -61,15 +66,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.tags = SampleDataUtil.getSubjectSet(tags);
         return this;
     }
 
@@ -90,7 +87,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, tags);
     }
 
 }

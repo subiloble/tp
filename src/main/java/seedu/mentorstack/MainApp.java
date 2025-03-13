@@ -15,10 +15,10 @@ import seedu.mentorstack.commons.util.ConfigUtil;
 import seedu.mentorstack.commons.util.StringUtil;
 import seedu.mentorstack.logic.Logic;
 import seedu.mentorstack.logic.LogicManager;
-import seedu.mentorstack.model.AddressBook;
+import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.UserPrefs;
 import seedu.mentorstack.model.util.SampleDataUtil;
@@ -75,8 +75,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMentorstack> addressBookOptional;
+        ReadOnlyMentorstack initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -87,7 +87,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            initialData = new Mentorstack();
         }
 
         return new ModelManager(initialData, userPrefs);

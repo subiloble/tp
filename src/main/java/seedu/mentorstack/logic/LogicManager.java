@@ -11,10 +11,10 @@ import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.commands.Command;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
-import seedu.mentorstack.logic.parser.AddressBookParser;
+import seedu.mentorstack.logic.parser.MentorstackParser;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.Model;
-import seedu.mentorstack.model.ReadOnlyAddressBook;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.storage.Storage;
 
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final MentorstackParser mentorstackParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        mentorstackParser = new MentorstackParser();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = mentorstackParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -62,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyMentorstack getAddressBook() {
         return model.getAddressBook();
     }
 

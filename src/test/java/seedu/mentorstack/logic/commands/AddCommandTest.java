@@ -18,9 +18,15 @@ import javafx.collections.ObservableList;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
+<<<<<<< HEAD
 import seedu.mentorstack.model.AddressBook;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ReadOnlyAddressBook;
+=======
+import seedu.mentorstack.model.Mentorstack;
+import seedu.mentorstack.model.Model;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.testutil.PersonBuilder;
@@ -124,12 +130,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyMentorstack newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMentorstack getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +202,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyMentorstack getAddressBook() {
+            return new Mentorstack();
         }
     }
 

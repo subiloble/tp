@@ -12,7 +12,11 @@ import seedu.mentorstack.commons.exceptions.DataLoadingException;
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
 import seedu.mentorstack.commons.util.FileUtil;
 import seedu.mentorstack.commons.util.JsonUtil;
+<<<<<<< HEAD
 import seedu.mentorstack.model.ReadOnlyAddressBook;
+=======
+import seedu.mentorstack.model.ReadOnlyMentorstack;
+>>>>>>> master
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -32,7 +36,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
+    public Optional<ReadOnlyMentorstack> readAddressBook() throws DataLoadingException {
         return readAddressBook(filePath);
     }
 
@@ -42,7 +46,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyMentorstack> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +64,16 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+    public void saveAddressBook(ReadOnlyMentorstack addressBook) throws IOException {
         saveAddressBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyMentorstack)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

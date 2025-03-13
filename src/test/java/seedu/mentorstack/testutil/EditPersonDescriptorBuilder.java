@@ -5,12 +5,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
+<<<<<<< HEAD
 import seedu.mentorstack.model.person.Address;
+=======
+>>>>>>> master
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
+<<<<<<< HEAD
 import seedu.mentorstack.model.tag.Tag;
+=======
+import seedu.mentorstack.model.person.Subjects;
+>>>>>>> master
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -35,8 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setSubject(person.getSubjects());
     }
 
     /**
@@ -64,20 +70,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        Set<Subjects> tagSet = Stream.of(tags).map(Subjects::new).collect(Collectors.toSet());
+        descriptor.setSubject(tagSet);
         return this;
     }
 

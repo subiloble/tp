@@ -11,8 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.mentorstack.commons.core.GuiSettings;
+<<<<<<< HEAD
 import seedu.mentorstack.model.AddressBook;
 import seedu.mentorstack.model.ReadOnlyAddressBook;
+=======
+import seedu.mentorstack.model.Mentorstack;
+import seedu.mentorstack.model.ReadOnlyMentorstack;
+>>>>>>> master
 import seedu.mentorstack.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +59,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        Mentorstack original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyMentorstack retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new Mentorstack(retrieved));
     }
 
     @Test

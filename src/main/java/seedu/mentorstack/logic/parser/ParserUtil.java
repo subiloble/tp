@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+//import javax.security.auth.Subject;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.commons.util.StringUtil;
@@ -13,7 +14,9 @@ import seedu.mentorstack.model.person.Address;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Phone;
+import seedu.mentorstack.model.person.Subjects;
 import seedu.mentorstack.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +123,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String subjects} into a {@code Subjects}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjects} is invalid.
+     */
+    public static Subjects parseSubject(String subjects) throws ParseException {
+        requireNonNull(subjects);
+        String trimmedTag = subjects.trim();
+        if (!Subjects.isValidSubjectName(trimmedTag)) {
+            throw new ParseException(Subjects.MESSAGE_CONSTRAINTS);
+        }
+        return new Subjects(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> subjects} into a {@code Set<Subjects>}.
+     */
+    public static Set<Subjects> parseSubjects(Collection<String> subjects) throws ParseException {
+        requireNonNull(subjects);
+        final Set<Subjects> subjectSet = new HashSet<>();
+        for (String subjectName : subjects) {
+            subjectSet.add(parseSubject(subjectName));
+        }
+        return subjectSet;
     }
 }
