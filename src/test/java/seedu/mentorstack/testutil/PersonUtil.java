@@ -9,6 +9,11 @@ import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_TAG;
 =======
 >>>>>>> master
 
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
+
 import java.util.Set;
 
 import seedu.mentorstack.logic.commands.AddCommand;
@@ -24,10 +29,7 @@ import seedu.mentorstack.model.person.Subjects;
  * A utility class for Person.
  */
 public class PersonUtil {
-    private static String PREFIX_NAME = "n/";
-    private static String PREFIX_PHONE = "p/";
-    private static String PREFIX_EMAIL = "e/";
-    private static String PREFIX_SUBJECT = "s/";
+
     /**
      * Returns an add command string for adding the {@code person}.
      */

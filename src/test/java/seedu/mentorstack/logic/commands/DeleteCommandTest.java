@@ -9,27 +9,15 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.mentorstack.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-=======
-import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.mentorstack.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
-import static seedu.mentorstack.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
->>>>>>> master
+
 import static seedu.mentorstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
-
-<<<<<<< HEAD
 import seedu.mentorstack.commons.core.index.Index;
-=======
->>>>>>> master
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;
-<<<<<<< HEAD
-=======
-import seedu.mentorstack.model.person.Email;
->>>>>>> master
 import seedu.mentorstack.model.person.Person;
 
 /**
@@ -42,8 +30,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(EMAIL_FIRST_PERSON);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -54,7 +42,6 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
-    /* The test is omitted because now we delete students based on email instead of indices
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -65,7 +52,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, EMAIK_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
@@ -92,17 +79,17 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-    */
+
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(EMAIL_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(EMAIL_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(EMAIL_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -117,7 +104,7 @@ public class DeleteCommandTest {
 
     @Test
     public void toStringMethod() {
-        Email targetIndex = new Email("john@example.com");
+        Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());

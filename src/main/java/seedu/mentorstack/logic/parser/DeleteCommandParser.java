@@ -1,8 +1,10 @@
 package seedu.mentorstack.logic.parser;
 
+import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.model.person.Email;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -15,11 +17,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        String email = args.trim();
-        if (email.isEmpty()) {
-            throw new ParseException("Email cannot be empty. Usage: delete-student <email>");
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new DeleteCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
-        return new DeleteCommand(new Email(email));
     }
 
 }
+
