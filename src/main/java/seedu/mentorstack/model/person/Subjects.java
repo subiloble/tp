@@ -8,10 +8,8 @@ import static seedu.mentorstack.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidSubjectName(String)}
  */
 public class Subjects {
-    public static final String MESSAGE_CONSTRAINTS = "Subjects must be in the format: XXYYYY, XXYYYYZ, or XXXYYYY "
-            + "(two or three uppercase letters, followed by four digits, optionally followed by one uppercase letter) "
-            + "e.g. CS2103, CS2103T, LAF1101";
-    public static final String VALIDATION_REGEX = "^[A-Z]{2,3}\\d{4}[A-Z]?$";
+    public static final String MESSAGE_CONSTRAINTS = "Subject names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String subjectName;
 
