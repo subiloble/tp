@@ -7,14 +7,15 @@ import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Subjects;
 
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 /**
  * A utility class for Person.
  */
 public class PersonUtil {
-    private static String PREFIX_NAME = "n/";
-    private static String PREFIX_PHONE = "p/";
-    private static String PREFIX_EMAIL = "e/";
-    private static String PREFIX_SUBJECT = "s/";
+
     /**
      * Returns an add command string for adding the {@code person}.
      */
