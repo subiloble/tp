@@ -50,10 +50,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Willie Tay
 
-<img src="images/willie.png" width="200px">
+<img src="images/ioubread.png" width="200px">
 
 [[github](http://github.com/ioubread)]
-[[portfolio](team/willie.md)]
+[[portfolio](team/ioubread.md)]
 
 * Role: Developer
 * Responsibilities: [TBD]
