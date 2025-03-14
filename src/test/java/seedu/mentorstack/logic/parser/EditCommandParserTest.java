@@ -87,9 +87,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_SUBJECT} alone will reset the subjects of the {@code Person} being edited,
         // parsing it together with a valid subject results in error
-        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND + SUBJECT_EMPTY, Subject.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_EMPTY + SUBJECT_DESC_HUSBAND, Subject.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SUBJECT_EMPTY + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND, Subject.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND + SUBJECT_EMPTY,
+                Subject.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_EMPTY + SUBJECT_DESC_HUSBAND,
+                Subject.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SUBJECT_EMPTY + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND,
+                Subject.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,

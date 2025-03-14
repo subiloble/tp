@@ -152,7 +152,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseSubjects_collectionWithInvalidSubjects_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSubjects(Arrays.asList(VALID_SUBJECT_1, INVALID_SUBJECT)));
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseSubjects(Arrays.asList(VALID_SUBJECT_1, INVALID_SUBJECT)));
     }
 
     @Test
@@ -163,7 +164,8 @@ public class ParserUtilTest {
     @Test
     public void parseSubjects_collectionWithValidSubjects_returnsSubjectSet() throws Exception {
         Set<Subject> actualSubjectSet = ParserUtil.parseSubjects(Arrays.asList(VALID_SUBJECT_1, VALID_SUBJECT_2));
-        Set<Subject> expectedSubjectSet = new HashSet<Subject>(Arrays.asList(new Subject(VALID_SUBJECT_1), new Subject(VALID_SUBJECT_2)));
+        Set<Subject> expectedSubjectSet = new HashSet<Subject>(Arrays.asList(new Subject(VALID_SUBJECT_1),
+                new Subject(VALID_SUBJECT_2)));
 
         assertEquals(expectedSubjectSet, actualSubjectSet);
     }
