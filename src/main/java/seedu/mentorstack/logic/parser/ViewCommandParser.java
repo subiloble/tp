@@ -3,12 +3,12 @@ package seedu.mentorstack.logic.parser;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_FILTER_TYPE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_FILTER_VALUE;
 
+import java.util.function.Predicate;
+
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.predicates.FilterPredicate;
-
-import java.util.function.Predicate;
 
 /**
  * Parses input arguments and creates a new ViewStudentsCommand object.
