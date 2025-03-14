@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.mentorstack.logic.commands.AddCommand;
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.model.person.Person;
-import seedu.mentorstack.model.person.Subjects;
+import seedu.mentorstack.model.person.Subject;
 
 /**
  * A utility class for Person.
@@ -47,7 +47,7 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         if (descriptor.getSubjects().isPresent()) {
-            Set<Subjects> tags = descriptor.getSubjects().get();
+            Set<Subject> tags = descriptor.getSubjects().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_SUBJECT);
             } else {

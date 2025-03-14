@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of Mentorstack
  */
 public interface ReadOnlyMentorstack {
 

@@ -10,7 +10,7 @@ import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the Mentorstack level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class Mentorstack implements ReadOnlyMentorstack {
@@ -31,7 +31,7 @@ public class Mentorstack implements ReadOnlyMentorstack {
     public Mentorstack() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a Mentorstack using the Persons in the {@code toBeCopied}
      */
     public Mentorstack(ReadOnlyMentorstack toBeCopied) {
         this();
@@ -60,7 +60,7 @@ public class Mentorstack implements ReadOnlyMentorstack {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in Mentorstack.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -68,8 +68,8 @@ public class Mentorstack implements ReadOnlyMentorstack {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to Mentorstack.
+     * The person must not already exist in Mentorstack.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -77,8 +77,8 @@ public class Mentorstack implements ReadOnlyMentorstack {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in Mentorstack.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in Mentorstack.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -87,8 +87,8 @@ public class Mentorstack implements ReadOnlyMentorstack {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Mentorstack}.
+     * {@code key} must exist in Mentorstack.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -119,8 +119,8 @@ public class Mentorstack implements ReadOnlyMentorstack {
             return false;
         }
 
-        Mentorstack otherAddressBook = (Mentorstack) other;
-        return persons.equals(otherAddressBook.persons);
+        Mentorstack otherMentorstack = (Mentorstack) other;
+        return persons.equals(otherMentorstack.persons);
     }
 
     @Override

@@ -4,21 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.mentorstack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Subject in the mentorstack.
+ * Represents a Subject in Mentorstack.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSubjectName(String)}
  */
-public class Subjects {
+public class Subject {
     public static final String MESSAGE_CONSTRAINTS = "Subject names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String subjectName;
 
     /**
-     * Constructs a {@code Subjects}.
+     * Constructs a {@code Subject}.
      *
      * @param subjectName A valid subject name.
      */
-    public Subjects(String subjectName) {
+    public Subject(String subjectName) {
         requireNonNull(subjectName);
         checkArgument(isValidSubjectName(subjectName), MESSAGE_CONSTRAINTS);
         this.subjectName = subjectName;
@@ -38,11 +38,11 @@ public class Subjects {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Subjects)) {
+        if (!(other instanceof Subject)) {
             return false;
         }
 
-        Subjects otherSubject = (Subjects) other;
+        Subject otherSubject = (Subject) other;
         return subjectName.equals(otherSubject.subjectName);
     }
 

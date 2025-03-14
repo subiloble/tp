@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.mentorstack.commons.util.ToStringBuilder;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in Mentorstack.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -21,17 +21,17 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Set<Subjects> subjects = new HashSet<>();
+    private final Set<Subject> subject = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Subjects> subjects) {
-        requireAllNonNull(name, phone, email, subjects);
+    public Person(Name name, Phone phone, Email email, Set<Subject> subject) {
+        requireAllNonNull(name, phone, email, subject);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.subjects.addAll(subjects);
+        this.subject.addAll(subject);
     }
 
     public Name getName() {
@@ -50,8 +50,8 @@ public class Person {
      * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Subjects> getSubjects() {
-        return Collections.unmodifiableSet(subjects);
+    public Set<Subject> getSubjects() {
+        return Collections.unmodifiableSet(subject);
     }
 
     /**
@@ -86,13 +86,13 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && subjects.equals(otherPerson.subjects);
+                && subject.equals(otherPerson.subject);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, subjects);
+        return Objects.hash(name, phone, email, subject);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("subjects", subjects)
+                .add("subject", subject)
                 .toString();
     }
 

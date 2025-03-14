@@ -2,7 +2,7 @@ package seedu.mentorstack.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.mentorstack.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonMentorstackStorage mentorstackStorage = new JsonMentorstackStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(mentorstackStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void mentorstackReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonMentorstackStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMentorstackStorageTest} class.
          */
-        Mentorstack original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyMentorstack retrieved = storageManager.readAddressBook().get();
+        Mentorstack original = getTypicalMentorstack();
+        storageManager.saveMentorstack(original);
+        ReadOnlyMentorstack retrieved = storageManager.readMentorstack().get();
         assertEquals(original, new Mentorstack(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getMentorstackFilePath() {
+        assertNotNull(storageManager.getMentorstackFilePath());
     }
 
 }

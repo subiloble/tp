@@ -22,8 +22,8 @@ import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.ReadOnlyUserPrefs;
 import seedu.mentorstack.model.UserPrefs;
 import seedu.mentorstack.model.util.SampleDataUtil;
-import seedu.mentorstack.storage.AddressBookStorage;
-import seedu.mentorstack.storage.JsonAddressBookStorage;
+import seedu.mentorstack.storage.MentorstackStorage;
+import seedu.mentorstack.storage.JsonMentorstackStorage;
 import seedu.mentorstack.storage.JsonUserPrefsStorage;
 import seedu.mentorstack.storage.Storage;
 import seedu.mentorstack.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Mentorstack ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        MentorstackStorage mentorstackStorage = new JsonMentorstackStorage(userPrefs.getMentorstackFilePath());
+        storage = new StorageManager(mentorstackStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -73,20 +73,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getMentorstackFilePath());
 
-        Optional<ReadOnlyMentorstack> addressBookOptional;
+        Optional<ReadOnlyMentorstack> mentorstackOptional;
         ReadOnlyMentorstack initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+            mentorstackOptional = storage.readMentorstack();
+            if (!mentorstackOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getMentorstackFilePath()
+                        + " populated with a sample Mentorstack.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = mentorstackOptional.orElseGet(SampleDataUtil::getSampleMentorstack);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+            logger.warning("Data file at " + storage.getMentorstackFilePath() + " could not be loaded."
+                    + " Will be starting with an empty Mentorstack.");
             initialData = new Mentorstack();
         }
 
@@ -170,13 +170,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Mentorstack " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping AddressBook ] =============================");
+        logger.info("============================ [ Stopping Mentorstack ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

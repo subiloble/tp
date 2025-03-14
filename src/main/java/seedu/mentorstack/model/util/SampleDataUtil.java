@@ -10,8 +10,7 @@ import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subjects;
-import seedu.mentorstack.model.tag.Tag;
+import seedu.mentorstack.model.person.Subject;
 
 /**
  * Contains utility methods for populating {@code Mentorstack} with sample data.
@@ -34,26 +33,20 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyMentorstack getSampleAddressBook() {
-        Mentorstack sampleAb = new Mentorstack();
+    public static ReadOnlyMentorstack getSampleMentorstack() {
+        Mentorstack sampleMs = new Mentorstack();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleMs.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleMs;
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a subject set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Subject> getSubjectSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
-    public static Set<Subjects> getSubjectSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Subjects::new)
+                .map(Subject::new)
                 .collect(Collectors.toSet());
     }
 }

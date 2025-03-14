@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Mentorstack.
      *
-     * @see seedu.mentorstack.model.Model#getAddressBook()
+     * @see seedu.mentorstack.model.Model#getMentorstack()
      */
-    ReadOnlyMentorstack getAddressBook();
+    ReadOnlyMentorstack getMentorstack();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getMentorstackFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
