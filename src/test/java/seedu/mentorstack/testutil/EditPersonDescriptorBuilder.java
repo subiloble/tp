@@ -9,7 +9,7 @@ import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subjects;
+import seedu.mentorstack.model.person.Subject;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -34,7 +34,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setSubject(person.getSubjects());
+        descriptor.setSubjects(person.getSubjects());
     }
 
     /**
@@ -62,12 +62,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Subjects> tagSet = Stream.of(tags).map(Subjects::new).collect(Collectors.toSet());
-        descriptor.setSubject(tagSet);
+    public EditPersonDescriptorBuilder withSubjects(String... subjects) {
+        Set<Subject> subjectSet = Stream.of(subjects).map(Subject::new).collect(Collectors.toSet());
+        descriptor.setSubjects(subjectSet);
         return this;
     }
 

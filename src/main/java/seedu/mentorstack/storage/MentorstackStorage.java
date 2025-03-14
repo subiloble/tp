@@ -10,36 +10,36 @@ import seedu.mentorstack.model.ReadOnlyMentorstack;
 /**
  * Represents a storage for {@link seedu.mentorstack.model.Mentorstack}.
  */
-public interface AddressBookStorage {
+public interface MentorstackStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMentorstackFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyMentorstack}.
+     * Returns Mentorstack data as a {@link ReadOnlyMentorstack}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyMentorstack> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyMentorstack> readMentorstack() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMentorstackFilePath()
      */
-    Optional<ReadOnlyMentorstack> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyMentorstack> readMentorstack(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyMentorstack} to the storage.
-     * @param addressBook cannot be null.
+     * @param mentorstack cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyMentorstack addressBook) throws IOException;
+    void saveMentorstack(ReadOnlyMentorstack mentorstack) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMentorstack)
+     * @see #saveMentorstack(ReadOnlyMentorstack)
      */
-    void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath) throws IOException;
+    void saveMentorstack(ReadOnlyMentorstack mentorstack, Path filePath) throws IOException;
 
 }

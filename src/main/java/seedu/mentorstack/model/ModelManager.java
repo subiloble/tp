@@ -14,26 +14,26 @@ import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Mentorstack data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Mentorstack addressBook;
+    private final Mentorstack mentorstack;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given mentorstack and userPrefs.
      */
-    public ModelManager(ReadOnlyMentorstack addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyMentorstack mentorstack, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(mentorstack, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with mentorstack: " + mentorstack + " and user prefs " + userPrefs);
 
-        this.addressBook = new Mentorstack(addressBook);
+        this.mentorstack = new Mentorstack(mentorstack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.mentorstack.getPersonList());
     }
 
     public ModelManager() {
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMentorstackFilePath() {
+        return userPrefs.getMentorstackFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMentorstackFilePath(Path mentorstackFilePath) {
+        requireNonNull(mentorstackFilePath);
+        userPrefs.setMentorstackFilePath(mentorstackFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Mentorstack ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyMentorstack addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setMentorstack(ReadOnlyMentorstack mentorstack) {
+        this.mentorstack.resetData(mentorstack);
     }
 
     @Override
-    public ReadOnlyMentorstack getAddressBook() {
-        return addressBook;
+    public ReadOnlyMentorstack getMentorstack() {
+        return mentorstack;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return mentorstack.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        mentorstack.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        mentorstack.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        mentorstack.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedMentorstack}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return mentorstack.equals(otherModelManager.mentorstack)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }

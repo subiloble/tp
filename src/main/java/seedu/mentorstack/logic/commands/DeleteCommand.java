@@ -12,7 +12,7 @@ import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from Mentorstack.
  */
 public class DeleteCommand extends Command {
 

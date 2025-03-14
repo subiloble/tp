@@ -6,7 +6,7 @@ import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.mentorstack.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in Mentorstack to the user.
  */
 public class ListCommand extends Command {
 

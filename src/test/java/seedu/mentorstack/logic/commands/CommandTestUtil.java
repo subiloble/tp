@@ -40,13 +40,13 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_SUBJECT + VALID_SUB_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_SUBJECT + VALID_SUB_HUSBAND;
+    public static final String SUBJECT_DESC_FRIEND = " " + PREFIX_SUBJECT + VALID_SUB_FRIEND;
+    public static final String SUBJECT_DESC_HUSBAND = " " + PREFIX_SUBJECT + VALID_SUB_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_TAG_DESC = " " + PREFIX_SUBJECT + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT + "hubby*"; // '*' not allowed in subjects
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -57,10 +57,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_SUB_FRIEND).build();
+                .withSubjects(VALID_SUB_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_SUB_HUSBAND, VALID_SUB_FRIEND).build();
+                .withSubjects(VALID_SUB_HUSBAND, VALID_SUB_FRIEND).build();
     }
 
     /**
@@ -98,11 +98,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Mentorstack expectedAddressBook = new Mentorstack(actualModel.getAddressBook());
+        Mentorstack expectedAddressBook = new Mentorstack(actualModel.getMentorstack());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getMentorstack());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

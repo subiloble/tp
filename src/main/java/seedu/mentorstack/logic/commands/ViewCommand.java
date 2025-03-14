@@ -10,7 +10,7 @@ import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Finds and lists all persons in according to the filter.
+ * Finds and lists all persons in Mentorstack according to the filter.
  * Keyword matching is case insensitive.
  */
 public class ViewCommand extends Command {
@@ -48,7 +48,7 @@ public class ViewCommand extends Command {
 
     private String formatStudentList(List<Person> students) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-20s %-12s %-25s %s\n", "Name", "Phone", "Email", "Subjects"));
+        sb.append(String.format("%-20s %-12s %-25s %s\n", "Name", "Phone", "Email", "Subject"));
         sb.append("=".repeat(100)).append("\n");
 
         for (Person student : students) {

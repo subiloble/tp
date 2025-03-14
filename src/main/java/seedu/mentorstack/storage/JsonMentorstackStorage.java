@@ -15,44 +15,44 @@ import seedu.mentorstack.commons.util.JsonUtil;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Mentorstack data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonMentorstackStorage implements MentorstackStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMentorstackStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonMentorstackStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMentorstackFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMentorstack> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMentorstack> readMentorstack() throws DataLoadingException {
+        return readMentorstack(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMentorstack()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyMentorstack> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyMentorstack> readMentorstack(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableMentorstack> jsonMentorstack = JsonUtil.readJsonFile(
+                filePath, JsonSerializableMentorstack.class);
+        if (!jsonMentorstack.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMentorstack.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMentorstack addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveMentorstack(ReadOnlyMentorstack mentorstack) throws IOException {
+        saveMentorstack(mentorstack, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMentorstack)}.
+     * Similar to {@link #saveMentorstack(ReadOnlyMentorstack)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMentorstack(ReadOnlyMentorstack mentorstack, Path filePath) throws IOException {
+        requireNonNull(mentorstack);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMentorstack(mentorstack), filePath);
     }
 
 }

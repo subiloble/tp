@@ -13,24 +13,24 @@ import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the Mentorstack.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the mentorstack. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Mentorstack. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PHONE + "PHONE "
-            + "[" + PREFIX_SUBJECT + "SUBJECT]...\n"
+            + PREFIX_SUBJECT + "SUBJECT\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_SUBJECT + "math"
-            + PREFIX_SUBJECT + "computer science";
+            + PREFIX_SUBJECT + "CS2103"
+            + PREFIX_SUBJECT + "LAJ1201";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

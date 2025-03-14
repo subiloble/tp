@@ -27,7 +27,7 @@ import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.UserPrefs;
 import seedu.mentorstack.model.person.Person;
-import seedu.mentorstack.storage.JsonAddressBookStorage;
+import seedu.mentorstack.storage.JsonMentorstackStorage;
 import seedu.mentorstack.storage.JsonUserPrefsStorage;
 import seedu.mentorstack.storage.StorageManager;
 import seedu.mentorstack.testutil.PersonBuilder;
@@ -44,10 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMentorstackStorage mentorstackStorage =
+                new JsonMentorstackStorage(temporaryFolder.resolve("mentorstack.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(mentorstackStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -122,7 +122,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -148,10 +148,10 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        // Inject LogicManager with an MentorstackStorage that throws the IOException e when saving
+        JsonMentorstackStorage mentorstackStorage = new JsonMentorstackStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyMentorstack addressBook, Path filePath)
+            public void saveMentorstack(ReadOnlyMentorstack mentorstack, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -159,14 +159,14 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(mentorstackStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
+        // Triggers the saveMentorstack method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags("CS2100").build();
+        Person expectedPerson = new PersonBuilder(AMY).withSubjects("CS2100").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

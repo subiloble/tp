@@ -5,18 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-//import javax.security.auth.Subject;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.commons.util.StringUtil;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.model.person.Address;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subjects;
-import seedu.mentorstack.model.tag.Tag;
-
+import seedu.mentorstack.model.person.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -69,21 +65,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -99,55 +80,28 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String subject} into a {@code Subject}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code subject} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Subject parseSubjects(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubjectName(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Subject(trimmedSubject);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> subject} into a {@code Set<Subject>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
-     * Parses a {@code String subjects} into a {@code Subjects}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code subjects} is invalid.
-     */
-    public static Subjects parseSubject(String subjects) throws ParseException {
-        requireNonNull(subjects);
-        String trimmedTag = subjects.trim();
-        if (!Subjects.isValidSubjectName(trimmedTag)) {
-            throw new ParseException(Subjects.MESSAGE_CONSTRAINTS);
-        }
-        return new Subjects(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> subjects} into a {@code Set<Subjects>}.
-     */
-    public static Set<Subjects> parseSubjects(Collection<String> subjects) throws ParseException {
-        requireNonNull(subjects);
-        final Set<Subjects> subjectSet = new HashSet<>();
-        for (String subjectName : subjects) {
-            subjectSet.add(parseSubject(subjectName));
+    public static Set<Subject> parseSubjects(Collection<String> subject) throws ParseException {
+        requireNonNull(subject);
+        final Set<Subject> subjectSet = new HashSet<>();
+        for (String subjectName : subject) {
+            subjectSet.add(parseSubjects(subjectName));
         }
         return subjectSet;
     }

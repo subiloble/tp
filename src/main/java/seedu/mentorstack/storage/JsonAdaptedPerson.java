@@ -14,7 +14,7 @@ import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subjects;
+import seedu.mentorstack.model.person.Subject;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -26,7 +26,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedSubjects> subjects = new ArrayList<>();
+    private final List<JsonAdaptedSubject> subject = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -34,12 +34,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
-            @JsonProperty("subjects") List<JsonAdaptedSubjects> subjects) {
+            @JsonProperty("subject") List<JsonAdaptedSubject> subject) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        if (subjects != null) {
-            this.subjects.addAll(subjects);
+        if (subject != null) {
+            this.subject.addAll(subject);
         }
     }
 
@@ -50,8 +50,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        subjects.addAll(source.getSubjects().stream()
-                .map(JsonAdaptedSubjects::new)
+        subject.addAll(source.getSubjects().stream()
+                .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
     }
 
@@ -61,9 +61,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Subjects> personTags = new ArrayList<>();
-        for (JsonAdaptedSubjects sub : subjects) {
-            personTags.add(sub.toModelType());
+        final List<Subject> personSubject = new ArrayList<>();
+        for (JsonAdaptedSubject sub : subject) {
+            personSubject.add(sub.toModelType());
         }
 
         if (name == null) {
@@ -91,8 +91,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
 
-        final Set<Subjects> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        final Set<Subject> modelSubject = new HashSet<>(personSubject);
+        return new Person(modelName, modelPhone, modelEmail, modelSubject);
     }
 
 }

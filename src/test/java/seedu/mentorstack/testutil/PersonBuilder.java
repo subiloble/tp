@@ -7,7 +7,7 @@ import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subjects;
+import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.model.util.SampleDataUtil;
 
 /**
@@ -23,7 +23,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<Subjects> tags;
+    private Set<Subject> subjects;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -32,8 +32,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
-        tags.add(new Subjects(DEFAULT_SUB));
+        subjects = new HashSet<>();
+        subjects.add(new Subject(DEFAULT_SUB));
     }
 
     /**
@@ -43,7 +43,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        tags = new HashSet<>(personToCopy.getSubjects());
+        subjects = new HashSet<>(personToCopy.getSubjects());
     }
 
     /**
@@ -55,10 +55,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getSubjectSet(tags);
+    public PersonBuilder withSubjects(String ... subjects) {
+        this.subjects = SampleDataUtil.getSubjectSet(subjects);
         return this;
     }
 
@@ -79,7 +79,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, tags);
+        return new Person(name, phone, email, subjects);
     }
 
 }
