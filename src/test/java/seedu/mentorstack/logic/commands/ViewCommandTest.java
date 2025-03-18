@@ -60,8 +60,8 @@ public class ViewCommandTest {
 
     @Test
     public void execute_multipleMatchingResults_multiplePersonsFound() {
-        Predicate<Person> predicate = person -> person.getName().fullName.contains("Alice") ||
-                person.getName().fullName.contains("Benson");
+        Predicate<Person> predicate = person -> person.getName().fullName.contains("Alice")
+                || person.getName().fullName.contains("Benson");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
