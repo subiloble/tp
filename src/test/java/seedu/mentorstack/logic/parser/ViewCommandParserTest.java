@@ -1,7 +1,6 @@
 package seedu.mentorstack.logic.parser;
 
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_FILTER_TYPE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_FILTER_VALUE;
 
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.Person;
-import seedu.mentorstack.model.person.predicates.FilterPredicate;
 import seedu.mentorstack.testutil.PersonBuilder;
 
 import java.util.function.Predicate;

@@ -4,11 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.mentorstack.testutil.TypicalPersons.ALICE;
-import static seedu.mentorstack.testutil.TypicalPersons.BOB;
 import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Predicate;
 
