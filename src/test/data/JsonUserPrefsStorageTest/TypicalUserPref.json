@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "mentorstackFilePath" : "mentorstack.json"
 }

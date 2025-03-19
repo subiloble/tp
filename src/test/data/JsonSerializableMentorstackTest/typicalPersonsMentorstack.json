@@ -1,46 +1,39 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Mentorstack save file which contains the same Person values as in TypicalPersons#getTypicalMentorstack()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "email" : "amy@gmail.com",
+    "subject" : [ "CS1010S" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tags" : [ ]
+    "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "friends" ]
+    "subject" : [ "CS2106" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tags" : [ ]
+    "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tags" : [ ]
+    "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "address" : "4th street",
-    "tags" : [ ]
+    "subject" : [ "CS1010C", "CS2100" ]
   } ]
 }
