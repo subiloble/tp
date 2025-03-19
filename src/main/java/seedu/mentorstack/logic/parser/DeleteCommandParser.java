@@ -6,6 +6,8 @@ import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 
+import java.util.Set;
+
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
@@ -19,7 +21,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            return new DeleteCommand(Set.of(index));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
