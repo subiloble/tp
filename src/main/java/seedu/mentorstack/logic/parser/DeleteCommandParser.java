@@ -2,11 +2,11 @@ package seedu.mentorstack.logic.parser;
 
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Set;
+
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-
-import java.util.Set;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
