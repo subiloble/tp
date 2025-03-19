@@ -4,7 +4,7 @@ package seedu.mentorstack.logic.parser;
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_SET_FIRST_PERSON));
     }
 
     @Test
