@@ -35,6 +35,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a sequence of indices separated by spaces into a {@code Set<Index>}.
+     * @throws ParseException if any specified index is invalid.
+     */
+    public static Set<Index> parseIndexes(String indices) throws ParseException {
+        requireNonNull(indices);
+        Set<Index> indexSet = new HashSet<>();
+        for (String indexStr : indices.trim().split("\\s+")) {
+            indexSet.add(parseIndex(indexStr)); // Explicitly handle exceptions at this level
+        }
+        return indexSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
