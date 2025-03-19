@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.testutil.Assert.assertThrows;
 import static seedu.mentorstack.testutil.TypicalPersons.ALICE;
 import static seedu.mentorstack.testutil.TypicalPersons.BOB;
@@ -33,7 +33,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withSubjects(VALID_SUB_HUSBAND).build();
+                .withSubjects(VALID_SUB_CS2102).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different subjects -> returns false
-        editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_CS2102).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
