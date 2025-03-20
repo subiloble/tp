@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor   | edit a student’s details                            | update their information                               |
 | `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                             |
 | `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want          |
-| `* * *`  | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
+|   `*`    | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
 
 *{More to be added}*
 
@@ -388,31 +388,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
     * 2a1. Mentorstack shows a message indicating no student satisfies the input requirements.
-
-  Use case ends.
-
-
-
-**Use case: UC06 - Undo an unintended operation**
-
-**Precondition**
-
-1. The user has performed at least one action that modifies the application state (e.g., adding, editing, or deleting student data).
-
-**MSS**
-
-1.  Tutor enters the undo command.
-2.  Mentorstack reverts the last operation that modified the data storage.
-3.  Mentorstack displays a success message.
-4.  Mentorstack displays a description for the operation that is undone.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. There is no operation to undo - undo is not valid.
-
-    * 1a1. Mentorstack shows a message indicating no previous operation exists.
 
   Use case ends.
 
