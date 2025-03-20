@@ -13,8 +13,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_FRIEND;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -44,25 +44,25 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2100).build();
+        Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2102).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_FRIEND, new AddCommand(expectedPerson));
+                + SUBJECT_DESC_CS2102, new AddCommand(expectedPerson));
 
 
         // multiple subjects - all accepted
         Person expectedPersonMultipleSubjects = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2100, VALID_SUB_CS2102)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102,
                 new AddCommand(expectedPersonMultipleSubjects));
     }
 
     @Test
     public void parse_repeatedNonSubjectValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_FRIEND;
+                + SUBJECT_DESC_CS2102;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -115,7 +115,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero subjects
         Person expectedPerson = new PersonBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_FRIEND,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_CS2100,
                 new AddCommand(expectedPerson));
     }
 
@@ -144,27 +144,27 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102, Email.MESSAGE_CONSTRAINTS);
 
         // invalid subject
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + INVALID_SUBJECT_DESC + VALID_SUB_CS2100, Subject.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_FRIEND,
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_CS2102,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND,
+                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

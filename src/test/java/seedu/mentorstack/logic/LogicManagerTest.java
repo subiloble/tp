@@ -6,6 +6,7 @@ import static seedu.mentorstack.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
 import static seedu.mentorstack.testutil.Assert.assertThrows;
 import static seedu.mentorstack.testutil.TypicalPersons.AMY;
 
@@ -165,8 +166,8 @@ public class LogicManagerTest {
 
         // Triggers the saveMentorstack method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withSubjects("CS2100").build();
+                + EMAIL_DESC_AMY + SUBJECT_DESC_CS2100;
+        Person expectedPerson = new PersonBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
