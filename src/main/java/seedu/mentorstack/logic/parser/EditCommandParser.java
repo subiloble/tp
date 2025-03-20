@@ -8,7 +8,6 @@ import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -74,9 +73,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (subjects.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> subjectsSet = subjects.size() == 1
-                && subjects.contains("") ? Collections.emptySet() : subjects;
-        return Optional.of(ParserUtil.parseSubjects(subjectsSet));
+
+        return Optional.of(ParserUtil.parseSubjects(subjects));
     }
 
 }

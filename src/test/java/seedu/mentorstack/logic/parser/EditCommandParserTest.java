@@ -169,7 +169,7 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + SUBJECT_DESC_CS2102 + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_CS2102
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_CS2100;
@@ -184,15 +184,5 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
     }
-
-    @Test
-    public void parse_resetSubjects_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + SUBJECT_EMPTY;
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withSubjects().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
+    
 }
