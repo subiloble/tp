@@ -10,8 +10,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.INVALID_SUBJECT_D
 import static seedu.mentorstack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
