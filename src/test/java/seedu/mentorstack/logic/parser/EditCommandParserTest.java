@@ -16,8 +16,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_FRIEND;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withSubjects(VALID_SUB_HUSBAND, VALID_SUB_FRIEND).build();
+                .withSubjects(VALID_SUB_CS2102, VALID_SUB_CS2100).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -148,7 +148,7 @@ public class EditCommandParserTest {
 
         // subjects
         userInput = targetIndex.getOneBased() + SUBJECT_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withSubjects(VALID_SUB_FRIEND).build();
+        descriptor = new EditPersonDescriptorBuilder().withSubjects(VALID_SUB_CS2100).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

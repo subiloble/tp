@@ -3,7 +3,7 @@ package seedu.mentorstack.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.testutil.Assert.assertThrows;
 import static seedu.mentorstack.testutil.TypicalPersons.ALICE;
 import static seedu.mentorstack.testutil.TypicalPersons.BOB;
@@ -41,7 +41,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_CS2102)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_CS2102)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

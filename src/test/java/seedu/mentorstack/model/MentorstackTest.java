@@ -3,7 +3,7 @@ package seedu.mentorstack.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.testutil.Assert.assertThrows;
 import static seedu.mentorstack.testutil.TypicalPersons.ALICE;
 import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
@@ -45,7 +45,7 @@ public class MentorstackTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_CS2102)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         MentorstackStub newData = new MentorstackStub(newPersons);
@@ -72,7 +72,7 @@ public class MentorstackTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInMentorstack_returnsTrue() {
         mentorstack.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withSubjects(VALID_SUB_CS2102)
                 .build();
         assertTrue(mentorstack.hasPerson(editedAlice));
     }

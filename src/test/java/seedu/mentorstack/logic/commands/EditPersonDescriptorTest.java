@@ -8,7 +8,7 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different subjects -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSubjects(VALID_SUB_HUSBAND).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSubjects(VALID_SUB_CS2102).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -58,7 +58,7 @@ public class EditPersonDescriptorTest {
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", subjects="
+                + editPersonDescriptor.getEmail().orElse(null) + ", subject="
                 + editPersonDescriptor.getSubjects().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }

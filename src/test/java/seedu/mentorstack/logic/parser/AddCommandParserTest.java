@@ -18,8 +18,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_HUSB
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_FRIEND;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -44,7 +44,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2100).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -52,7 +52,7 @@ public class AddCommandParserTest {
 
 
         // multiple subjects - all accepted
-        Person expectedPersonMultipleSubjects = new PersonBuilder(BOB).withSubjects(VALID_SUB_FRIEND, VALID_SUB_HUSBAND)
+        Person expectedPersonMultipleSubjects = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2100, VALID_SUB_CS2102)
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_HUSBAND + SUBJECT_DESC_FRIEND,
@@ -156,7 +156,7 @@ public class AddCommandParserTest {
 
         // invalid subject
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_SUBJECT_DESC + VALID_SUB_FRIEND, Subject.MESSAGE_CONSTRAINTS);
+                + INVALID_SUBJECT_DESC + VALID_SUB_CS2100, Subject.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_FRIEND,
