@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.mentorstack.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.mentorstack.testutil.Assert.assertThrows;
+import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class MentorstackParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " 1 ");
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new DeleteCommand(INDEX_SET_FIRST_PERSON), command);
     }
 
     @Test

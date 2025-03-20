@@ -2,6 +2,8 @@ package seedu.mentorstack.logic.parser;
 
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Set;
+
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
@@ -18,7 +20,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Set<Index> index = ParserUtil.parseIndexes(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
