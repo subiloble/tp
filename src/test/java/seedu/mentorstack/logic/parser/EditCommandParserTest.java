@@ -10,8 +10,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.INVALID_SUBJECT_D
 import static seedu.mentorstack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_FRIEND;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_HUSBAND;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -87,11 +87,11 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_SUBJECT} alone will reset the subjects of the {@code Person} being edited,
         // parsing it together with a valid subject results in error
-        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND + SUBJECT_EMPTY,
+        assertParseFailure(parser, "1" + SUBJECT_DESC_CS2102 + SUBJECT_DESC_CS2100 + SUBJECT_EMPTY,
                 Subject.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SUBJECT_DESC_FRIEND + SUBJECT_EMPTY + SUBJECT_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + SUBJECT_DESC_CS2102 + SUBJECT_EMPTY + SUBJECT_DESC_CS2100,
                 Subject.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SUBJECT_EMPTY + SUBJECT_DESC_FRIEND + SUBJECT_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + SUBJECT_EMPTY + SUBJECT_DESC_CS2102 + SUBJECT_DESC_CS2100,
                 Subject.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -102,8 +102,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SUBJECT_DESC_HUSBAND
-                + EMAIL_DESC_AMY + NAME_DESC_AMY + SUBJECT_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SUBJECT_DESC_CS2100
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + SUBJECT_DESC_CS2102;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
@@ -147,7 +147,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // subjects
-        userInput = targetIndex.getOneBased() + SUBJECT_DESC_FRIEND;
+        userInput = targetIndex.getOneBased() + SUBJECT_DESC_CS2100;
         descriptor = new EditPersonDescriptorBuilder().withSubjects(VALID_SUB_CS2100).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -171,8 +171,8 @@ public class EditCommandParserTest {
 
         // mulltiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + SUBJECT_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_FRIEND
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_HUSBAND;
+                + SUBJECT_DESC_CS2102 + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_CS2102
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_CS2100;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
