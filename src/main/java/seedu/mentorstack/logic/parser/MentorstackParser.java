@@ -18,6 +18,7 @@ import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
+import seedu.mentorstack.logic.commands.UndoCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +81,9 @@ public class MentorstackParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
