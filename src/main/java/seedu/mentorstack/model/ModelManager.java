@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.mentorstack.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final Mentorstack mentorstack;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Deque<ReadOnlyMentorstack> history = new ArrayDeque<>();
 
     /**
      * Initializes a ModelManager with the given mentorstack and userPrefs.
@@ -79,6 +83,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setMentorstack(ReadOnlyMentorstack mentorstack) {
+        history.push(new Mentorstack(this.mentorstack));
         this.mentorstack.resetData(mentorstack);
     }
 
@@ -95,11 +100,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        history.push(new Mentorstack(this.mentorstack));
         mentorstack.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        history.push(new Mentorstack(this.mentorstack));
         mentorstack.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -108,7 +115,21 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
+        history.push(new Mentorstack(this.mentorstack));
         mentorstack.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean canUndo() {
+        return !history.isEmpty();
+    }
+
+    @Override
+    public void undo() {
+        if (!canUndo()) {
+            throw new NoSuchElementException("No previous state to undo.");
+        }
+        this.mentorstack.resetData(history.pop()); // Restore previous state
     }
 
     //=========== Filtered Person List Accessors =============================================================
