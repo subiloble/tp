@@ -127,4 +127,12 @@ public class Mentorstack implements ReadOnlyMentorstack {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Removes {@code personToArchive} from this {@code Mentorstack}.
+     * {@code personToArchive} must exist in Mentorstack.
+     */
+    public void archive(Person personToArchive, Person archived) {
+        persons.archivePerson(personToArchive, archived);
+    }
 }

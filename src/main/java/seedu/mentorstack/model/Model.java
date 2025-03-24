@@ -84,4 +84,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Archives the given person.
+     * {@code person} must not already exist in Mentorstack.
+     */
+    void archivePerson(Person person, Person archived);
 }

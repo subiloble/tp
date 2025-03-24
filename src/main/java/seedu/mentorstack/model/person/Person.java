@@ -19,6 +19,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final boolean isArchived;
+    private final boolean isMarked;
 
     // Data fields
     private final Set<Subject> subject = new HashSet<>();
@@ -32,6 +34,18 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
+        this.isArchived = false;
+        this.isMarked = false;
+    }
+
+    public Person(Name name, Phone phone, Email email, Set<Subject> subject, boolean isArchived, boolean isMarked) {
+        requireAllNonNull(name, phone, email, subject);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.subject.addAll(subject);
+        this.isArchived = isArchived;
+        this.isMarked = isMarked;
     }
 
     public Name getName() {
@@ -105,4 +119,17 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * Returns a person that is identical to the person except it is archived.
+     */
+    public Person archived() {
+        return new Person(this.name, this.phone, this.email, this.subject, true, this.isMarked);
+    }
+
+    /**
+     * Returns a person that is identical to the person except it is unarchived.
+     */
+    public Person unarchived() {
+        return new Person(this.name, this.phone, this.email, this.subject, false, this.isMarked);
+    }
 }

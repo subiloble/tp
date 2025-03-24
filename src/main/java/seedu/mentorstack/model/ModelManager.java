@@ -129,6 +129,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void archivePerson(Person personToArchive, Person archived) {
+        requireAllNonNull(personToArchive, archived);
+        mentorstack.archive(personToArchive, archived);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
