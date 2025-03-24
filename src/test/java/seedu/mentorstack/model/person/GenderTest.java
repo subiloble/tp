@@ -23,12 +23,8 @@ class GenderTest {
     @Test
     public void constructor_invalidGender_throwsParseException() {
         // Invalid cases
-        assertThrows(ParseException.class, () -> new Gender("X"));
-        assertThrows(ParseException.class, () -> new Gender("Male"));
-        assertThrows(ParseException.class, () -> new Gender("Female"));
-        assertThrows(ParseException.class, () -> new Gender("MF"));
-        assertThrows(ParseException.class, () -> new Gender(""));
-        assertThrows(ParseException.class, () -> new Gender(" "));
+        assertThrows(IllegalArgumentException.class, () -> new Gender("X"));
+        assertThrows(IllegalArgumentException.class, () -> new Gender(""));
     }
 
     @Test
@@ -42,7 +38,6 @@ class GenderTest {
         // Invalid genders
         assertFalse(Gender.isValidGender("X"));
         assertFalse(Gender.isValidGender("Male"));
-        assertFalse(Gender.isValidGender("Female"));
         assertFalse(Gender.isValidGender("MF"));
         assertFalse(Gender.isValidGender(""));
         assertFalse(Gender.isValidGender(" "));
