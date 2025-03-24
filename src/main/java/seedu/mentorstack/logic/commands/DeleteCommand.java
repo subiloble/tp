@@ -2,6 +2,7 @@ package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -44,10 +45,15 @@ public class DeleteCommand extends Command {
             }
         }
 
+        ArrayList<Person> personsToDelete = new ArrayList<>();
         // Perform deletion
         StringBuilder deletedPersons = new StringBuilder();
         for (Index index : targetIndices) {
             Person personToDelete = lastShownList.get(index.getZeroBased());
+            personsToDelete.add(personToDelete);
+        }
+
+        for (Person personToDelete : personsToDelete) {
             model.deletePerson(personToDelete);
             deletedPersons.append(Messages.format(personToDelete)).append("\n");
         }
