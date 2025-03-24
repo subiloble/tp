@@ -57,7 +57,6 @@ public class DeleteCommand extends Command {
             model.deletePerson(personToDelete);
             deletedPersons.append(Messages.format(personToDelete)).append("\n");
         }
-        
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons.toString().trim()));
     }
 
