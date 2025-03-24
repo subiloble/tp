@@ -17,8 +17,8 @@ import seedu.mentorstack.logic.commands.ExitCommand;
 import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
-import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
+import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 
 /**
