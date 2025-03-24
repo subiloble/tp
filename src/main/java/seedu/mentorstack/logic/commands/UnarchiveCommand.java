@@ -13,22 +13,22 @@ import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Archives a person identified using it's displayed index from Mentorstack.
+ * Unarchives a person identified using it's displayed index from Mentorstack.
  */
-public class ArchiveCommand extends Command {
+public class UnarchiveCommand extends Command {
 
-    public static final String COMMAND_WORD = "archive";
+    public static final String COMMAND_WORD = "unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Archives the persons identified by the index numbers used in the displayed person list.\n"
+            + ": Unarchives the persons identified by the index numbers used in the displayed person list.\n"
             + "Parameters: INDEX1 INDEX2 ... (each must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Persons: %1$s";
+    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived Persons: %1$s";
 
     private final Set<Index> targetIndices;
 
-    public ArchiveCommand(Set<Index> targetIndices) {
+    public UnarchiveCommand(Set<Index> targetIndices) {
         this.targetIndices = targetIndices;
     }
 
@@ -37,7 +37,7 @@ public class ArchiveCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        // Ensure all indices are valid before archive
+        // Ensure all indices are valid before unarchive
         for (Index index : targetIndices) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -45,13 +45,13 @@ public class ArchiveCommand extends Command {
         }
 
         // Perform deletion
-        StringBuilder ArchivedPersons = new StringBuilder();
+        StringBuilder UnarchivedPersons = new StringBuilder();
         for (Index index : targetIndices) {
-            Person personToArchive = lastShownList.get(index.getZeroBased());
-            model.archivePerson(personToArchive, personToArchive.archived());
-            ArchivedPersons.append(Messages.format(personToArchive)).append("\n");
+            Person personToUnarchive = lastShownList.get(index.getZeroBased());
+            model.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());
+            UnarchivedPersons.append(Messages.format(personToUnarchive)).append("\n");
         }
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, ArchivedPersons.toString().trim()));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, UnarchivedPersons.toString().trim()));
     }
 
     @Override
@@ -61,12 +61,12 @@ public class ArchiveCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ArchiveCommand)) {
+        if (!(other instanceof UnarchiveCommand)) {
             return false;
         }
 
-        ArchiveCommand otherArchiveCommand = (ArchiveCommand) other;
-        return targetIndices.equals(otherArchiveCommand.targetIndices);
+        UnarchiveCommand otherUnarchiveCommand = (UnarchiveCommand) other;
+        return targetIndices.equals(otherUnarchiveCommand.targetIndices);
     }
 
     @Override

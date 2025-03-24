@@ -135,4 +135,8 @@ public class Mentorstack implements ReadOnlyMentorstack {
     public void archive(Person personToArchive, Person archived) {
         persons.archivePerson(personToArchive, archived);
     }
+
+    public void unarchive(Person personToUnarchive, Person unarchived) {
+        persons.unarchivePerson(personToUnarchive, unarchived);
+    }
 }

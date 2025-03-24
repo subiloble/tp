@@ -135,6 +135,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unarchivePerson(Person personToUnarchive, Person unarchived) {
+        requireAllNonNull(personToUnarchive, unarchived);
+        mentorstack.unarchive(personToUnarchive, unarchived);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

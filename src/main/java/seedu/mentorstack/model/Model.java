@@ -12,7 +12,7 @@ import seedu.mentorstack.model.person.Person;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = person -> !person.getIsArchived();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -90,4 +90,10 @@ public interface Model {
      * {@code person} must not already exist in Mentorstack.
      */
     void archivePerson(Person person, Person archived);
+
+    /**
+     * Unarchives the given person.
+     * {@code person} must not already exist in Mentorstack.
+     */
+    void unarchivePerson(Person personToUnarchive, Person unarchived);
 }

@@ -163,4 +163,15 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    public void unarchivePerson(Person target, Person unarchived) {
+        requireAllNonNull(target, unarchived);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, unarchived);
+    }
 }

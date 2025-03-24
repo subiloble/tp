@@ -132,4 +132,8 @@ public class Person {
     public Person unarchived() {
         return new Person(this.name, this.phone, this.email, this.subject, false, this.isMarked);
     }
+
+    public boolean getIsArchived() {
+        return this.isArchived;
+    }
 }
