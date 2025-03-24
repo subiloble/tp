@@ -31,7 +31,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         // Create multiple predicates
         List<Predicate<Person>> predicates = new ArrayList<>();
         for (int i = 0; i < filterTypes.size(); i++) {
-            Predicate<Person> predicate = FilterPredicate.createPredicate(filterTypes.get(i).toLowerCase(), filterValues.get(i));
+            Predicate<Person> predicate = FilterPredicate.createPredicate(filterTypes.get(i).
+                    toLowerCase(), filterValues.get(i));
             if (predicate == null) {
                 throw new ParseException(ViewCommand.MESSAGE_INVALID_FILTER);
             }
