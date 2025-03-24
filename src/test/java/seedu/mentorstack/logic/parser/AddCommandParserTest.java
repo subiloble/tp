@@ -16,6 +16,8 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.PREAMBLE_WHITESPA
 import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_FEMALE;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_MALE;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
@@ -47,21 +49,22 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2102).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_CS2102, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + VALID_MALE + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + SUBJECT_DESC_CS2102, new AddCommand(expectedPerson));
 
 
         // multiple subjects - all accepted
         Person expectedPersonMultipleSubjects = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2100, VALID_SUB_CS2102)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102,
+                NAME_DESC_BOB + VALID_MALE + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102,
                 new AddCommand(expectedPersonMultipleSubjects));
     }
 
     @Test
     public void parse_repeatedNonSubjectValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        String validExpectedPersonString = NAME_DESC_BOB + VALID_MALE + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + SUBJECT_DESC_CS2102;
 
         // multiple names
@@ -115,7 +118,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero subjects
         Person expectedPerson = new PersonBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + SUBJECT_DESC_CS2100,
+        assertParseSuccess(parser, NAME_DESC_AMY + VALID_FEMALE + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + SUBJECT_DESC_CS2100,
                 new AddCommand(expectedPerson));
     }
 
@@ -124,15 +128,15 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_MALE + PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_MALE + VALID_PHONE_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_MALE + PHONE_DESC_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
 
         // all prefixes missing

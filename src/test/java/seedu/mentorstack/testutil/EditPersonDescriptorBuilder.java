@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
@@ -58,6 +59,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
         return this;
     }
 

@@ -17,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Gender gender;
     private final Phone phone;
     private final Email email;
 
@@ -26,9 +27,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Subject> subject) {
+    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject) {
         requireAllNonNull(name, phone, email, subject);
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
@@ -36,6 +38,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public Phone getPhone() {
@@ -84,6 +90,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && gender.equals(otherPerson.gender)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && subject.equals(otherPerson.subject);
@@ -92,13 +99,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, subject);
+        return Objects.hash(name, gender, phone, email, subject);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("gender", gender)
                 .add("phone", phone)
                 .add("email", email)
                 .add("subject", subject)

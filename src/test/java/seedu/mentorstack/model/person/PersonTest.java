@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_FEMALE;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
@@ -42,6 +43,10 @@ public class PersonTest {
 
         // name differs in case, all other attributes same -> returns false
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertFalse(BOB.isSamePerson(editedBob));
+
+        // gender differs in case, all other attributes same -> returns false
+        editedBob = new PersonBuilder(BOB).withGender(VALID_FEMALE).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false

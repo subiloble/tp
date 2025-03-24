@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_MALE;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
@@ -43,6 +44,10 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different gender -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGender(VALID_MALE).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different email -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -56,7 +61,8 @@ public class EditPersonDescriptorTest {
     public void toStringMethod() {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", phone="
+                + editPersonDescriptor.getName().orElse(null) + ", gender="
+                + editPersonDescriptor.getGender().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", subject="
                 + editPersonDescriptor.getSubjects().orElse(null) + "}";

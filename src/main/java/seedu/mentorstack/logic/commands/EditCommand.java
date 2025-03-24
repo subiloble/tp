@@ -2,6 +2,7 @@ package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
@@ -21,6 +22,7 @@ import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
@@ -38,10 +40,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SUBJECT + "SUBJECT]... "
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_GENDER + "M"
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_SUBJECT + "CS2103";
@@ -94,11 +98,12 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Subject> updatedSubject = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedSubject);
+        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedSubject);
     }
 
     @Override
@@ -131,6 +136,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Gender gender;
         private Phone phone;
         private Email email;
         private Set<Subject> subject;
@@ -143,6 +149,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setGender(toCopy.gender);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setSubjects(toCopy.subject);
@@ -152,7 +159,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, subject);
+            return CollectionUtil.isAnyNonNull(name, gender, phone, email, subject);
         }
 
         public void setName(Name name) {
@@ -161,6 +168,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setPhone(Phone phone) {
@@ -209,6 +224,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
+                    && Objects.equals(gender, otherEditPersonDescriptor.gender)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(subject, otherEditPersonDescriptor.subject);
@@ -218,6 +234,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
+                    .add("gender", gender)
                     .add("phone", phone)
                     .add("email", email)
                     .add("subject", subject)
