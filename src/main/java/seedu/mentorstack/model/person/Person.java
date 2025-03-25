@@ -38,9 +38,10 @@ public class Person {
         this.isArchived = new ArchiveStatus(false);
     }
 
-    public Person(Name name, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived) {
+    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived) {
         requireAllNonNull(name, phone, email, subject, isArchived);
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
@@ -134,14 +135,14 @@ public class Person {
      * Returns a person that is identical to the person except it is archived.
      */
     public Person archived() {
-        return new Person(this.name, this.phone, this.email, this.subject, new ArchiveStatus(true));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus(true));
     }
 
     /**
      * Returns a person that is identical to the person except it is unarchived.
      */
     public Person unarchived() {
-        return new Person(this.name, this.phone, this.email, this.subject, new ArchiveStatus(false));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus(false));
     }
 
 
