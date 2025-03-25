@@ -43,7 +43,7 @@ public class Subject {
         }
 
         Subject otherSubject = (Subject) other;
-        return subjectName.equals(otherSubject.subjectName);
+        return subjectName.toLowerCase().equals(otherSubject.subjectName.toLowerCase());
     }
 
     @Override

@@ -23,11 +23,13 @@ import seedu.mentorstack.logic.commands.ExitCommand;
 import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
+import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.testutil.EditPersonDescriptorBuilder;
 import seedu.mentorstack.testutil.PersonBuilder;
 import seedu.mentorstack.testutil.PersonUtil;
@@ -101,6 +103,13 @@ public class MentorstackParserTest {
     public void parseCommand_undo() throws Exception {
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_stats() throws Exception {
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
+        StatsCommand command = (StatsCommand) parser.parseCommand(StatsCommand.COMMAND_WORD + " s/CS2103");
+        assertEquals(new StatsCommand(new Subject("CS2103")), command);
     }
 
     @Test
