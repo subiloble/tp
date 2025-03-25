@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,6 +17,9 @@ import seedu.mentorstack.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String MALE_IMAGE_PATH = "/images/male_profile.png";
+    private static final String FEMALE_IMAGE_PATH = "/images/female_profile.png";
+    private static final String DEFAULT_IMAGE_PATH = "/images/default_profile.png";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,6 +33,8 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private ImageView profilePicture;
     @FXML
     private Label name;
     @FXML
@@ -49,8 +56,22 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
+
+        // Load the profile picture based on gender
+        profilePicture.setImage(new Image(getGenderImagePath(person)));
+
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> subjects.getChildren().add(new Label(subject.subjectName)));
+    }
+
+    private String getGenderImagePath(Person person) {
+        if (person.getGender().value.equals("M")) {
+            return getClass().getResource(MALE_IMAGE_PATH).toExternalForm();
+        } else if (person.getGender().value.equals("F")) {
+            return getClass().getResource(FEMALE_IMAGE_PATH).toExternalForm();
+        } else {
+            return getClass().getResource(DEFAULT_IMAGE_PATH).toExternalForm();
+        }
     }
 }

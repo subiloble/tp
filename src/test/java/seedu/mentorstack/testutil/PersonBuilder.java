@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
@@ -16,11 +17,13 @@ import seedu.mentorstack.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_SUB = "CS2103";
 
     private Name name;
+    private Gender gender;
     private Phone phone;
     private Email email;
     private Set<Subject> subjects;
@@ -30,6 +33,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        gender = new Gender(DEFAULT_GENDER);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         subjects = new HashSet<>();
@@ -41,6 +45,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        gender = personToCopy.getGender();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         subjects = new HashSet<>(personToCopy.getSubjects());
@@ -51,6 +56,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
         return this;
     }
 
@@ -79,7 +92,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, subjects);
+        return new Person(name, gender, phone, email, subjects);
     }
 
 }
