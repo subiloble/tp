@@ -25,6 +25,7 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2102;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -87,7 +88,7 @@ public class AddCommandParserTest {
                 validExpectedPersonString + PHONE_DESC_AMY + GENDER_DESC_FEMALE + EMAIL_DESC_AMY
                         + NAME_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
 

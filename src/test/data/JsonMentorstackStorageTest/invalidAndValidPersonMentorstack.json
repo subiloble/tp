@@ -1,11 +1,13 @@
 {
   "persons": [ {
     "name": "Valid Person",
+    "gender": "M",
     "phone": "9482424",
     "email": "hans@example.com",
     "subject" : [ "CS2105" ]
   }, {
     "name": "Person With Invalid Phone Field",
+    "gender": "M",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "subject" : [ "CS2105" ]
