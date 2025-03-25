@@ -35,7 +35,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
-        this.isArchived = new ArchiveStatus(false);
+        this.isArchived = new ArchiveStatus("false");
     }
 
     /**
@@ -113,7 +113,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && subject.equals(otherPerson.subject)
-                && isArchived == otherPerson.getIsArchived();
+                && isArchived.equals(otherPerson.isArchived);
     }
 
     @Override
@@ -138,14 +138,14 @@ public class Person {
      * Returns a person that is identical to the person except it is archived.
      */
     public Person archived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus(true));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("true"));
     }
 
     /**
      * Returns a person that is identical to the person except it is unarchived.
      */
     public Person unarchived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus(false));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("false"));
     }
 
 

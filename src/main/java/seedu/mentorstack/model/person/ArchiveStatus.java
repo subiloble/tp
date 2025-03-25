@@ -12,21 +12,21 @@ public class ArchiveStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final Boolean isArchived;
+    public final String isArchived;
 
     /**
      * Constructs a {@code ArchiveStatus}.
      *
      * @param isArchived A boolean value.
      */
-    public ArchiveStatus(Boolean isArchived) {
+    public ArchiveStatus(String isArchived) {
         requireNonNull(isArchived);
         this.isArchived = isArchived;
     }
 
     @Override
     public String toString() {
-        return isArchived.toString();
+        return isArchived;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ArchiveStatus {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Phone)) {
+        if (!(other instanceof ArchiveStatus)) {
             return false;
         }
 
@@ -50,6 +50,6 @@ public class ArchiveStatus {
     }
 
     public String getStatus() {
-        return this.isArchived.toString();
+        return this.isArchived;
     }
 }

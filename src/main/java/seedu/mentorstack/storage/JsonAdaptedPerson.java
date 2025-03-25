@@ -110,7 +110,7 @@ class JsonAdaptedPerson {
 
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
-        final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived.equals("true"));
+        final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived);
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject, modelAriveStatus);
     }
 
