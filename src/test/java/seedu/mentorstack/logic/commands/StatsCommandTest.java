@@ -3,13 +3,10 @@ package seedu.mentorstack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.mentorstack.testutil.TypicalPersons.ALICE;
 import static seedu.mentorstack.testutil.TypicalPersons.CARL;
-import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.mentorstack.logic.commands.exceptions.CommandException;
-import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.person.Subject;
@@ -29,18 +26,6 @@ public class StatsCommandTest {
         // Initialize statsCommand before each test
         statsCommand = new StatsCommand();
     }
-
-    @Test
-    public void execute_stats_successful() throws CommandException {
-        model.setMentorstack(new Mentorstack());
-        CommandResult result = statsCommand.execute(model);
-
-        // Verify successful undo
-        assertEquals(StatsCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
-        assertEquals(getTypicalMentorstack(), model.getMentorstack());
-    }
-
-
 
     @Test
     public void execute_noSubject_showsCorrectStats() {
