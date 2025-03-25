@@ -23,6 +23,7 @@ import seedu.mentorstack.logic.commands.ExitCommand;
 import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
+import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
@@ -101,6 +102,12 @@ public class MentorstackParserTest {
     public void parseCommand_undo() throws Exception {
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_stats() throws Exception {
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD + " s/CS2103") instanceof StatsCommand);
     }
 
     @Test
