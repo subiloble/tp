@@ -75,5 +75,4 @@ public class UnarchiveCommand extends Command {
                 .add("targetIndex", targetIndices)
                 .toString();
     }
-
 }

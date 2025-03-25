@@ -27,5 +27,4 @@ public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

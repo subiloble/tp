@@ -52,5 +52,4 @@ public class ArchiveStatus {
     public String getStatus() {
         return this.isArchived.toString();
     }
-    
 }
