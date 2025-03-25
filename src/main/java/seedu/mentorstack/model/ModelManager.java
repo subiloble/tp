@@ -111,6 +111,20 @@ public class ModelManager implements Model {
         mentorstack.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void archivePerson(Person personToArchive, Person archived) {
+        requireAllNonNull(personToArchive, archived);
+        mentorstack.archive(personToArchive, archived);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unarchivePerson(Person personToUnarchive, Person unarchived) {
+        requireAllNonNull(personToUnarchive, unarchived);
+        mentorstack.unarchive(personToUnarchive, unarchived);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,18 +140,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void archivePerson(Person personToArchive, Person archived) {
-        requireAllNonNull(personToArchive, archived);
-        mentorstack.archive(personToArchive, archived);
-    }
-
-    @Override
-    public void unarchivePerson(Person personToUnarchive, Person unarchived) {
-        requireAllNonNull(personToUnarchive, unarchived);
-        mentorstack.unarchive(personToUnarchive, unarchived);
     }
 
     @Override

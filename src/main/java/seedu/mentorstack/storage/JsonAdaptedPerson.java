@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
-import seedu.mentorstack.model.person.Email;
-import seedu.mentorstack.model.person.Name;
-import seedu.mentorstack.model.person.Person;
-import seedu.mentorstack.model.person.Phone;
-import seedu.mentorstack.model.person.Subject;
+import seedu.mentorstack.model.person.*;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -27,6 +23,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
+    private final String isArchived;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,6 +38,7 @@ class JsonAdaptedPerson {
         if (subject != null) {
             this.subject.addAll(subject);
         }
+        this.isArchived = "false";
     }
 
     /**
@@ -53,6 +51,7 @@ class JsonAdaptedPerson {
         subject.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
+        isArchived = source.getIsArchived().getStatus();
     }
 
     /**
@@ -92,7 +91,8 @@ class JsonAdaptedPerson {
 
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
-        return new Person(modelName, modelPhone, modelEmail, modelSubject);
+        final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived.equals("true"));
+        return new Person(modelName, modelPhone, modelEmail, modelSubject, modelAriveStatus);
     }
 
 }
