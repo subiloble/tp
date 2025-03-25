@@ -69,6 +69,36 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Archives the person {@code target} in the list.
+     * {@code target} must exist in the list.
+     */
+    public void archivePerson(Person target, Person archivedPerson) {
+        requireAllNonNull(target, archivedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, archivedPerson);
+    }
+
+    /**
+     * Unarchives the person {@code target} in the list.
+     * {@code target} must exist in the list.
+     */
+    public void unarchivePerson(Person target, Person unarchivedPerson) {
+        requireAllNonNull(target, unarchivedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, unarchivedPerson);
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */

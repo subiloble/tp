@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.commands.AddCommand;
+import seedu.mentorstack.logic.commands.ArchiveCommand;
 import seedu.mentorstack.logic.commands.ClearCommand;
 import seedu.mentorstack.logic.commands.Command;
 import seedu.mentorstack.logic.commands.DeleteCommand;
@@ -18,6 +19,7 @@ import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
 import seedu.mentorstack.logic.commands.StatsCommand;
+import seedu.mentorstack.logic.commands.UnarchiveCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
@@ -82,6 +84,12 @@ public class MentorstackParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case UnarchiveCommand.COMMAND_WORD:
+            return new UnarchiveCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();

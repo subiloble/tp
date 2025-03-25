@@ -132,6 +132,20 @@ public class ModelManager implements Model {
         this.mentorstack.resetData(history.pop()); // Restore previous state
     }
 
+    @Override
+    public void archivePerson(Person personToArchive, Person archived) {
+        requireAllNonNull(personToArchive, archived);
+        mentorstack.archive(personToArchive, archived);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unarchivePerson(Person personToUnarchive, Person unarchived) {
+        requireAllNonNull(personToUnarchive, unarchived);
+        mentorstack.unarchive(personToUnarchive, unarchived);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

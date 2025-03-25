@@ -20,12 +20,13 @@ public class Person {
     private final Gender gender;
     private final Phone phone;
     private final Email email;
+    private final ArchiveStatus isArchived;
 
     // Data fields
     private final Set<Subject> subject = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, new student is default to have archive status to be false.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject) {
         requireAllNonNull(name, phone, email, subject);
@@ -34,6 +35,20 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
+        this.isArchived = new ArchiveStatus("false");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived) {
+        requireAllNonNull(name, phone, email, subject, isArchived);
+        this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.subject.addAll(subject);
+        this.isArchived = isArchived;
     }
 
     public Name getName() {
@@ -58,6 +73,10 @@ public class Person {
      */
     public Set<Subject> getSubjects() {
         return Collections.unmodifiableSet(subject);
+    }
+
+    public ArchiveStatus getIsArchived() {
+        return isArchived;
     }
 
     /**
@@ -93,13 +112,14 @@ public class Person {
                 && gender.equals(otherPerson.gender)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && subject.equals(otherPerson.subject);
+                && subject.equals(otherPerson.subject)
+                && isArchived.equals(otherPerson.isArchived);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, subject);
+        return Objects.hash(name, gender, phone, email, subject, isArchived);
     }
 
     @Override
@@ -110,7 +130,23 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("subject", subject)
+                .add("archive status", isArchived)
                 .toString();
     }
+
+    /**
+     * Returns a person that is identical to the person except it is archived.
+     */
+    public Person archived() {
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("true"));
+    }
+
+    /**
+     * Returns a person that is identical to the person except it is unarchived.
+     */
+    public Person unarchived() {
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("false"));
+    }
+
 
 }
