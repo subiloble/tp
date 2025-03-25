@@ -25,6 +25,9 @@ public class StatsCommandTest {
         // Add Alice and Carl to the model
         model.addPerson(ALICE);
         model.addPerson(CARL);
+
+        // Initialize statsCommand before each test
+        statsCommand = new StatsCommand();
     }
 
     @Test
@@ -41,9 +44,6 @@ public class StatsCommandTest {
 
     @Test
     public void execute_noSubject_showsCorrectStats() {
-        // Create the command with no subject filter
-        statsCommand = new StatsCommand();
-
         // Execute the command
         CommandResult result = statsCommand.execute(model);
 
@@ -61,7 +61,7 @@ public class StatsCommandTest {
         CommandResult result = statsCommand.execute(model);
 
         // Validate the result
-        String expectedMessage = String.format("Statistics for CS1010S:\n" + StatsCommand.MESSAGE_SUCCESS, 1, 0, 1);
+        String expectedMessage = String.format("Statistics for [CS1010S]:\n" + StatsCommand.MESSAGE_SUCCESS, 1, 0, 1);
         // 1 person in CS1010S, 0 male, 1 female (Alice)
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }

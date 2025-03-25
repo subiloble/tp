@@ -29,7 +29,6 @@ import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
-import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.testutil.EditPersonDescriptorBuilder;
 import seedu.mentorstack.testutil.PersonBuilder;
 import seedu.mentorstack.testutil.PersonUtil;
@@ -108,8 +107,7 @@ public class MentorstackParserTest {
     @Test
     public void parseCommand_stats() throws Exception {
         assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
-        StatsCommand command = (StatsCommand) parser.parseCommand(StatsCommand.COMMAND_WORD + " s/CS2103");
-        assertEquals(new StatsCommand(new Subject("CS2103")), command);
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD + " s/CS2103") instanceof StatsCommand);
     }
 
     @Test

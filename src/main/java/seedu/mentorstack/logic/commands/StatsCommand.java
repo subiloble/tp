@@ -65,4 +65,19 @@ public class StatsCommand extends Command {
 
         return new CommandResult(resultMessage);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof StatsCommand)) {
+            return false;
+        }
+
+        StatsCommand otherStatsCommand = (StatsCommand) other;
+        return subject.equals(otherStatsCommand.subject);
+    }
 }
