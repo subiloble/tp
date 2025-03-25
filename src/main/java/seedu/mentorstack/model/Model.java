@@ -96,4 +96,12 @@ public interface Model {
      * {@code person} must not already exist in Mentorstack.
      */
     void unarchivePerson(Person personToUnarchive, Person unarchived);
+
+    /** Returns an indication of current undoable states */
+    boolean canUndo();
+
+    /**
+     * Undo the last command by reverting to the last historical state.
+     */
+    void undo();
 }

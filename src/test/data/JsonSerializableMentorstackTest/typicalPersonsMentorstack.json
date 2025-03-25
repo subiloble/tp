@@ -2,36 +2,43 @@
   "_comment": "Mentorstack save file which contains the same Person values as in TypicalPersons#getTypicalMentorstack()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "gender" : "F",
     "phone" : "94351253",
     "email" : "amy@gmail.com",
     "subject" : [ "CS1010S" ]
   }, {
     "name" : "Benson Meier",
+    "gender" : "M",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Carl Kurz",
+    "gender" : "M",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Daniel Meier",
+    "gender" : "M",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "subject" : [ "CS2106" ]
   }, {
     "name" : "Elle Meyer",
+    "gender" : "F",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "Fiona Kunz",
+    "gender" : "F",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "subject" : [ "CS1010C", "CS2100" ]
   }, {
     "name" : "George Best",
+    "gender" : "M",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "subject" : [ "CS1010C", "CS2100" ]

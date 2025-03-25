@@ -10,7 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
-import seedu.mentorstack.model.person.*;
+import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Gender;
+import seedu.mentorstack.model.person.Name;
+import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Phone;
+import seedu.mentorstack.model.person.Subject;
+import seedu.mentorstack.model.person.ArchiveStatus;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -20,6 +26,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String gender;
     private final String phone;
     private final String email;
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
@@ -29,10 +36,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
-            @JsonProperty("subject") List<JsonAdaptedSubject> subject) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("subject") List<JsonAdaptedSubject> subject) {
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         if (subject != null) {
@@ -47,6 +57,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        gender = source.getGender().value;
         email = source.getEmail().value;
         subject.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
@@ -73,6 +84,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -92,7 +111,7 @@ class JsonAdaptedPerson {
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
         final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived.equals("true"));
-        return new Person(modelName, modelPhone, modelEmail, modelSubject, modelAriveStatus);
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject, modelAriveStatus);
     }
 
 }

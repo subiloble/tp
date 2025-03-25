@@ -1,11 +1,13 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "gender" : "F",
     "phone": "94351253",
     "email": "alice@example.com",
     "subject" : [ "CS2105" ]
   }, {
     "name": "Alice Pauline",
+    "gender" : "F",
     "phone": "94351253",
     "email": "pauline@example.com",
     "subject" : [ "CS2105" ]
