@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.mentorstack.commons.exceptions.IllegalValueException;
+import seedu.mentorstack.model.person.ArchiveStatus;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Subject;
-import seedu.mentorstack.model.person.ArchiveStatus;
 
 /**
  * Jackson-friendly version of {@link Person}.

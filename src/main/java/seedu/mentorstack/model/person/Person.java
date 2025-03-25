@@ -26,7 +26,7 @@ public class Person {
     private final Set<Subject> subject = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, new student is default to have archive status to be false.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject) {
         requireAllNonNull(name, phone, email, subject);
@@ -38,6 +38,9 @@ public class Person {
         this.isArchived = new ArchiveStatus(false);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived) {
         requireAllNonNull(name, phone, email, subject, isArchived);
         this.name = name;

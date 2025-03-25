@@ -69,19 +69,33 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Archives the person {@code target} in the list.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void archivePerson(Person target, Person archived) {
-        requireAllNonNull(target, archived);
+    public void archivePerson(Person target, Person archivedPerson) {
+        requireAllNonNull(target, archivedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        internalList.set(index, archived);
+        internalList.set(index, archivedPerson);
+    }
+
+    /**
+     * Unarchives the person {@code target} in the list.
+     * {@code target} must exist in the list.
+     */
+    public void unarchivePerson(Person target, Person unarchivedPerson) {
+        requireAllNonNull(target, unarchivedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, unarchivedPerson);
     }
 
     /**
@@ -162,16 +176,5 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
-    }
-
-    public void unarchivePerson(Person target, Person unarchived) {
-        requireAllNonNull(target, unarchived);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
-
-        internalList.set(index, unarchived);
     }
 }
