@@ -159,6 +159,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void archivePerson(Person person, Person archived) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unarchivePerson(Person personToUnarchive, Person unarchived) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean canUndo() {
             throw new AssertionError("This method should not be called.");
         }

@@ -45,13 +45,13 @@ public class UnarchiveCommand extends Command {
         }
 
         // Perform deletion
-        StringBuilder UnarchivedPersons = new StringBuilder();
+        StringBuilder unarchivedPersons = new StringBuilder();
         for (Index index : targetIndices) {
             Person personToUnarchive = lastShownList.get(index.getZeroBased());
             model.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());
-            UnarchivedPersons.append(Messages.format(personToUnarchive)).append("\n");
+            unarchivedPersons.append(Messages.format(personToUnarchive)).append("\n");
         }
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, UnarchivedPersons.toString().trim()));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, unarchivedPersons.toString().trim()));
     }
 
     @Override

@@ -45,13 +45,13 @@ public class ArchiveCommand extends Command {
         }
 
         // Perform deletion
-        StringBuilder ArchivedPersons = new StringBuilder();
+        StringBuilder archivedPersons = new StringBuilder();
         for (Index index : targetIndices) {
             Person personToArchive = lastShownList.get(index.getZeroBased());
             model.archivePerson(personToArchive, personToArchive.archived());
-            ArchivedPersons.append(Messages.format(personToArchive)).append("\n");
+            archivedPersons.append(Messages.format(personToArchive)).append("\n");
         }
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, ArchivedPersons.toString().trim()));
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, archivedPersons.toString().trim()));
     }
 
     @Override
