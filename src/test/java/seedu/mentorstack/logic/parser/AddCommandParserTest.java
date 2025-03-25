@@ -37,6 +37,7 @@ import org.junit.jupiter.api.Test;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.AddCommand;
 import seedu.mentorstack.model.person.Email;
+import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
@@ -51,7 +52,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).withSubjects(VALID_SUB_CS2102).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + VALID_MALE + PHONE_DESC_BOB
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + GENDER_DESC_MALE + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + SUBJECT_DESC_CS2102, new AddCommand(expectedPerson));
 
 
@@ -83,7 +84,8 @@ public class AddCommandParserTest {
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
+                validExpectedPersonString + PHONE_DESC_AMY + GENDER_DESC_FEMALE + EMAIL_DESC_AMY
+                        + NAME_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE));
 
@@ -158,7 +160,7 @@ public class AddCommandParserTest {
 
         // invalid gender
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_GENDER_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102, Name.MESSAGE_CONSTRAINTS);
+                + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + GENDER_DESC_MALE + INVALID_PHONE_DESC + EMAIL_DESC_BOB
