@@ -2,6 +2,7 @@ package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -44,10 +45,15 @@ public class UnarchiveCommand extends Command {
             }
         }
 
-        // Perform deletion
-        StringBuilder unarchivedPersons = new StringBuilder();
+        ArrayList<Person> personsToUnarchive = new ArrayList<Person>();
         for (Index index : targetIndices) {
             Person personToUnarchive = lastShownList.get(index.getZeroBased());
+            personsToUnarchive.add(personToUnarchive);
+        }
+
+        // Perform deletion
+        StringBuilder unarchivedPersons = new StringBuilder();
+        for (Person personToUnarchive : personsToUnarchive) {
             model.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());
             unarchivedPersons.append(Messages.format(personToUnarchive)).append("\n");
         }
