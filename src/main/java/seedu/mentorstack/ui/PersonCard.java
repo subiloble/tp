@@ -21,8 +21,6 @@ public class PersonCard extends UiPart<Region> {
     private static final String MALE_IMAGE_PATH = "/images/male_profile.png";
     private static final String FEMALE_IMAGE_PATH = "/images/female_profile.png";
     private static final String DEFAULT_IMAGE_PATH = "/images/default_profile.png";
-    private static final String MARKED_STYLE_CLASS = "marked";
-    private static final String UNMARKED_STYLE_CLASS = "unmarked";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
