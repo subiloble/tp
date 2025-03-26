@@ -92,7 +92,8 @@ public class PersonTest {
                 + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail()
                 + ", subject=" + ALICE.getSubjects()
-                + ", archive status=" + ALICE.getIsArchived() + "}";
+                + ", archive status=" + ALICE.getIsArchived()
+                + ", marked=" + ALICE.getIsMarked() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
