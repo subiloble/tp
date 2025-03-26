@@ -2,6 +2,7 @@ package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -44,10 +45,15 @@ public class ArchiveCommand extends Command {
             }
         }
 
-        // Perform deletion
-        StringBuilder archivedPersons = new StringBuilder();
+        ArrayList<Person> personsToArchive = new ArrayList<Person>();
         for (Index index : targetIndices) {
             Person personToArchive = lastShownList.get(index.getZeroBased());
+            personsToArchive.add(personToArchive);
+        }
+
+        // Perform deletion
+        StringBuilder archivedPersons = new StringBuilder();
+        for (Person personToArchive : personsToArchive) {
             model.archivePerson(personToArchive, personToArchive.archived());
             archivedPersons.append(Messages.format(personToArchive)).append("\n");
         }
