@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.mentorstack.model.person.Person;
 
 /**
@@ -20,6 +21,8 @@ public class PersonCard extends UiPart<Region> {
     private static final String MALE_IMAGE_PATH = "/images/male_profile.png";
     private static final String FEMALE_IMAGE_PATH = "/images/female_profile.png";
     private static final String DEFAULT_IMAGE_PATH = "/images/default_profile.png";
+    private static final String MARKED_STYLE_CLASS = "marked";
+    private static final String UNMARKED_STYLE_CLASS = "unmarked";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -45,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane subjects;
+    @FXML
+    private Circle markerCircle;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -63,6 +68,12 @@ public class PersonCard extends UiPart<Region> {
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> subjects.getChildren().add(new Label(subject.subjectName)));
+
+        updateMarkedStyle();
+    }
+
+    private void updateMarkedStyle() {
+        markerCircle.setVisible(person.getIsMarked());
     }
 
     private String getGenderImagePath(Person person) {

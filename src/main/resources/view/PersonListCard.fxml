@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.shape.Circle?>
 <HBox id="cardPane" fx:id="cardPane" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <!-- Profile Picture and Text Fields in HBox -->
   <ImageView fx:id="profilePicture" fitHeight="50" fitWidth="50" preserveRatio="true" />
@@ -30,6 +31,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Circle fx:id="markerCircle" radius="5" fill="red" visible="false"/>
       </HBox>
       <FlowPane fx:id="subjects" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />

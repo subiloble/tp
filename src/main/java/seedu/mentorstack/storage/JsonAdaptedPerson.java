@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
     private final String isArchived;
+    private final boolean isMarked;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,6 +50,7 @@ class JsonAdaptedPerson {
             this.subject.addAll(subject);
         }
         this.isArchived = "false";
+        this.isMarked = false;
     }
 
     /**
@@ -63,6 +65,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
         isArchived = source.getIsArchived().getStatus();
+        isMarked = source.getIsMarked();
     }
 
     /**
@@ -110,8 +113,9 @@ class JsonAdaptedPerson {
 
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
-        final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived);
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject, modelAriveStatus);
+        final ArchiveStatus modelArchiveStatus = new ArchiveStatus(isArchived);
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject,
+                modelArchiveStatus, isMarked);
     }
 
 }

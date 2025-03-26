@@ -146,6 +146,20 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void markPerson(Person target, Person marked) {
+        requireAllNonNull(target, marked);
+        mentorstack.mark(target, marked);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unmarkPerson(Person target, Person unmarked) {
+        requireAllNonNull(target, unmarked);
+        mentorstack.unmark(target, unmarked);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

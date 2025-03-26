@@ -97,6 +97,16 @@ public interface Model {
      */
     void unarchivePerson(Person personToUnarchive, Person unarchived);
 
+    /**
+     * Marks the given person.
+     */
+    void markPerson(Person target, Person marked);
+
+    /**
+     * Unmarks the given person.
+     */
+    void unmarkPerson(Person target, Person unmarked);
+
     /** Returns an indication of current undoable states */
     boolean canUndo();
 
