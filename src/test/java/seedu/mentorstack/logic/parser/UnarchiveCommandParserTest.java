@@ -7,7 +7,6 @@ import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON
 
 import org.junit.jupiter.api.Test;
 
-import seedu.mentorstack.logic.commands.ArchiveCommand;
 import seedu.mentorstack.logic.commands.UnarchiveCommand;
 
 /**

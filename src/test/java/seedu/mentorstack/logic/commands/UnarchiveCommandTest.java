@@ -1,21 +1,24 @@
 package seedu.mentorstack.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
+import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_SECOND_PERSON;
+import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
+
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;
 import seedu.mentorstack.model.person.Person;
-
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
-import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_SECOND_PERSON;
-import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for UnarchiveCommand.
