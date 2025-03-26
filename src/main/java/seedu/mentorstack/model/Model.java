@@ -13,6 +13,7 @@ import seedu.mentorstack.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = person -> !person.getIsArchived().isArchived.equals("true");
+    Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVED_PERSONS = person -> person.getIsArchived().isArchived.equals("true");
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

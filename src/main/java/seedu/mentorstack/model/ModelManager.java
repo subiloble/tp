@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.mentorstack = new Mentorstack(mentorstack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.mentorstack.getPersonList());
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     public ModelManager() {
@@ -143,7 +144,7 @@ public class ModelManager implements Model {
     public void unarchivePerson(Person personToUnarchive, Person unarchived) {
         requireAllNonNull(personToUnarchive, unarchived);
         mentorstack.unarchive(personToUnarchive, unarchived);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVED_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
