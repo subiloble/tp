@@ -1,14 +1,13 @@
 package seedu.mentorstack.logic.parser;
 
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.mentorstack.logic.parser.CliSyntax.*;
+import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
-import seedu.mentorstack.logic.commands.AddCommand;
+import java.util.stream.Stream;
+
 import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.Subject;
-
-import java.util.stream.Stream;
 
 /**
  * Parses the given {@code String} of arguments in the context of the StatsCommand
