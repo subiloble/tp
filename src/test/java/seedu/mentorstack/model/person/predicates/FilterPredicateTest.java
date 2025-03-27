@@ -1,10 +1,13 @@
 package seedu.mentorstack.model.person.predicates;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.Test;
+
+import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Name;
@@ -13,9 +16,6 @@ import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.model.person.ArchiveStatus;
-
-import java.util.Set;
-import java.util.function.Predicate;
 
 class FilterPredicateTest {
 
