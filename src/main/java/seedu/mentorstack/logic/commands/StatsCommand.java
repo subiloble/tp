@@ -20,8 +20,8 @@ public class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows statistics of the mentor list.\n"
-            + "Usage: " + COMMAND_WORD + " [SUBJECT]\n"
-            + "Example: " + COMMAND_WORD + " CS1010S";
+            + "Usage: " + COMMAND_WORD + " s/[SUBJECT]\n"
+            + "Example: " + COMMAND_WORD + " s/CS1010S";
 
     public static final String MESSAGE_SUCCESS =
             "Total Persons: %d\nGender\nMale: %d\nFemale: %d";
