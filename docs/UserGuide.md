@@ -142,6 +142,7 @@ Format: `view [[f/FIELD] [v/VALUE]]…​`
 Keyword | Field
 --------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **`n`** | NAME, filters entries containing VALUE
+**`g`** | GENDER, filters entries containing VALUE
 **`p`** | PHONE, filters entries matching VALUE
 **`e`** | EMAIL, filters entries matching VALUE
 **`s`** | SUBJECT, filters entries containing VALUE
