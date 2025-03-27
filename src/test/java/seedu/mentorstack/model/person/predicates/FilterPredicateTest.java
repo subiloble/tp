@@ -15,19 +15,23 @@ class FilterPredicateTest {
 
     @Test
     void createPredicate_nameFilter_returnsCorrectPredicate() {
-        Person person = createPerson("Alice Tan", "F", "12345678", "alice@example.com", Set.of(new Subject("Math"), new Subject("Physics")), Set.of());
+        Person person = createPerson("Alice Tan", "F", "12345678",
+                "alice@example.com", Set.of(new Subject("Math"),
+                        new Subject("Physics")), Set.of());
 
         Predicate<Person> predicate = FilterPredicate.createPredicate("n", "Alice");
         assertNotNull(predicate);
         assertTrue(predicate.test(person));
 
-        Person otherPerson = createPerson("Bob", "M", "87654321", "bob@example.com", Set.of(new Subject("CS")), Set.of());
+        Person otherPerson = createPerson("Bob", "M", "87654321",
+                "bob@example.com", Set.of(new Subject("CS")), Set.of());
         assertFalse(predicate.test(otherPerson));
     }
 
     @Test
     void createPredicate_phoneFilter_returnsCorrectPredicate() {
-        Person person = createPerson("John Doe", "M", "98765432", "john@example.com", Set.of(new Subject("Science")), Set.of());
+        Person person = createPerson("John Doe", "M", "98765432",
+                "john@example.com", Set.of(new Subject("Science")), Set.of());
 
         Predicate<Person> predicate = FilterPredicate.createPredicate("p", "98765432");
         assertNotNull(predicate);
@@ -36,16 +40,20 @@ class FilterPredicateTest {
 
     @Test
     void createPredicate_emailFilter_returnsCorrectPredicate() {
-        Person person = createPerson("Emily", "F", "55556666", "emily@example.com", Set.of(new Subject("Biology")), Set.of());
+        Person person = createPerson("Emily", "F", "55556666",
+                "emily@example.com", Set.of(new Subject("Biology")), Set.of());
 
-        Predicate<Person> predicate = FilterPredicate.createPredicate("e", "emily@example.com");
+        Predicate<Person> predicate = FilterPredicate.createPredicate("e",
+                "emily@example.com");
         assertNotNull(predicate);
         assertTrue(predicate.test(person));
     }
 
     @Test
     void createPredicate_subjectFilter_returnsCorrectPredicate() {
-        Person person = createPerson("Anna", "F", "99998888", "anna@example.com", Set.of(new Subject("Mathematics"), new Subject("Physics")), Set.of());
+        Person person = createPerson("Anna", "F", "99998888",
+                "anna@example.com", Set.of(new Subject("Mathematics"),
+                        new Subject("Physics")), Set.of());
 
         Predicate<Person> predicate = FilterPredicate.createPredicate("s", "math");
         assertNotNull(predicate);
@@ -54,7 +62,8 @@ class FilterPredicateTest {
 
     @Test
     void createPredicate_genderFilter_returnsCorrectPredicate() {
-        Person person = createPerson("Ethan", "M", "22223333", "ethan@example.com", Set.of(new Subject("English")), Set.of());
+        Person person = createPerson("Ethan", "M", "22223333",
+                "ethan@example.com", Set.of(new Subject("English")), Set.of());
 
         Predicate<Person> predicate = FilterPredicate.createPredicate("g", "M");
         assertNotNull(predicate);
@@ -63,7 +72,8 @@ class FilterPredicateTest {
 
     @Test
     void createPredicate_invalidFilterType_returnsNull() {
-        Predicate<Person> predicate = FilterPredicate.createPredicate("invalid", "test");
+        Predicate<Person> predicate = FilterPredicate.createPredicate("invalid",
+                "test");
         assertNull(predicate);
     }
 }
