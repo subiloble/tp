@@ -24,6 +24,8 @@ public class FilterPredicate {
             return person -> person.getSubjects().stream()
                     .map(subject -> subject.subjectName.toLowerCase()) // Extract subject name
                     .anyMatch(subjectName -> subjectName.contains(filterValue.toLowerCase())); // Match substring
+        case "g":
+            return person -> person.getGender().value.equalsIgnoreCase(filterValue);
         default:
             return null; // Invalid filter type
         }
