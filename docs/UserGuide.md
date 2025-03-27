@@ -32,7 +32,7 @@
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com s/CS2103` : Adds a contact named `John Doe` to the Mentorstack.
+   * `add n/John Doe g/M p/98765432 e/johnd@example.com s/CS2103` : Adds a contact named `John Doe` to the Mentorstack.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -81,7 +81,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
+Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
 
 <box type="tip" seamless>
 
@@ -89,8 +89,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com s/CS2103`
-* `add n/Betsy Crowe s/CS2103 e/betsycrowe@example.com p/1234567 s/LAJ1201`
+* `add n/John Doe g/M p/98765432 e/johnd@example.com s/CS2103`
+* `add n/Betsy Crowe g/F s/CS2103 e/betsycrowe@example.com p/1234567 s/LAJ1201`
 
 ### Listing all persons : `list`
 
@@ -102,7 +102,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/SUBJECT]…​`
+Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE] [e/EMAIL] [s/SUBJECT]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -162,15 +162,17 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX…​`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Input can contain multiple indices.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd person in the address book.
 
 ### Clearing all entries : `clear`
 
@@ -183,6 +185,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+
 
 ### Saving the data
 
