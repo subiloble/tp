@@ -9,8 +9,10 @@ import java.util.function.Predicate;
 
 class FilterPredicateTest {
 
-    private Person createPerson(String name, String gender, String phone, String email, Set<Subject> subjects, Set<Subject> finishedSubjects) {
-        return new Person(new Name(name), new Gender(gender), new Phone(phone), new Email(email), subjects, finishedSubjects, new ArchiveStatus("false"), false);
+    private Person createPerson(String name, String gender, String phone, String email,
+                                Set<Subject> subjects, Set<Subject> finishedSubjects) {
+        return new Person(new Name(name), new Gender(gender), new Phone(phone),
+                new Email(email), subjects, finishedSubjects, new ArchiveStatus("false"), false);
     }
 
     @Test
