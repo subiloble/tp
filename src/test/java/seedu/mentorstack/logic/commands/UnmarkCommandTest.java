@@ -12,8 +12,8 @@ import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.Messages;
@@ -40,7 +40,8 @@ public class UnmarkCommandTest {
         Person personToUnmark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person unmarkedPerson = new PersonBuilder(personToUnmark).build().unmarked();
 
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS, Messages.format(personToUnmark));
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
+                Messages.format(personToUnmark));
 
         Model expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
         expectedModel.unmarkPerson(personToUnmark, unmarkedPerson);
@@ -67,7 +68,8 @@ public class UnmarkCommandTest {
         model.unmarkPerson(personToUnmark, new PersonBuilder(personToUnmark).build().unmarked());
 
         Person alreadyUnmarkedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS, Messages.format(alreadyUnmarkedPerson));
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
+                Messages.format(alreadyUnmarkedPerson));
 
         Model expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
         expectedModel.unmarkPerson(alreadyUnmarkedPerson, alreadyUnmarkedPerson);

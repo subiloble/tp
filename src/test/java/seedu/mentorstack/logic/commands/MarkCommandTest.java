@@ -12,8 +12,8 @@ import static seedu.mentorstack.testutil.TypicalPersons.getTypicalMentorstack;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.Messages;
@@ -67,7 +67,8 @@ public class MarkCommandTest {
         model.markPerson(personToMark, new PersonBuilder(personToMark).build().marked());
 
         Person alreadyMarkedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS, Messages.format(alreadyMarkedPerson));
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
+                Messages.format(alreadyMarkedPerson));
 
         Model expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
         expectedModel.markPerson(alreadyMarkedPerson, alreadyMarkedPerson);
