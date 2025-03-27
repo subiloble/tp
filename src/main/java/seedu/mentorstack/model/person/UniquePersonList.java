@@ -109,6 +109,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Marks the target person.
+     * The person must exist in the list.
+     */
     public void mark(Person target, Person marked) {
         requireAllNonNull(target, marked);
 
@@ -120,6 +124,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, marked);
     }
 
+    /**
+     * Unmarks the target person.
+     * The person must exist in the list.
+     */
     public void unmark(Person target, Person unmarked) {
         requireAllNonNull(target, unmarked);
 
