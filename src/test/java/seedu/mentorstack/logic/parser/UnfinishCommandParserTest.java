@@ -7,9 +7,14 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS21
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+import seedu.mentorstack.commons.core.index.Index;
+import seedu.mentorstack.logic.commands.FinishCommand;
 import seedu.mentorstack.logic.commands.UnfinishCommand;
 import seedu.mentorstack.model.person.Subject;
 
@@ -61,5 +66,24 @@ public class UnfinishCommandParserTest {
                 Subject.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + SUBJECT_EMPTY + SUBJECT_DESC_CS2102 + SUBJECT_DESC_CS2100,
                 Subject.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validInput_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String input = "1" + SUBJECT_DESC_CS2100;
+        UnfinishCommand expectedCommand = new UnfinishCommand(targetIndex, Set.of(new Subject("CS2100")));
+
+        assertParseSuccess(parser, input, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleValidSubjects_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String input = "1" + SUBJECT_DESC_CS2100 + SUBJECT_DESC_CS2102;
+        Set<Subject> subjects = Set.of(new Subject("CS2100"), new Subject("CS2102"));
+        UnfinishCommand expectedCommand = new UnfinishCommand(targetIndex, subjects);
+
+        assertParseSuccess(parser, input, expectedCommand);
     }
 }

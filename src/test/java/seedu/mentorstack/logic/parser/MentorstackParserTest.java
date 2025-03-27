@@ -9,26 +9,37 @@ import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.logic.commands.AddCommand;
+import seedu.mentorstack.logic.commands.ArchiveCommand;
 import seedu.mentorstack.logic.commands.ClearCommand;
 import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.commands.EditCommand;
 import seedu.mentorstack.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.mentorstack.logic.commands.ExitCommand;
 import seedu.mentorstack.logic.commands.FindCommand;
+import seedu.mentorstack.logic.commands.FinishCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
+import seedu.mentorstack.logic.commands.MarkCommand;
+import seedu.mentorstack.logic.commands.ShowArchiveCommand;
+import seedu.mentorstack.logic.commands.ShowArchiveCommandTest;
 import seedu.mentorstack.logic.commands.StatsCommand;
+import seedu.mentorstack.logic.commands.UnarchiveCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
+import seedu.mentorstack.logic.commands.UnfinishCommand;
+import seedu.mentorstack.logic.commands.UnmarkCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.person.NameContainsKeywordsPredicate;
 import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.testutil.EditPersonDescriptorBuilder;
 import seedu.mentorstack.testutil.PersonBuilder;
 import seedu.mentorstack.testutil.PersonUtil;
@@ -108,6 +119,58 @@ public class MentorstackParserTest {
     public void parseCommand_stats() throws Exception {
         assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
         assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD + " s/CS2103") instanceof StatsCommand);
+    }
+
+    @Test
+    public void parseCommand_finish() throws Exception {
+        Set<Subject> subjects = new HashSet<>();
+        subjects.add(new Subject("CS2103"));
+        FinishCommand command = (FinishCommand) parser.parseCommand(
+                FinishCommand.COMMAND_WORD + " 1 " + "s/CS2103");
+        assertEquals(new FinishCommand(INDEX_FIRST_PERSON, subjects), command);
+    }
+
+    @Test
+    public void parseCommand_unfinish() throws Exception {
+        Set<Subject> subjects = new HashSet<>();
+        subjects.add(new Subject("CS2103"));
+        UnfinishCommand command = (UnfinishCommand) parser.parseCommand(
+                UnfinishCommand.COMMAND_WORD + " 1 " + "s/CS2103");
+        assertEquals(new UnfinishCommand(INDEX_FIRST_PERSON, subjects), command);
+    }
+
+    @Test
+    public void parseCommand_mark() throws Exception {
+        MarkCommand command = (MarkCommand) parser.parseCommand(
+                MarkCommand.COMMAND_WORD + " 1 ");
+        assertEquals(new MarkCommand(INDEX_SET_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_unmark() throws Exception {
+        UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
+                UnmarkCommand.COMMAND_WORD + " 1 ");
+        assertEquals(new UnmarkCommand(INDEX_SET_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_archive() throws Exception {
+        ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + " 1 ");
+        assertEquals(new ArchiveCommand(INDEX_SET_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_unarchive() throws Exception {
+        UnarchiveCommand command = (UnarchiveCommand) parser.parseCommand(
+                UnarchiveCommand.COMMAND_WORD + " 1 ");
+        assertEquals(new UnarchiveCommand(INDEX_SET_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_showArchive() throws Exception {
+        assertTrue(parser.parseCommand(ShowArchiveCommand.COMMAND_WORD) instanceof ShowArchiveCommand);
+        assertTrue(parser.parseCommand(ShowArchiveCommand.COMMAND_WORD + " 3") instanceof ShowArchiveCommand);
     }
 
     @Test
