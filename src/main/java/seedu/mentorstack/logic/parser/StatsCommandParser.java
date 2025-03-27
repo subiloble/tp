@@ -31,7 +31,11 @@ public class StatsCommandParser implements Parser<StatsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
         }
         Subject subject;
-        subject = ParserUtil.parseSubjects(argMultimap.getValue(PREFIX_SUBJECT).get());
+        try {
+            subject = ParserUtil.parseSubjects(argMultimap.getValue(PREFIX_SUBJECT).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe);
+        }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBJECT);
 
