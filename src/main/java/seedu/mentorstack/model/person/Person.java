@@ -25,11 +25,13 @@ public class Person {
 
     // Data fields
     private final Set<Subject> subject = new HashSet<>();
+    private final Set<Subject> finishedSubject = new HashSet<>();
 
     /**
      * Every field must be present and not null, new student is default to have archive status to be false.
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject) {
+    public Person(Name name, Gender gender, Phone phone, Email email,
+                  Set<Subject> subject) {
         requireAllNonNull(name, phone, email, subject);
         this.name = name;
         this.gender = gender;
@@ -43,14 +45,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived,
-                  boolean isMarked) {
+    public Person(Name name, Gender gender, Phone phone, Email email,
+                  Set<Subject> subject, Set<Subject> finishedSubjects,
+                  ArchiveStatus isArchived, boolean isMarked) {
         requireAllNonNull(name, phone, email, subject, isArchived);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.subject.addAll(subject);
+        this.finishedSubject.addAll(finishedSubjects);
         this.isArchived = isArchived;
         this.isMarked = isMarked;
     }
@@ -77,6 +81,10 @@ public class Person {
      */
     public Set<Subject> getSubjects() {
         return Collections.unmodifiableSet(subject);
+    }
+
+    public Set<Subject> getFinishedSubjects() {
+        return Collections.unmodifiableSet(finishedSubject);
     }
 
     public ArchiveStatus getIsArchived() {
@@ -121,6 +129,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && subject.equals(otherPerson.subject)
+                && finishedSubject.equals(otherPerson.finishedSubject)
                 && isArchived.equals(otherPerson.isArchived)
                 && isMarked == otherPerson.isMarked;
     }
@@ -128,7 +137,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, subject, isArchived, isMarked);
+        return Objects.hash(name, gender, phone, email, subject, finishedSubject, isArchived, isMarked);
     }
 
     @Override
@@ -139,6 +148,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("subject", subject)
+                .add("finished subject", finishedSubject)
                 .add("archive status", isArchived)
                 .add("marked", isMarked)
                 .toString();
@@ -148,32 +158,32 @@ public class Person {
      * Returns a person that is identical to the person except it is archived.
      */
     public Person archived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
-                new ArchiveStatus("true"), this.isMarked);
+        return new Person(this.name, this.gender, this.phone, this.email,
+                this.subject, this.finishedSubject, new ArchiveStatus("true"), this.isMarked);
     }
 
     /**
      * Returns a person that is identical to the person except it is unarchived.
      */
     public Person unarchived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
-                new ArchiveStatus("false"), this.isMarked);
+        return new Person(this.name, this.gender, this.phone, this.email,
+                this.subject, this.finishedSubject, new ArchiveStatus("false"), this.isMarked);
     }
 
     /**
      * Returns a person that is identical to the person except it is marked.
      */
     public Person marked() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
-                this.isArchived, true);
+        return new Person(this.name, this.gender, this.phone, this.email,
+                this.subject, this.finishedSubject, this.isArchived, true);
     }
 
     /**
      * Returns a person that is identical to the person except it is unmarked.
      */
     public Person unmarked() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
-                this.isArchived, false);
+        return new Person(this.name, this.gender, this.phone, this.email,
+                this.subject, this.finishedSubject, this.isArchived, false);
     }
 
 }

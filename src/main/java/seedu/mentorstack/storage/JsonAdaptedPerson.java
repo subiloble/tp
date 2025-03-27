@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
+    private final List<JsonAdaptedSubject> finishedSubject = new ArrayList<>();
     private final String isArchived;
     private final boolean isMarked;
 
@@ -64,6 +65,9 @@ class JsonAdaptedPerson {
         subject.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
+        finishedSubject.addAll(source.getFinishedSubjects().stream()
+                .map(JsonAdaptedSubject::new)
+                .collect(Collectors.toList()));
         isArchived = source.getIsArchived().getStatus();
         isMarked = source.getIsMarked();
     }
@@ -75,8 +79,14 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Subject> personSubject = new ArrayList<>();
+        final List<Subject> personFinishedSubject = new ArrayList<>();
+
         for (JsonAdaptedSubject sub : subject) {
             personSubject.add(sub.toModelType());
+        }
+
+        for (JsonAdaptedSubject sub : finishedSubject) {
+            personFinishedSubject.add(sub.toModelType());
         }
 
         if (name == null) {
@@ -113,9 +123,10 @@ class JsonAdaptedPerson {
 
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
+        final Set<Subject> modelFinishedSubject = new HashSet<>(personFinishedSubject);
         final ArchiveStatus modelArchiveStatus = new ArchiveStatus(isArchived);
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject,
-                modelArchiveStatus, isMarked);
+        return new Person(modelName, modelGender, modelPhone, modelEmail,
+                modelSubject, modelFinishedSubject, modelArchiveStatus, isMarked);
     }
 
 }

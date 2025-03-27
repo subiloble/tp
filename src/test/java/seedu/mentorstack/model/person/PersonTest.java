@@ -92,6 +92,7 @@ public class PersonTest {
                 + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail()
                 + ", subject=" + ALICE.getSubjects()
+                + ", finished subject=" + ALICE.getFinishedSubjects()
                 + ", archive status=" + ALICE.getIsArchived()
                 + ", marked=" + ALICE.getIsMarked() + "}";
         assertEquals(expected, ALICE.toString());
