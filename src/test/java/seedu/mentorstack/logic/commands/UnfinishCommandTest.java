@@ -97,7 +97,8 @@ class UnfinishCommandTest {
         Set<Subject> subjects = new HashSet<>();
         subjects.add(new Subject("CS2103"));
         UnfinishCommand unfinishCommand = new UnfinishCommand(index, subjects);
-        String expected = UnfinishCommand.class.getCanonicalName() + "{index=" + index + ", subjectsToUnfinish=" + subjects + "}";
+        String expected = UnfinishCommand.class.getCanonicalName()
+                + "{index=" + index + ", subjectsToUnfinish=" + subjects + "}";
         assertEquals(expected, unfinishCommand.toString());
     }
 }

@@ -97,7 +97,8 @@ class FinishCommandTest {
         Set<Subject> subjects = new HashSet<>();
         subjects.add(new Subject("CS2103"));
         FinishCommand finishCommand = new FinishCommand(index, subjects);
-        String expected = FinishCommand.class.getCanonicalName() + "{index=" + index + ", subjectsToFinish=" + subjects + "}";
+        String expected = FinishCommand.class.getCanonicalName()
+                + "{index=" + index + ", subjectsToFinish=" + subjects + "}";
         assertEquals(expected, finishCommand.toString());
     }
 }

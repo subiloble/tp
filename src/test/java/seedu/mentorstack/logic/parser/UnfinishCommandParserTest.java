@@ -5,7 +5,6 @@ import static seedu.mentorstack.logic.commands.CommandTestUtil.INVALID_SUBJECT_D
 import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2100;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.SUBJECT_DESC_CS2102;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.VALID_SUB_CS2100;
-
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.mentorstack.logic.parser.CommandParserTestUtil.assertParseFailure;
 
