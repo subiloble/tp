@@ -21,6 +21,7 @@ import seedu.mentorstack.commons.util.ToStringBuilder;
 import seedu.mentorstack.logic.Messages;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
+import seedu.mentorstack.model.person.ArchiveStatus;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
@@ -103,7 +104,13 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Subject> updatedSubject = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
 
-        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedSubject);
+        //fields that cannot be edited
+        Set<Subject> updatedFinishSubject = personToEdit.getFinishedSubjects();
+        ArchiveStatus updatedIsArchive = personToEdit.getIsArchived();
+        boolean updatedIsMarked = personToEdit.getIsMarked();
+
+        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail,
+                updatedSubject, updatedFinishSubject, updatedIsArchive, updatedIsMarked);
     }
 
     @Override
