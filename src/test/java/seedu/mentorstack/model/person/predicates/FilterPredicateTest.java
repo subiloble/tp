@@ -1,6 +1,5 @@
 package seedu.mentorstack.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Set;
 import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Name;
