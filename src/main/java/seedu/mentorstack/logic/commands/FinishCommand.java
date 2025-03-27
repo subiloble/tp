@@ -98,7 +98,8 @@ public class FinishCommand extends Command {
         }
 
         return new Person(personToFinish.getName(), personToFinish.getGender(), personToFinish.getPhone(),
-                personToFinish.getEmail(), newSubjects, newFinishedSubjects, personToFinish.getIsArchived());
+                personToFinish.getEmail(), newSubjects, newFinishedSubjects,
+                personToFinish.getIsArchived(), personToFinish.getIsMarked());
     }
 
     @Override

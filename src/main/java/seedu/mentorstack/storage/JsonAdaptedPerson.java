@@ -42,10 +42,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("gender") String gender,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
-                             @JsonProperty("subject") List<JsonAdaptedSubject> subject,
-                             @JsonProperty("finishedSubject") List<JsonAdaptedSubject> finishedSubject,
-                             @JsonProperty("isArchived") String isArchived,
-                             @JsonProperty("isMarked") boolean isMarked) {
+                             @JsonProperty("subject") List<JsonAdaptedSubject> subject) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -53,11 +50,8 @@ class JsonAdaptedPerson {
         if (subject != null) {
             this.subject.addAll(subject);
         }
-        if (finishedSubject != null) {
-            this.finishedSubject.addAll(finishedSubject);
-        }
-        this.isArchived = isArchived;
-        this.isMarked = isMarked;
+        this.isArchived = "false";
+        this.isMarked = false;
     }
 
     /**

@@ -60,7 +60,7 @@ public class UnmarkCommand extends Command {
         assert target != null;
 
         return new Person(target.getName(), target.getGender(), target.getPhone(), target.getEmail(),
-                target.getSubjects(), target.getIsArchived(), false);
+                target.getSubjects(), target.getFinishedSubjects(), target.getIsArchived(), false);
     }
 
     @Override

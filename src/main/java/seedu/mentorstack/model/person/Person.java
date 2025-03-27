@@ -183,7 +183,7 @@ public class Person {
      */
     public Person unmarked() {
         return new Person(this.name, this.gender, this.phone, this.email,
-                this.subject, this.finishedSubject, this.isArchived, true);
+                this.subject, this.finishedSubject, this.isArchived, false);
     }
 
 }

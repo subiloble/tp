@@ -60,7 +60,7 @@ public class MarkCommand extends Command {
         assert target != null;
 
         return new Person(target.getName(), target.getGender(), target.getPhone(), target.getEmail(),
-                target.getSubjects(), target.getIsArchived(), true);
+                target.getSubjects(), target.getFinishedSubjects(), target.getIsArchived(), true);
     }
 
     @Override

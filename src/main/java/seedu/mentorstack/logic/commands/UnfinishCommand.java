@@ -98,7 +98,8 @@ public class UnfinishCommand extends Command {
         }
 
         return new Person(personToUnfinish.getName(), personToUnfinish.getGender(), personToUnfinish.getPhone(),
-                personToUnfinish.getEmail(), newSubjects, newFinishedSubjects, personToUnfinish.getIsArchived());
+                personToUnfinish.getEmail(), newSubjects, newFinishedSubjects,
+                personToUnfinish.getIsArchived(), personToUnfinish.getIsMarked());
     }
 
     @Override

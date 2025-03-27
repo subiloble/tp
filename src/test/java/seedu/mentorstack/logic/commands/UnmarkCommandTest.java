@@ -29,6 +29,9 @@ public class UnmarkCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalMentorstack(), new UserPrefs());
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person markedPerson = new PersonBuilder(personToMark).build().marked();
+        model.markPerson(personToMark, markedPerson);
     }
 
     @Test
