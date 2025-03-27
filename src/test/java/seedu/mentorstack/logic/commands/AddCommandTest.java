@@ -177,6 +177,16 @@ public class AddCommandTest {
         public void undo() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markPerson(Person target, Person marked) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkPerson(Person target, Person unmarked) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

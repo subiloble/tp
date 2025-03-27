@@ -137,7 +137,7 @@ Filters persons based on values specified for different fields.
 
 Format: `view [[f/FIELD] [v/VALUE]]…​`
 
-* Field can take in 4 possible values: 
+* Field can take in 4 possible values:
 
 Keyword | Field
 --------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------

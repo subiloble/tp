@@ -21,6 +21,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final ArchiveStatus isArchived;
+    private final boolean isMarked;
 
     // Data fields
     private final Set<Subject> subject = new HashSet<>();
@@ -36,12 +37,14 @@ public class Person {
         this.email = email;
         this.subject.addAll(subject);
         this.isArchived = new ArchiveStatus("false");
+        this.isMarked = false;
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived) {
+    public Person(Name name, Gender gender, Phone phone, Email email, Set<Subject> subject, ArchiveStatus isArchived,
+                  boolean isMarked) {
         requireAllNonNull(name, phone, email, subject, isArchived);
         this.name = name;
         this.gender = gender;
@@ -49,6 +52,7 @@ public class Person {
         this.email = email;
         this.subject.addAll(subject);
         this.isArchived = isArchived;
+        this.isMarked = isMarked;
     }
 
     public Name getName() {
@@ -77,6 +81,10 @@ public class Person {
 
     public ArchiveStatus getIsArchived() {
         return isArchived;
+    }
+
+    public boolean getIsMarked() {
+        return isMarked;
     }
 
     /**
@@ -113,13 +121,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && subject.equals(otherPerson.subject)
-                && isArchived.equals(otherPerson.isArchived);
+                && isArchived.equals(otherPerson.isArchived)
+                && isMarked == otherPerson.isMarked;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, subject, isArchived);
+        return Objects.hash(name, gender, phone, email, subject, isArchived, isMarked);
     }
 
     @Override
@@ -131,6 +140,7 @@ public class Person {
                 .add("email", email)
                 .add("subject", subject)
                 .add("archive status", isArchived)
+                .add("marked", isMarked)
                 .toString();
     }
 
@@ -138,15 +148,32 @@ public class Person {
      * Returns a person that is identical to the person except it is archived.
      */
     public Person archived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("true"));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
+                new ArchiveStatus("true"), this.isMarked);
     }
 
     /**
      * Returns a person that is identical to the person except it is unarchived.
      */
     public Person unarchived() {
-        return new Person(this.name, this.gender, this.phone, this.email, this.subject, new ArchiveStatus("false"));
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
+                new ArchiveStatus("false"), this.isMarked);
     }
 
+    /**
+     * Returns a person that is identical to the person except it is marked.
+     */
+    public Person marked() {
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
+                this.isArchived, true);
+    }
+
+    /**
+     * Returns a person that is identical to the person except it is unmarked.
+     */
+    public Person unmarked() {
+        return new Person(this.name, this.gender, this.phone, this.email, this.subject,
+                this.isArchived, false);
+    }
 
 }
