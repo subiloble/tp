@@ -32,6 +32,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
     private final List<JsonAdaptedSubject> finishedSubject = new ArrayList<>();
     private final String isArchived;
+    private final boolean isMarked;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +44,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("subject") List<JsonAdaptedSubject> subject,
                              @JsonProperty("finishedSubject") List<JsonAdaptedSubject> finishedSubject,
-                             @JsonProperty("isArchived") String isArchived) {
+                             @JsonProperty("isArchived") String isArchived,
+                             @JsonProperty("isMarked") boolean isMarked) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -55,6 +57,7 @@ class JsonAdaptedPerson {
             this.finishedSubject.addAll(finishedSubject);
         }
         this.isArchived = isArchived;
+        this.isMarked = isMarked;
     }
 
     /**
@@ -72,6 +75,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
         isArchived = source.getIsArchived().getStatus();
+        isMarked = source.getIsMarked();
     }
 
     /**
@@ -128,7 +132,7 @@ class JsonAdaptedPerson {
         final Set<Subject> modelFinishedSubject = new HashSet<>(personFinishedSubject);
         final ArchiveStatus modelArchiveStatus = new ArchiveStatus(isArchived);
         return new Person(modelName, modelGender, modelPhone, modelEmail,
-                modelSubject, modelFinishedSubject, modelArchiveStatus);
+                modelSubject, modelFinishedSubject, modelArchiveStatus, isMarked);
     }
 
 }

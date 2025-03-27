@@ -109,6 +109,36 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Marks the target person.
+     * The person must exist in the list.
+     */
+    public void mark(Person target, Person marked) {
+        requireAllNonNull(target, marked);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, marked);
+    }
+
+    /**
+     * Unmarks the target person.
+     * The person must exist in the list.
+     */
+    public void unmark(Person target, Person unmarked) {
+        requireAllNonNull(target, unmarked);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, unmarked);
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

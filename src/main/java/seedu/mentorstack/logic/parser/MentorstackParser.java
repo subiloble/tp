@@ -19,11 +19,13 @@ import seedu.mentorstack.logic.commands.FindCommand;
 import seedu.mentorstack.logic.commands.FinishCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
+import seedu.mentorstack.logic.commands.MarkCommand;
 import seedu.mentorstack.logic.commands.ShowArchiveCommand;
 import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.UnarchiveCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
 import seedu.mentorstack.logic.commands.UnfinishCommand;
+import seedu.mentorstack.logic.commands.UnmarkCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 
@@ -99,6 +101,12 @@ public class MentorstackParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         case ShowArchiveCommand.COMMAND_WORD:
             return new ShowArchiveCommand();
