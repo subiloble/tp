@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final List<JsonAdaptedSubject> subject = new ArrayList<>();
+    private final List<JsonAdaptedSubject> finishedSubject = new ArrayList<>();
     private final String isArchived;
 
     /**
@@ -40,7 +41,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("gender") String gender,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
-                             @JsonProperty("subject") List<JsonAdaptedSubject> subject) {
+                             @JsonProperty("subject") List<JsonAdaptedSubject> subject,
+                             @JsonProperty("finishedSubject") List<JsonAdaptedSubject> finishedSubject,
+                             @JsonProperty("isArchived") String isArchived) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -48,7 +51,10 @@ class JsonAdaptedPerson {
         if (subject != null) {
             this.subject.addAll(subject);
         }
-        this.isArchived = "false";
+        if (finishedSubject != null) {
+            this.finishedSubject.addAll(finishedSubject);
+        }
+        this.isArchived = isArchived;
     }
 
     /**
@@ -62,6 +68,9 @@ class JsonAdaptedPerson {
         subject.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
+        finishedSubject.addAll(source.getFinishedSubjects().stream()
+                .map(JsonAdaptedSubject::new)
+                .collect(Collectors.toList()));
         isArchived = source.getIsArchived().getStatus();
     }
 
@@ -72,8 +81,14 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Subject> personSubject = new ArrayList<>();
+        final List<Subject> personFinishedSubject = new ArrayList<>();
+
         for (JsonAdaptedSubject sub : subject) {
             personSubject.add(sub.toModelType());
+        }
+
+        for (JsonAdaptedSubject sub : finishedSubject) {
+            personFinishedSubject.add(sub.toModelType());
         }
 
         if (name == null) {
@@ -110,8 +125,10 @@ class JsonAdaptedPerson {
 
 
         final Set<Subject> modelSubject = new HashSet<>(personSubject);
-        final ArchiveStatus modelAriveStatus = new ArchiveStatus(isArchived);
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelSubject, modelAriveStatus);
+        final Set<Subject> modelFinishedSubject = new HashSet<>(personFinishedSubject);
+        final ArchiveStatus modelArchiveStatus = new ArchiveStatus(isArchived);
+        return new Person(modelName, modelGender, modelPhone, modelEmail,
+                modelSubject, modelFinishedSubject, modelArchiveStatus);
     }
 
 }

@@ -63,6 +63,14 @@ public class PersonCard extends UiPart<Region> {
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> subjects.getChildren().add(new Label(subject.subjectName)));
+
+        person.getFinishedSubjects().stream()
+                .sorted(Comparator.comparing(subject -> subject.subjectName))
+                .forEach(subject -> {
+                    Label label = new Label(subject.subjectName);
+                    label.getStyleClass().add("finished");
+                    subjects.getChildren().add(label);
+                });
     }
 
     private String getGenderImagePath(Person person) {

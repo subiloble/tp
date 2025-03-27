@@ -16,12 +16,14 @@ import seedu.mentorstack.logic.commands.DeleteCommand;
 import seedu.mentorstack.logic.commands.EditCommand;
 import seedu.mentorstack.logic.commands.ExitCommand;
 import seedu.mentorstack.logic.commands.FindCommand;
+import seedu.mentorstack.logic.commands.FinishCommand;
 import seedu.mentorstack.logic.commands.HelpCommand;
 import seedu.mentorstack.logic.commands.ListCommand;
 import seedu.mentorstack.logic.commands.ShowArchiveCommand;
 import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.UnarchiveCommand;
 import seedu.mentorstack.logic.commands.UndoCommand;
+import seedu.mentorstack.logic.commands.UnfinishCommand;
 import seedu.mentorstack.logic.commands.ViewCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 
@@ -100,6 +102,12 @@ public class MentorstackParser {
 
         case ShowArchiveCommand.COMMAND_WORD:
             return new ShowArchiveCommand();
+
+        case FinishCommand.COMMAND_WORD:
+            return new FinishCommandParser().parse(arguments);
+
+        case UnfinishCommand.COMMAND_WORD:
+            return new UnfinishCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
