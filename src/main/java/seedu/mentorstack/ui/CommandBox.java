@@ -58,7 +58,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
             // setPromptAsHint();
             System.out.println(e.getMessage());
-            
+
         }
     }
 
@@ -82,7 +82,7 @@ public class CommandBox extends UiPart<Region> {
 
         styleClass.add(ERROR_STYLE_CLASS);
 
-        StackPane.setAlignment(promptTextField, javafx.geometry.Pos.CENTER); 
+        StackPane.setAlignment(promptTextField, javafx.geometry.Pos.CENTER);
     }
 
 

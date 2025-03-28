@@ -53,7 +53,7 @@ public class JsonMentorstackStorage implements MentorstackStorage {
 
         try {
             return Optional.of(jsonMentorstack.get().toModelType());
-            
+
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);

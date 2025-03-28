@@ -67,7 +67,7 @@ public abstract class CommandParser {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> entry : ideal.entrySet()) { 
+        for (Map.Entry<String, String> entry : ideal.entrySet()) {
             if (!hset.contains(entry.getKey())) {
                 sb.append(" " + entry.getKey() + entry.getValue());
             }

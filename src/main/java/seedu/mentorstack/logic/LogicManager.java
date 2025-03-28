@@ -78,7 +78,7 @@ public class LogicManager implements Logic {
     }
 
     public Map<String, Integer> getStudentsBySubject() {
-    
+
         Map<String, Integer> studentsBySubjects = new HashMap<>();
         List<Person> personList = this.getFilteredPersonList();
 
@@ -99,7 +99,7 @@ public class LogicManager implements Logic {
         for (Map.Entry<String, Integer> entry : studentsBySubjects.entrySet()) {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
-        
+
         return series;
     }
 

@@ -7,7 +7,7 @@ package seedu.mentorstack.logic.parser.exceptions;
 public class ParseWithHintException extends ParseException{
 
     private String hint;
-    
+
     public ParseWithHintException(String message, String hint) {
         super(message);
         this.hint = hint;

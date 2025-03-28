@@ -1,8 +1,3 @@
-
-/* .error {
-    -fx-text-fill: #d06651 !important; 
-} */
-
 .error {
     -fx-text-fill: rgba(169, 169, 169, 0.6); /* Grey color with opacity (semi-transparent) */
     -fx-font-style: italic; /* Italicized text */

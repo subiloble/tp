@@ -208,17 +208,17 @@ public class MainWindow extends UiPart<Stage> {
 
     private ObservableList<String> getCleanStyleSheetObject() {
         Scene scene = primaryStage.getScene();
-        
+
         ObservableList<String> stylesheets = scene.getStylesheets();
-        
+
         // remove all stylesheets
         for (int i = 0; i < stylesheets.toArray().length; i++) {
             stylesheets.remove(i);
         }
 
         // add back required stylesheets
-        stylesheets.add(getClass().getResource("/view/BaseTheme.css").toExternalForm());    
-        stylesheets.add(getClass().getResource("/view/Extensions.css").toExternalForm());    
+        stylesheets.add(getClass().getResource("/view/BaseTheme.css").toExternalForm());
+        stylesheets.add(getClass().getResource("/view/Extensions.css").toExternalForm());
 
         return stylesheets;
     }
@@ -249,7 +249,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleThemeSwap2() {
-        getCleanStyleSheetObject().add(getClass().getResource("/view/palette3.css").toExternalForm());    
+        getCleanStyleSheetObject().add(getClass().getResource("/view/palette3.css").toExternalForm());
         uncheckAllBoxes();
         ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(2))).setSelected(true);
     }
@@ -263,7 +263,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
-        
+
         xAxis.setLabel("Subjects");
         yAxis.setLabel("Students");
         yAxis.setTickUnit(1);
