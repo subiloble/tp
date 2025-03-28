@@ -36,12 +36,14 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
-          <Menu fx:id="themeBar" mnemonicParsing="false" text="Theme">
+          <Menu fx:id="themeBar" mnemonicParsing="false" text="View">
             <CheckMenuItem mnemonicParsing="false" fx:id="helpMenuItem0" onAction="#handleThemeSwap0" text="Theme 1" selected="true" />
             <CheckMenuItem mnemonicParsing="false" fx:id="helpMenuItem1" onAction="#handleThemeSwap1" text="Theme 2" />
             <CheckMenuItem mnemonicParsing="false" fx:id="helpMenuItem2" onAction="#handleThemeSwap2" text="Theme 3" />
             <SeparatorMenuItem />
             <CheckMenuItem mnemonicParsing="false" fx:id="hideCliMenuItem" onAction="#handleCliVisibility" text="Hide CLI" />
+            <SeparatorMenuItem />
+            <MenuItem mnemonicParsing="false" fx:id="statMenuItem" onAction="#handleStatWindow" text="Stats" />
           </Menu>
         </MenuBar>
         

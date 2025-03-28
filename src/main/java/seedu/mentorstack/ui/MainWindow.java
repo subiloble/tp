@@ -17,10 +17,30 @@ import javafx.stage.Stage;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.Logic;
+import seedu.mentorstack.logic.LogicManager;
 import seedu.mentorstack.logic.commands.CommandResult;
+import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import javafx.scene.Scene;
+
+
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+
+import seedu.mentorstack.model.person.Person;
+import java.util.List;
+import seedu.mentorstack.model.person.Subject;
+
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -50,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem statMenuItem;
+
+    @FXML
     private CheckMenuItem hideCliMenuItem;
 
     @FXML
@@ -60,6 +83,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private BarChart<?, ?> barChart;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -266,6 +292,35 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+
+    public void handleStatWindow() {
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        
+        xAxis.setLabel("Subjects");
+        yAxis.setLabel("Students");
+        yAxis.setTickUnit(1);
+
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setTitle("Student Distribution");
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("");
+
+        Map<String, Integer> studentsBySubjects = ((LogicManager)logic).getStudentsBySubject();
+
+        series = ((LogicManager)logic).populateSeries(series, studentsBySubjects);
+        barChart.getData().add(series);
+
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Statistics");
+
+        Scene scene = new Scene(barChart, 600, 400);
+        popupStage.setScene(scene);
+        popupStage.show();
     }
 
     /**
