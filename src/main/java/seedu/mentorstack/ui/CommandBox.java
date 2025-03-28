@@ -85,6 +85,7 @@ public class CommandBox extends UiPart<Region> {
         ideal.put("e", "johnd@example.com");
         ideal.put("p", "98765432");
         ideal.put("s", "maths computer science");
+        ideal.put("g", "F");
 
         int indOrg = 0;
         int indMap = 0;
