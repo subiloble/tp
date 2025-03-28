@@ -10,7 +10,7 @@ public class ParseWithHintException extends ParseException {
 
     /**
      * Constructs a new exception with a message and a hint.
-     * 
+     *
      * @param message The error message.
      * @param hint The hint to resolve the error.
      */
@@ -21,7 +21,7 @@ public class ParseWithHintException extends ParseException {
 
     /**
      * Constructs a new exception with a message, cause, and a hint.
-     * 
+     *
      * @param message The error message.
      * @param cause The cause of the exception.
      * @param hint The hint to resolve the error.
@@ -33,7 +33,7 @@ public class ParseWithHintException extends ParseException {
 
     /**
      * Returns the hint associated with this exception.
-     * 
+     *
      * @return The hint.
      */
     public String getHint() {

@@ -67,7 +67,7 @@ public abstract class CommandParser {
 
     /**
      * Parses the given arguments into a {@link Command} object.
-     * 
+     *
      * @param args The arguments to parse.
      * @return A {@link Command} object representing the parsed command.
      * @throws ParseException If there is an error during parsing.
@@ -77,9 +77,9 @@ public abstract class CommandParser {
 
     /**
      * Checks for missing arguments by comparing the provided arguments with an ideal set of arguments.
-     * The method generates a string containing the missing arguments from the ideal set, 
+     * The method generates a string containing the missing arguments from the ideal set,
      * appending their associated values.
-     * 
+     *
      * @param argMultimap A map of argument prefixes to argument values.
      * @param ideal A map of ideal argument prefixes to their corresponding values.
      * @return A string containing the missing arguments in the format "prefix value".
