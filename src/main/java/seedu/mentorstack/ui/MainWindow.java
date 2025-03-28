@@ -192,21 +192,18 @@ public class MainWindow extends UiPart<Stage> {
         if (((CheckMenuItem) fxmlLoader.getNamespace()
                 .get("hideCliMenuItem"))
                 .isSelected()) {
-        commandBoxPlaceholder.setVisible(false);
-        resultDisplayPlaceholder.setVisible(false);
-        commandBoxPlaceholder.setManaged(false);
-        resultDisplayPlaceholder.setManaged(false);
-        ((CheckMenuItem) fxmlLoader
-            .getNamespace()
-            .get("hideCliMenuItem"))
-            .setSelected(true);
+            commandBoxPlaceholder.setVisible(false);
+            resultDisplayPlaceholder.setVisible(false);
+            commandBoxPlaceholder.setManaged(false);
+            resultDisplayPlaceholder.setManaged(false);
+            ((CheckMenuItem) fxmlLoader.getNamespace().get("hideCliMenuItem"))
+                .setSelected(true);
         } else {
             commandBoxPlaceholder.setVisible(true);
             resultDisplayPlaceholder.setVisible(true);
             commandBoxPlaceholder.setManaged(true);
             resultDisplayPlaceholder.setManaged(true);
-            ((CheckMenuItem) fxmlLoader.getNamespace()
-                .get("hideCliMenuItem"))
+            ((CheckMenuItem) fxmlLoader.getNamespace().get("hideCliMenuItem"))
                 .setSelected(false);
         }
     }
@@ -233,8 +230,7 @@ public class MainWindow extends UiPart<Stage> {
         Map<String, Object> namespace = fxmlLoader.getNamespace();
         int k = 0;
         while (namespace.get("helpMenuItem" + String.valueOf(k)) != null) {
-            ((CheckMenuItem) namespace
-                .get("helpMenuItem" + String.valueOf(k)))
+            ((CheckMenuItem) namespace.get("helpMenuItem" + String.valueOf(k)))
                 .setSelected(false);
             k += 1;
         }
@@ -244,8 +240,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleThemeSwap0() {
         getCleanStyleSheetObject().add(getClass().getResource("/view/palette1.css").toExternalForm());
         uncheckAllBoxes();
-        ((CheckMenuItem) fxmlLoader.getNamespace()
-            .get("helpMenuItem" + String.valueOf(0)))
+        ((CheckMenuItem) fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(0)))
             .setSelected(true);
     }
 
@@ -253,8 +248,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleThemeSwap1() {
         getCleanStyleSheetObject().add(getClass().getResource("/view/palette2.css").toExternalForm());
         uncheckAllBoxes();
-        ((CheckMenuItem) fxmlLoader.getNamespace()
-            .get("helpMenuItem" + String.valueOf(1)))
+        ((CheckMenuItem) fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(1)))
             .setSelected(true);
     }
 
@@ -262,8 +256,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleThemeSwap2() {
         getCleanStyleSheetObject().add(getClass().getResource("/view/palette3.css").toExternalForm());
         uncheckAllBoxes();
-        ((CheckMenuItem) (fxmlLoader.getNamespace()
-            .get("helpMenuItem" + String.valueOf(2))))
+        ((CheckMenuItem) (fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(2))))
             .setSelected(true);
     }
 
