@@ -3,7 +3,6 @@ package seedu.mentorstack.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-// import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.mentorstack.logic.commands.CommandResult;
@@ -22,24 +21,12 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    
-    // @FXML
-    // private HBox hboxx;
 
     @FXML
     private TextField commandTextField;
 
     @FXML
     private TextField promptTextField;
-
-    // @FXML
-    // private void initialize() {
-    //     // Log to ensure everything is initialized properly
-    //     System.out.println("CommandBox Initialized:");
-    //     System.out.println("HBox: " + hboxx);
-    //     System.out.println("Command TextField: " + commandTextField);
-    //     System.out.println("Prompt TextField: " + promptTextField);
-    // }
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -66,16 +53,11 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
-            // commandTextField.setText(commandTextField.getText() + "BLABLABLABLABLA");
             setStyleToIndicateCommandFailure();
             System.out.println(e.getMessage());
-            // commandTextField.setText("");
-            // commandTextField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background,-30%); }");
-            // commandTextField.setPromptText("Follow the instructions");
             
         }
     }
-
 
     public static String missing(String ui) {
         String[] splitted = ui.split(" ");
@@ -119,7 +101,6 @@ public class CommandBox extends UiPart<Region> {
                 toreturn.append(entry.getKey()).append("/").append(entry.getValue()).append(" ");
             }
         }
-
         return " " + toreturn.toString().trim();
     }
 

@@ -19,7 +19,6 @@ import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.Logic;
 import seedu.mentorstack.logic.LogicManager;
 import seedu.mentorstack.logic.commands.CommandResult;
-import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import javafx.scene.Scene;
@@ -29,18 +28,6 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-
-import seedu.mentorstack.model.person.Person;
-import java.util.List;
-import seedu.mentorstack.model.person.Subject;
-
-
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -200,46 +187,22 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    // private double x1;
-    // private double x2;
-    // private double y1;
-    // private double y2;
-
     @FXML
     private void handleCliVisibility() {
-        // getCleanStyleSheetObject().add(getClass().getResource("/view/palette1.css").toExternalForm());
-        // uncheckAllBoxes();
-        // ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(0))).setSelected(true);
-
-        // Scene scene = primaryStage.getScene();
-        // fxmlLoader.getController()
 
         if (((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).isSelected()) {
-            // x1 = commandBoxPlaceholder.getWidth();
-            // x2 = resultDisplayPlaceholder.getHeight();
-            // y1 = commandBoxPlaceholder.getWidth();
-            // y2 = resultDisplayPlaceholder.getHeight();
-            // commandBoxPlaceholder.setHeight(0);
-            // commandBoxPlaceholder.setMaxWidth(0);
-            // ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(false);
-            // System.out.println("Hide is selected");
             commandBoxPlaceholder.setVisible(false);
             resultDisplayPlaceholder.setVisible(false);
             commandBoxPlaceholder.setManaged(false);
             resultDisplayPlaceholder.setManaged(false);
             ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(true);
         } else {
-            // System.out.println("Hide is NOT selected");
             commandBoxPlaceholder.setVisible(true);
             resultDisplayPlaceholder.setVisible(true);
             commandBoxPlaceholder.setManaged(true);
             resultDisplayPlaceholder.setManaged(true);
             ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(false);
         }
-
-
-        
-
     }
 
     private ObservableList<String> getCleanStyleSheetObject() {

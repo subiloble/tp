@@ -23,8 +23,6 @@
       <stylesheets>
       <URL value="@palette1.css" />
         <URL value="@BaseTheme.css" />
-        <!-- <URL value="@LightTheme.css" /> -->
-        <!-- <URL value="@DarkTheme.css" /> -->
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -46,8 +44,6 @@
             <MenuItem mnemonicParsing="false" fx:id="statMenuItem" onAction="#handleStatWindow" text="Stats" />
           </Menu>
         </MenuBar>
-        
-
 
         <VBox>
           <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -64,7 +60,6 @@
           </StackPane>
         </VBox>
 
-        <!-- <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" AnchorPane.topAnchor="0"> -->
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
