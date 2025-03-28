@@ -1,10 +1,14 @@
 package seedu.mentorstack.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +20,7 @@ import seedu.mentorstack.logic.Logic;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import javafx.scene.Scene;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,10 +41,16 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private Menu themeBar;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private CheckMenuItem hideCliMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -141,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show();
+            helpWindow.show(); //
         } else {
             helpWindow.focus();
         }
@@ -159,8 +170,98 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+        helpWindow.hide(); //
         primaryStage.hide();
+    }
+
+    // private double x1;
+    // private double x2;
+    // private double y1;
+    // private double y2;
+
+    @FXML
+    private void handleCliVisibility() {
+        // getCleanStyleSheetObject().add(getClass().getResource("/view/palette1.css").toExternalForm());
+        // uncheckAllBoxes();
+        // ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(0))).setSelected(true);
+
+        // Scene scene = primaryStage.getScene();
+        // fxmlLoader.getController()
+
+        if (((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).isSelected()) {
+            // x1 = commandBoxPlaceholder.getWidth();
+            // x2 = resultDisplayPlaceholder.getHeight();
+            // y1 = commandBoxPlaceholder.getWidth();
+            // y2 = resultDisplayPlaceholder.getHeight();
+            // commandBoxPlaceholder.setHeight(0);
+            // commandBoxPlaceholder.setMaxWidth(0);
+            // ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(false);
+            // System.out.println("Hide is selected");
+            commandBoxPlaceholder.setVisible(false);
+            resultDisplayPlaceholder.setVisible(false);
+            commandBoxPlaceholder.setManaged(false);
+            resultDisplayPlaceholder.setManaged(false);
+            ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(true);
+        } else {
+            // System.out.println("Hide is NOT selected");
+            commandBoxPlaceholder.setVisible(true);
+            resultDisplayPlaceholder.setVisible(true);
+            commandBoxPlaceholder.setManaged(true);
+            resultDisplayPlaceholder.setManaged(true);
+            ((CheckMenuItem)fxmlLoader.getNamespace().get("hideCliMenuItem")).setSelected(false);
+        }
+
+
+        
+
+    }
+
+    private ObservableList<String> getCleanStyleSheetObject() {
+        Scene scene = primaryStage.getScene();
+        
+        ObservableList<String> stylesheets = scene.getStylesheets();
+        
+        // remove all stylesheets
+        for (int i = 0; i < stylesheets.toArray().length; i++) {
+            stylesheets.remove(i);
+        }
+
+        // add back required stylesheets
+        stylesheets.add(getClass().getResource("/view/BaseTheme.css").toExternalForm());    
+        stylesheets.add(getClass().getResource("/view/Extensions.css").toExternalForm());    
+
+        return stylesheets;
+    }
+
+
+    private void uncheckAllBoxes() {
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        int k = 0;
+        while (namespace.get("helpMenuItem" + String.valueOf(k)) != null) {
+            ((CheckMenuItem)namespace.get("helpMenuItem" + String.valueOf(k))).setSelected(false);
+            k += 1;
+        }
+    }
+
+    @FXML
+    private void handleThemeSwap0() {
+        getCleanStyleSheetObject().add(getClass().getResource("/view/palette1.css").toExternalForm());
+        uncheckAllBoxes();
+        ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(0))).setSelected(true);
+    }
+
+    @FXML
+    private void handleThemeSwap1() {
+        getCleanStyleSheetObject().add(getClass().getResource("/view/palette2.css").toExternalForm());
+        uncheckAllBoxes();
+        ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(1))).setSelected(true);
+    }
+
+    @FXML
+    private void handleThemeSwap2() {
+        getCleanStyleSheetObject().add(getClass().getResource("/view/palette3.css").toExternalForm());    
+        uncheckAllBoxes();
+        ((CheckMenuItem)fxmlLoader.getNamespace().get("helpMenuItem" + String.valueOf(2))).setSelected(true);
     }
 
     public PersonListPanel getPersonListPanel() {
