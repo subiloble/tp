@@ -6,19 +6,19 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.Logic;
@@ -190,16 +190,16 @@ public class MainWindow extends UiPart<Stage> {
     private void handleCliVisibility() {
 
         if (((CheckMenuItem) fxmlLoader.getNamespace()
+                .get("hideCliMenuItem"))
+                .isSelected()) {
+        commandBoxPlaceholder.setVisible(false);
+        resultDisplayPlaceholder.setVisible(false);
+        commandBoxPlaceholder.setManaged(false);
+        resultDisplayPlaceholder.setManaged(false);
+        ((CheckMenuItem) fxmlLoader
+            .getNamespace()
             .get("hideCliMenuItem"))
-            .isSelected()) {
-                commandBoxPlaceholder.setVisible(false);
-                resultDisplayPlaceholder.setVisible(false);
-                commandBoxPlaceholder.setManaged(false);
-                resultDisplayPlaceholder.setManaged(false);
-                ((CheckMenuItem) fxmlLoader
-                    .getNamespace()
-                    .get("hideCliMenuItem"))
-                    .setSelected(true);
+            .setSelected(true);
         } else {
             commandBoxPlaceholder.setVisible(true);
             resultDisplayPlaceholder.setVisible(true);
@@ -262,8 +262,8 @@ public class MainWindow extends UiPart<Stage> {
     private void handleThemeSwap2() {
         getCleanStyleSheetObject().add(getClass().getResource("/view/palette3.css").toExternalForm());
         uncheckAllBoxes();
-        ((CheckMenuItem) fxmlLoader.getNamespace()
-            .get("helpMenuItem" + String.valueOf(2)))
+        ((CheckMenuItem) (fxmlLoader.getNamespace()
+            .get("helpMenuItem" + String.valueOf(2))))
             .setSelected(true);
     }
 
