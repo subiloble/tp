@@ -25,7 +25,12 @@ public class ArchiveCommandParser extends CommandParser implements Parser<Archiv
             return new ArchiveCommand(index);
         } catch (ParseException pe) {
             throw new ParseWithHintException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE), pe, "INDEX [INDEX] [INDEX]");
+                    String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        ArchiveCommand.MESSAGE_USAGE),
+                        pe,
+                        "INDEX [INDEX] [INDEX]"
+                    );
         }
     }
 

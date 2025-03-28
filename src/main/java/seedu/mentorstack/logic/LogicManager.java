@@ -94,7 +94,15 @@ public class LogicManager implements Logic {
         return studentsBySubjects;
     }
 
-    public XYChart.Series<String, Number> populateSeries(XYChart.Series<String, Number> series, Map<String, Integer> studentsBySubjects) {
+    /**
+     * Adds content from Map of subjects and student count to Series object
+     * to be used in charts.
+     */
+
+    public XYChart.Series<String, Number> populateSeries(
+        XYChart.Series<String, Number> series,
+        Map<String, Integer> studentsBySubjects
+    ) {
 
         for (Map.Entry<String, Integer> entry : studentsBySubjects.entrySet()) {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));

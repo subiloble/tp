@@ -25,7 +25,12 @@ public class MarkCommandParser extends CommandParser implements Parser<MarkComma
             return new MarkCommand(index);
         } catch (ParseException pe) {
             throw new ParseWithHintException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe, "INDEX [INDEX] [INDEX]");
+                    String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        MarkCommand.MESSAGE_USAGE),
+                        pe,
+                        "INDEX [INDEX] [INDEX]"
+                    );
         }
     }
 

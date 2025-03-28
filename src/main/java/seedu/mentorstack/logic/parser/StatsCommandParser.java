@@ -29,13 +29,22 @@ public class StatsCommandParser extends CommandParser implements Parser<StatsCom
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SUBJECT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), "s/[SUBJECT]");
+            throw new ParseWithHintException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                StatsCommand.MESSAGE_USAGE),
+                "s/[SUBJECT]"
+            );
         }
         Subject subject;
         try {
             subject = ParserUtil.parseSubjects(argMultimap.getValue(PREFIX_SUBJECT).get());
         } catch (ParseException pe) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe, "[SUBJECT]");
+            throw new ParseWithHintException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                StatsCommand.MESSAGE_USAGE),
+                pe,
+                "[SUBJECT]"
+            );
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBJECT);

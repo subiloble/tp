@@ -31,8 +31,7 @@ public class EditCommandParser extends CommandParser implements Parser<EditComma
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-
-     @Override
+    @Override
     public EditCommand parse(String args) throws ParseException, ParseWithHintException {
 
         requireNonNull(args);
@@ -56,7 +55,12 @@ public class EditCommandParser extends CommandParser implements Parser<EditComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe, "INDEX " + missing);
+            throw new ParseWithHintException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE),
+                pe,
+                "INDEX " + missing
+            );
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL);

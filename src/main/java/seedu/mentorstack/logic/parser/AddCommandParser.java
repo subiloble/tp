@@ -52,9 +52,20 @@ public class AddCommandParser extends CommandParser implements Parser<AddCommand
         String missing = super.getMissingArgs(argMultimap, ideal);
 
         if (missing.length() > 0) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), missing);
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SUBJECT)
-                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseWithHintException(
+                String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.MESSAGE_USAGE
+                ),
+                missing
+            );
+        } else if (!arePrefixesPresent(
+            argMultimap,
+            PREFIX_NAME,
+            PREFIX_GENDER,
+            PREFIX_EMAIL,
+            PREFIX_PHONE,
+            PREFIX_SUBJECT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

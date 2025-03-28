@@ -25,7 +25,12 @@ public class UnarchiveCommandParser extends CommandParser implements Parser<Unar
             return new UnarchiveCommand(index);
         } catch (ParseException pe) {
             throw new ParseWithHintException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE), pe, "INDEX [INDEX] [INDEX]");
+                    String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnarchiveCommand.MESSAGE_USAGE),
+                        pe,
+                        "INDEX [INDEX] [INDEX]"
+                    );
         }
     }
 }

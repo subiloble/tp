@@ -34,11 +34,19 @@ public class FinishCommandParser extends CommandParser implements Parser<FinishC
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FinishCommand.MESSAGE_USAGE), pe, "INDEX [s/SUBJECT] [s/SUBJECT]");
+            throw new ParseWithHintException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                FinishCommand.MESSAGE_USAGE),
+                pe,
+                "INDEX [s/SUBJECT] [s/SUBJECT]"
+            );
         }
 
         Set<Subject> subjectsToFinish = parseSubjectsForFinish(argMultimap.getAllValues(PREFIX_SUBJECT))
-                .orElseThrow(() -> new ParseWithHintException(FinishCommand.MESSAGE_NO_SUBJECTS, "[s/SUBJECT] [s/SUBJECT]"));
+                .orElseThrow(() -> new ParseWithHintException(
+                    FinishCommand.MESSAGE_NO_SUBJECTS,
+                    "[s/SUBJECT] [s/SUBJECT]"
+                ));
 
         return new FinishCommand(index, subjectsToFinish);
     }

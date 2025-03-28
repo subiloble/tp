@@ -34,11 +34,19 @@ public class UnfinishCommandParser extends CommandParser implements Parser<Unfin
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfinishCommand.MESSAGE_USAGE), pe, "INDEX [s/SUBJECT] [s/SUBJECT]");
+            throw new ParseWithHintException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                UnfinishCommand.MESSAGE_USAGE),
+                pe,
+                "INDEX [s/SUBJECT] [s/SUBJECT]"
+            );
         }
 
         Set<Subject> subjectsToUnfinish = parseSubjectsForUnfinish(argMultimap.getAllValues(PREFIX_SUBJECT))
-                .orElseThrow(() -> new ParseWithHintException(UnfinishCommand.MESSAGE_NO_SUBJECTS, "[s/SUBJECT] [s/SUBJECT]"));
+                .orElseThrow(() -> new ParseWithHintException(
+                    UnfinishCommand.MESSAGE_NO_SUBJECTS,
+                    "[s/SUBJECT] [s/SUBJECT]"
+                ));
 
         return new UnfinishCommand(index, subjectsToUnfinish);
     }

@@ -25,7 +25,12 @@ public class DeleteCommandParser extends CommandParser implements Parser<DeleteC
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseWithHintException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe, "INDEX [INDEX] [INDEX]");
+                    String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        DeleteCommand.MESSAGE_USAGE),
+                        pe,
+                        "INDEX [INDEX] [INDEX]"
+                    );
         }
     }
 

@@ -25,7 +25,12 @@ public class UnmarkCommandParser extends CommandParser implements Parser<UnmarkC
             return new UnmarkCommand(index);
         } catch (ParseException pe) {
             throw new ParseWithHintException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe, "INDEX [INDEX] [INDEX]");
+                    String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnmarkCommand.MESSAGE_USAGE),
+                        pe,
+                        "INDEX [INDEX] [INDEX]"
+                    );
         }
     }
 
