@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.StatsCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 import seedu.mentorstack.model.person.Subject;
 
 /**
@@ -14,10 +15,10 @@ import seedu.mentorstack.model.person.Subject;
  * and returns a StatsCommand object for execution.
  * @throws ParseException if the user input does not conform the expected format
  */
-public class StatsCommandParser implements Parser<StatsCommand> {
+public class StatsCommandParser extends CommandParser implements Parser<StatsCommand> {
 
     @Override
-    public StatsCommand parse(String args) throws ParseException {
+    public StatsCommand parse(String args) throws ParseException, ParseWithHintException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             return new StatsCommand();
@@ -28,13 +29,13 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SUBJECT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
+            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), "s/[SUBJECT]");
         }
         Subject subject;
         try {
             subject = ParserUtil.parseSubjects(argMultimap.getValue(PREFIX_SUBJECT).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe);
+            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe, "[SUBJECT]");
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBJECT);

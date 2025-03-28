@@ -7,11 +7,14 @@ import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.AddCommand;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 import seedu.mentorstack.model.person.Email;
 import seedu.mentorstack.model.person.Gender;
 import seedu.mentorstack.model.person.Name;
@@ -19,23 +22,38 @@ import seedu.mentorstack.model.person.Person;
 import seedu.mentorstack.model.person.Phone;
 import seedu.mentorstack.model.person.Subject;
 
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser extends CommandParser implements Parser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+
+    @Override
+    public AddCommand parse(String args) throws ParseException, ParseWithHintException {
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE,
                         PREFIX_SUBJECT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SUBJECT)
+
+        Map<String, String> ideal = new HashMap<>();
+        ideal.put("n/", "John Doe");
+        ideal.put("e/", "johnd@example.com");
+        ideal.put("p/", "98765432");
+        ideal.put("s/", "maths computer science");
+        ideal.put("g/", "F");
+
+
+        String missing = super.getMissingArgs(argMultimap, ideal);
+
+        if (missing.length() > 0) {
+            throw new ParseWithHintException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), missing);
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SUBJECT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

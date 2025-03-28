@@ -8,9 +8,7 @@ import javafx.scene.layout.StackPane;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-
-import java.util.HashMap;
-import java.util.Map;
+import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -52,56 +50,16 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+        } catch (ParseWithHintException eh) {
+            setStyleToIndicateCommandFailure();
+            setPromptAsHint(eh);
+            System.out.println(eh.getMessage());
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+            // setPromptAsHint();
             System.out.println(e.getMessage());
             
         }
-    }
-
-    public static String missing(String ui) {
-        String[] splitted = ui.split(" ");
-
-        Map<String, String> ideal = new HashMap<>();
-        ideal.put("n", "John Doe");
-        ideal.put("e", "johnd@example.com");
-        ideal.put("p", "98765432");
-        ideal.put("s", "maths computer science");
-        ideal.put("g", "F");
-
-        int indOrg = 0;
-        int indMap = 0;
-        String[] resultArray = new String[splitted.length * 2];
-
-        while (indOrg < splitted.length) {
-            if (splitted[indOrg].equals("add")) {
-                indOrg++;
-                continue;
-            }
-
-            if (splitted[indOrg].contains("/")) {
-                String[] slashed = splitted[indOrg].split("/");
-                resultArray[indMap++] = slashed[0];
-                resultArray[indMap++] = String.join(" ", java.util.Arrays.copyOfRange(slashed, 1, slashed.length));
-            } else {
-                resultArray[indMap - 1] += " " + splitted[indOrg];
-            }
-
-            indOrg++;
-        }
-
-        Map<String, String> res = new HashMap<>();
-        for (int i = 0; i < indMap; i += 2) {
-            res.put(resultArray[i], resultArray[i + 1]);
-        }
-
-        StringBuilder toreturn = new StringBuilder();
-        for (Map.Entry<String, String> entry : ideal.entrySet()) {
-            if (!res.containsKey(entry.getKey())) {
-                toreturn.append(entry.getKey()).append("/").append(entry.getValue()).append(" ");
-            }
-        }
-        return " " + toreturn.toString().trim();
     }
 
     /**
@@ -109,7 +67,6 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-        // commandTextField.setVisible(true);
         promptTextField.setVisible(false);
     }
 
@@ -118,8 +75,6 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
-        promptTextField.setVisible(true);
-        promptTextField.setPromptText(commandTextField.getText() + missing(commandTextField.getText()));
 
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
             return;
@@ -128,7 +83,12 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
 
         StackPane.setAlignment(promptTextField, javafx.geometry.Pos.CENTER); 
-        
+    }
+
+
+    private void setPromptAsHint(ParseWithHintException exceptionWithHint) {
+        promptTextField.setVisible(true);
+        promptTextField.setPromptText(commandTextField.getText() + ' ' + exceptionWithHint.getHint());
     }
 
     /**
