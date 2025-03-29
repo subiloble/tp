@@ -56,7 +56,6 @@ public class CommandBox extends UiPart<Region> {
             System.out.println(eh.getMessage());
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
-            // setPromptAsHint();
             System.out.println(e.getMessage());
 
         }

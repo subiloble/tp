@@ -9,54 +9,6 @@ import seedu.mentorstack.logic.commands.Command;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 
-// Original command for parsing missing arguments from a string
-// New method uses argMultiMap
-// public static String missing(String ui) {
-//     String[] splitted = ui.split(" ");
-
-//     Map<String, String> ideal = new HashMap<>();
-//     ideal.put("n", "John Doe");
-//     ideal.put("e", "johnd@example.com");
-//     ideal.put("p", "98765432");
-//     ideal.put("s", "maths computer science");
-//     ideal.put("g", "F");
-
-//     int indOrg = 0;
-//     int indMap = 0;
-//     String[] resultArray = new String[splitted.length * 2];
-
-//     while (indOrg < splitted.length) {
-//         if (splitted[indOrg].equals("add")) {
-//             indOrg++;
-//             continue;
-//         }
-
-//         if (splitted[indOrg].contains("/")) {
-//             String[] slashed = splitted[indOrg].split("/");
-//             resultArray[indMap++] = slashed[0];
-//             resultArray[indMap++] = String.join(" ", java.util.Arrays.copyOfRange(slashed, 1, slashed.length));
-//         } else {
-//             resultArray[indMap - 1] += " " + splitted[indOrg];
-//         }
-
-//         indOrg++;
-//     }
-
-//     Map<String, String> res = new HashMap<>();
-//     for (int i = 0; i < indMap; i += 2) {
-//         res.put(resultArray[i], resultArray[i + 1]);
-//     }
-
-//     StringBuilder toreturn = new StringBuilder();
-//     for (Map.Entry<String, String> entry : ideal.entrySet()) {
-//         if (!res.containsKey(entry.getKey())) {
-//             toreturn.append(entry.getKey()).append("/").append(entry.getValue()).append(" ");
-//         }
-//     }
-//     return " " + toreturn.toString().trim();
-// }
-
-
 /**
  * Abstract class responsible for parsing commands. This class defines a method for parsing arguments
  * and checking for missing arguments based on an ideal set of arguments.

@@ -42,7 +42,6 @@ public class EditCommandParser extends CommandParser implements Parser<EditComma
         Index index;
 
         Map<String, String> ideal = new HashMap<>();
-        // ideal.put("INTEGER", "");
         ideal.put("[n/", "John Doe]");
         ideal.put("[e/", "johnd@example.com]");
         ideal.put("[p/", "98765432]");
@@ -50,7 +49,6 @@ public class EditCommandParser extends CommandParser implements Parser<EditComma
         ideal.put("[g/", "F]");
 
         String missing = super.getMissingArgs(argMultimap, ideal);
-
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

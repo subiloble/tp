@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show(); //
+            helpWindow.show();
         } else {
             helpWindow.focus();
         }
@@ -182,7 +182,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide(); //
+        helpWindow.hide();
         primaryStage.hide();
     }
 

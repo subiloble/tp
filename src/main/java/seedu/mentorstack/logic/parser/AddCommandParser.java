@@ -40,14 +40,12 @@ public class AddCommandParser extends CommandParser implements Parser<AddCommand
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE,
                         PREFIX_SUBJECT);
 
-
         Map<String, String> ideal = new HashMap<>();
         ideal.put("n/", "John Doe");
         ideal.put("e/", "johnd@example.com");
         ideal.put("p/", "98765432");
         ideal.put("s/", "maths computer science");
         ideal.put("g/", "F");
-
 
         String missing = super.getMissingArgs(argMultimap, ideal);
 
