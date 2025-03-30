@@ -16,6 +16,7 @@ public class UndoCommand extends Command {
         if (!model.canUndo()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
+        assert model.canUndo();
         model.undo();
         return new CommandResult(MESSAGE_SUCCESS);
     }
