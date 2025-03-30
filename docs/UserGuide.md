@@ -147,17 +147,19 @@ Keyword | Field
 **`e`** | EMAIL, filters entries matching VALUE
 **`s`** | SUBJECT, filters entries containing VALUE
 
+* Values are case-insensitive.
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
+* For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
 * For PHONE and EMAIL, only matching entries will be filtered e.g. `123` will not match `12345678`, `john` will not match `john@doe.com`
 * `view` with invalid arguments will just list all persons.
 * `view` with no arguments will just list all persons.
-* `view` can have multiple filters applied for different fields.
-* Persons matching any filters will be returned (i.e. `OR` search).
+* `view` can have multiple filters applied for any field (can be the same field).
+* Persons matching all filters will be returned (i.e. `AND` search).
 
 Examples:
 * `view f/n v/john` returns `john` and `John Doe`
 * `view f/s v/CS` returns all entries taking CS courses
-* `view f/p v/12345678 f/e v/john@doe.com` returns only entries with matching PHONE OR EMAIL<br>
+* `view f/p v/12345678 f/e v/john@doe.com` returns only entries with matching PHONE AND EMAIL<br>
 
 ### Deleting a person : `delete`
 
