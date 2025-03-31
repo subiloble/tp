@@ -84,6 +84,24 @@ class FilterPredicateTest {
     }
 
     @Test
+    void createPredicate_archivedFilter_returnsCorrectPredicate() {
+        Person person = createPerson("Ethan", "M", "22223333",
+                "ethan@example.com", Set.of(new Subject("English")), Set.of()).archived();
+        Predicate<Person> predicate = FilterPredicate.createPredicate("a", "t");
+        assertNotNull(predicate);
+        assertTrue(predicate.test(person));
+    }
+
+    @Test
+    void createPredicate_unarchivedFilter_returnsCorrectPredicate() {
+        Person person = createPerson("Ethan", "M", "22223333",
+                "ethan@example.com", Set.of(new Subject("English")), Set.of());
+        Predicate<Person> predicate = FilterPredicate.createPredicate("a", "f");
+        assertNotNull(predicate);
+        assertTrue(predicate.test(person));
+    }
+
+    @Test
     void createPredicate_invalidFilterType_returnsNull() {
         Predicate<Person> predicate = FilterPredicate.createPredicate("invalid",
                 "test");

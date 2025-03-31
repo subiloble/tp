@@ -44,24 +44,7 @@ public class ViewCommand extends Command {
             return new CommandResult(MESSAGE_NO_MATCH);
         }
 
-        // String formattedList = formatStudentList(filteredStudents);
         return new CommandResult(String.format(MESSAGE_SUCCESS, filteredStudents));
-    }
-
-    private String formatStudentList(List<Person> students) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-20s %-12s %-25s %s\n", "Name", "Phone", "Email", "Subject"));
-        sb.append("=".repeat(100)).append("\n");
-
-        for (Person student : students) {
-            sb.append(String.format("%-20s %-12s %-25s %s\n",
-                    student.getName().fullName,
-                    student.getPhone().value,
-                    student.getEmail().value,
-                    student.getSubjects().toString()));
-        }
-
-        return sb.toString();
     }
 
     @Override

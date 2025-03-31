@@ -26,6 +26,10 @@ public class FilterPredicate {
                     .anyMatch(subjectName -> subjectName.contains(filterValue.toLowerCase())); // Match substring
         case "g":
             return person -> person.getGender().value.equalsIgnoreCase(filterValue);
+        case "a":
+            return person -> filterValue.equalsIgnoreCase("t")
+                    ? person.getIsArchived().isArchived.equals("true")
+                    : !person.getIsArchived().isArchived.equals("true");
         default:
             return null; // Invalid filter type
         }
