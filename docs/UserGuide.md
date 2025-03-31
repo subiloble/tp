@@ -150,7 +150,7 @@ Keyword | Field
 * Values are case-insensitive.
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
 * For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
-* For PHONE and EMAIL, only matching entries will be filtered e.g. `123` will not match `12345678`, `john` will not match `john@doe.com`
+* For PHONE and EMAIL, partial words will be matched e.g. `123` will match `12345678`, `john` will match `john@doe.com`
 * `view` with invalid arguments will just list all persons.
 * `view` with no arguments will just list all persons.
 * `view` can have multiple filters applied for any field (can be the same field).

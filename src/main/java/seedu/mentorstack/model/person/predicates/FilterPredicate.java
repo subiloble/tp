@@ -17,9 +17,9 @@ public class FilterPredicate {
         case "n":
             return person -> person.getName().fullName.toLowerCase().contains(filterValue.toLowerCase());
         case "p":
-            return person -> person.getPhone().value.equalsIgnoreCase(filterValue);
+            return person -> person.getPhone().value.toLowerCase().contains(filterValue.toLowerCase());
         case "e":
-            return person -> person.getEmail().value.equalsIgnoreCase(filterValue);
+            return person -> person.getEmail().value.toLowerCase().contains(filterValue.toLowerCase());
         case "s":
             return person -> person.getSubjects().stream()
                     .map(subject -> subject.subjectName.toLowerCase()) // Extract subject name
