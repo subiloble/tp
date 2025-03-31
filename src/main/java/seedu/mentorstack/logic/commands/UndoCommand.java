@@ -1,9 +1,9 @@
 package seedu.mentorstack.logic.commands;
 
+import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
-
-import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Undo the last operation that changed the data.
