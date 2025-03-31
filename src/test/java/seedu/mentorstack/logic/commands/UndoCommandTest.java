@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
-import seedu.mentorstack.model.Mentorstack;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;
@@ -29,7 +28,7 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undo_successful() throws CommandException {
-        model.setMentorstack(new Mentorstack());
+        model.rememberMentorstack();
         CommandResult result = undoCommand.execute(model);
 
         // Verify successful undo

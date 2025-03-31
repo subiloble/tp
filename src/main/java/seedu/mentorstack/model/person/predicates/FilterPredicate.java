@@ -17,15 +17,19 @@ public class FilterPredicate {
         case "n":
             return person -> person.getName().fullName.toLowerCase().contains(filterValue.toLowerCase());
         case "p":
-            return person -> person.getPhone().value.equalsIgnoreCase(filterValue);
+            return person -> person.getPhone().value.toLowerCase().contains(filterValue.toLowerCase());
         case "e":
-            return person -> person.getEmail().value.equalsIgnoreCase(filterValue);
+            return person -> person.getEmail().value.toLowerCase().contains(filterValue.toLowerCase());
         case "s":
             return person -> person.getSubjects().stream()
                     .map(subject -> subject.subjectName.toLowerCase()) // Extract subject name
                     .anyMatch(subjectName -> subjectName.contains(filterValue.toLowerCase())); // Match substring
         case "g":
             return person -> person.getGender().value.equalsIgnoreCase(filterValue);
+        case "a":
+            return person -> filterValue.equalsIgnoreCase("t")
+                    ? person.getIsArchived().isArchived.equals("true")
+                    : !person.getIsArchived().isArchived.equals("true");
         default:
             return null; // Invalid filter type
         }

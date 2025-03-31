@@ -142,25 +142,29 @@ Format: `view [[f/FIELD] [v/VALUE]]…​`
 Keyword | Field
 --------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **`n`** | NAME, filters entries containing VALUE
-**`p`** | PHONE, filters entries matching VALUE
-**`e`** | EMAIL, filters entries matching VALUE
+**`g`** | GENDER, filters entries containing VALUE
+**`p`** | PHONE, filters entries containing VALUE
+**`e`** | EMAIL, filters entries containing VALUE
 **`s`** | SUBJECT, filters entries containing VALUE
+**`a`** | ARCHIVED, filters entries by archived status (t for archived, f for non-archived)
 
+* Values are case-insensitive.
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
-* For PHONE and EMAIL, only matching entries will be filtered e.g. `123` will not match `12345678`, `john` will not match `john@doe.com`
+* For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
+* For PHONE and EMAIL, partial words will be matched e.g. `123` will match `12345678`, `john` will match `john@doe.com`
 * `view` with invalid arguments will just list all persons.
 * `view` with no arguments will just list all persons.
-* `view` can have multiple filters applied for different fields.
-* Persons matching any filters will be returned (i.e. `OR` search).
+* `view` can have multiple filters applied for any field (can be the same field).
+* Persons matching all filters will be returned (i.e. `AND` search).
 
 Examples:
 * `view f/n v/john` returns `john` and `John Doe`
 * `view f/s v/CS` returns all entries taking CS courses
-* `view f/p v/12345678 f/e v/john@doe.com` returns only entries with matching PHONE OR EMAIL<br>
+* `view f/p v/12345678 f/e v/john@doe.com` returns only entries with matching PHONE AND EMAIL<br>
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the Mentorstack.
 
 Format: `delete INDEX…​`
 
@@ -170,23 +174,120 @@ Format: `delete INDEX…​`
 * Input can contain multiple indices.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in Mentorstack.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `list` followed by `delete 2 3` deletes the 2nd and 3rd person in the address book.
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd person in Mentorstack.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Mentorstack.
 
 Format: `clear`
+
+### Undo an operation : `undo`
+
+* Undoes the previous operation in Mentorstack.
+* Undo applies to all operations that modify the Mentorstack data storage e.g.  the `archive` command can be undone, but the `view` command cannot.
+* Undo does not apply when there is no previous operation undoable.
+
+Format: `undo`
+
+### View statistics : `stats`
+
+* Views statistics of Mentorstack, supports subject-based statistics.
+* Shows gender distribution and total students.
+
+Format: `stats [s/SUBJECT]`
+
+Examples:
+* `stats` shows the statistics of Mentorstack.
+* `stats s/CS2102` shows the statistics of students currently enrolled in CS2103.
+
+### Mark a student : `mark`
+
+* Marks a student in Mentorstack.
+* Marked students will have a red circle next to their name.
+* Input can contain multiple indices.
+* Students remain marked if they have already been marked.
+
+Format: `mark INDEX…​`
+
+Examples:
+* `list` followed by `mark 1 3` marks the 1st and 3rd student in the current list.
+
+### Unmark a student : `unmark`
+
+* Unmarks a student in Mentorstack.
+* Input can contain multiple indices.
+* Students remain unmarked if they have already been unmarked.
+
+Format: `unmark INDEX…​`
+
+Examples:
+* `list` followed by `unmark 1 3` unmarks the 1st and 3rd student in the current list.
+
+### Archive a student : `archive`
+
+* Archives a student in Mentorstack.
+* Archives students are moved to the archive list.
+* Input can contain multiple indices.
+
+Format: `archive INDEX…​`
+
+Examples:
+* `list` followed by `archive 1 3` archives the 1st and 3rd student in the current list.
+
+### Navigate to the archive list : `showarchive`
+
+Lists the students in the archive list.
+
+Format: `showarchive`
+
+### Unarchive a student : `unarchive`
+
+* Unarchives a student in Mentorstack.
+* Unarchived students are moved back to the main list.
+* Input can contain multiple indices.
+* Operation can only be performed on students in the archive list.
+
+Format: `unarchive INDEX…​`
+
+Examples:
+* `showarchive` followed by `unarchive 1 3` unarchives the 1st and 3rd student in the archived list.
+
+### Indicate that a student has finished a subject : `finish`
+
+* Indicates that a student has finished a subject.
+* Finished subjects are still shown but will be marked as red.
+
+Format: `finish INDEX s/SUBJECT…​`
+
+* Input can only contain subjects that students have enrolled in.
+* Input can contain multiple subjects.
+* Finished subjects remain finished.
+
+Examples:
+* `finish 1 s\CS2103` marks CS2103 as completed by student 1.
+
+### Indicate that a student has not finished a subject : `unfinish`
+
+* Indicates that a student has not finished a subject.
+* Primarily used as a reversal operation for `finish`
+
+Format: `unfinish INDEX s/SUBJECT…​`
+
+* Input can only contain subjects that students have enrolled in.
+* Input can contain multiple subjects.
+* Unfinished subjects remain unfinished.
+
+Examples:
+* `unfinish 1 s\CS2103` marks CS2103 as not completed by student 1.
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-
 
 ### Saving the data
 
@@ -225,14 +326,23 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com s/CS2103 s/LAJ1201`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SUBJECT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**View**   | `view [[f/FIELD] [v/VALUE]]…​`<br> e.g.,`view f/n v/john f/s v/CS`
-**Help**   | `help`
-**Exit**   | `exit`
+Action          | Format, Examples
+----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com s/CS2103 s/LAJ1201`
+**Clear**       | `clear`
+**Delete**      | `delete INDEX`<br> e.g., `delete 3`
+**Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SUBJECT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**        | `list`
+**View**        | `view [[f/FIELD] [v/VALUE]]…​`<br> e.g.,`view f/n v/john f/s v/CS`
+**Undo**        | `undo`
+**Stats**       | `stats [s/SUBJECT]`<br> e.g., `stats s/CS2103`
+**Mark**        | `mark INDEX…​`<br> e.g., `mark 2`
+**Unmark**      | `unmark INDEX…​`<br> e.g., `unmark 2`
+**Archive**     | `archive INDEX…​`<br> e.g., `archive 2`
+**Showarchive** | `showarchive`
+**Unarchive**   | `unarchive INDEX…​`<br> e.g., `unarchive 2`
+**Finish**      | `finish INDEX s/SUBJECT…​`<br> e.g., `finish 2 s/CS2103`
+**Unfinish**    | `unfinish INDEX s/SUBJECT…​`<br> e.g., `unfinish 2 s/CS2103`
+**Exit**        | `exit`
+**Help**        | `help`

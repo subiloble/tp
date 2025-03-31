@@ -83,8 +83,12 @@ public class ModelManager implements Model {
     //=========== Mentorstack ================================================================================
 
     @Override
-    public void setMentorstack(ReadOnlyMentorstack mentorstack) {
+    public void rememberMentorstack() {
         history.push(new Mentorstack(this.mentorstack));
+    }
+
+    @Override
+    public void setMentorstack(ReadOnlyMentorstack mentorstack) {
         this.mentorstack.resetData(mentorstack);
     }
 
@@ -101,13 +105,11 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-        history.push(new Mentorstack(this.mentorstack));
         mentorstack.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        history.push(new Mentorstack(this.mentorstack));
         mentorstack.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -116,7 +118,6 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        history.push(new Mentorstack(this.mentorstack));
         mentorstack.setPerson(target, editedPerson);
     }
 

@@ -70,6 +70,7 @@ public class UnfinishCommand extends Command {
 
         Person unfinishedPerson = createUnfinishedPerson(personToUnfinish, subjectsToUnfinish);
 
+        model.rememberMentorstack(); // save the state for undo
         model.setPerson(personToUnfinish, unfinishedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNFINISH_SUBJECT_SUCCESS, Messages.format(unfinishedPerson)));
