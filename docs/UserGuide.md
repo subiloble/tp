@@ -142,10 +142,11 @@ Format: `view [[f/FIELD] [v/VALUE]]…​`
 Keyword | Field
 --------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **`n`** | NAME, filters entries containing VALUE
-**`g`** | GENDER, filters entries containing VALUE
-**`p`** | PHONE, filters entries matching VALUE
-**`e`** | EMAIL, filters entries matching VALUE
+**`g`** | GENDER, filters entries by gender (m for male, f for female)
+**`p`** | PHONE, filters entries containing VALUE
+**`e`** | EMAIL, filters entries containing VALUE
 **`s`** | SUBJECT, filters entries containing VALUE
+**`a`** | ARCHIVED, filters entries by archived status (t for archived, f for non-archived)
 
 * Values are case-insensitive.
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
