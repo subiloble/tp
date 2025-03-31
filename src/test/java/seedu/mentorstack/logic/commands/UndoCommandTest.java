@@ -29,7 +29,7 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undo_successful() throws CommandException {
-        model.setMentorstack(new Mentorstack());
+        model.rememberMentorstack();
         CommandResult result = undoCommand.execute(model);
 
         // Verify successful undo
