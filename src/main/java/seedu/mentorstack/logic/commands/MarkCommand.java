@@ -44,6 +44,7 @@ public class MarkCommand extends Command {
             }
         }
 
+        model.rememberMentorstack(); // save the state for undo
         StringBuilder markedPersons = new StringBuilder();
 
         for (Index index : targetIndices) {

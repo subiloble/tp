@@ -52,6 +52,7 @@ public class ArchiveCommand extends Command {
         }
 
         // Perform deletion
+        model.rememberMentorstack(); // save the state for undo
         StringBuilder archivedPersons = new StringBuilder();
         for (Person personToArchive : personsToArchive) {
             model.archivePerson(personToArchive, personToArchive.archived());
