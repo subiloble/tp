@@ -44,6 +44,7 @@ public class UnmarkCommand extends Command {
             }
         }
 
+        model.rememberMentorstack(); // save the state for undo
         StringBuilder unmarkedPersons = new StringBuilder();
 
         for (Index index : targetIndices) {

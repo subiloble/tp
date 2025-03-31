@@ -46,6 +46,11 @@ public interface Model {
     void setMentorstackFilePath(Path mentorstackFilePath);
 
     /**
+     * Save the state of database.
+     */
+    void rememberMentorstack();
+
+    /**
      * Replaces address book data with the data in {@code mentorstack}.
      */
     void setMentorstack(ReadOnlyMentorstack mentorstack);

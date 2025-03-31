@@ -187,7 +187,8 @@ Format: `clear`
 ### Undo an operation : `undo`
 
 * Undoes the previous operation in Mentorstack.
-* Currently only supports `add`, `edit`, `delete`, `clear` operations.
+* Undo applies to all operations that modify the Mentorstack data storage e.g.  the `archive` command can be undone, but the `view` command cannot.
+* Undo does not apply when there is no previous operation undoable.
 
 Format: `undo`
 

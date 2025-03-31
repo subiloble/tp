@@ -1,5 +1,7 @@
 package seedu.mentorstack.logic.commands;
 
+import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
 
@@ -18,6 +20,7 @@ public class UndoCommand extends Command {
         }
         assert model.canUndo() : "not undoable";
         model.undo();
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

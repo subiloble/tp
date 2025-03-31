@@ -52,6 +52,7 @@ public class UnarchiveCommand extends Command {
         }
 
         // Perform deletion
+        model.rememberMentorstack(); // save the state for undo
         StringBuilder unarchivedPersons = new StringBuilder();
         for (Person personToUnarchive : personsToUnarchive) {
             model.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());

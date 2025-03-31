@@ -47,6 +47,7 @@ public class DeleteCommand extends Command {
 
         ArrayList<Person> personsToDelete = new ArrayList<>();
         // Perform deletion
+        model.rememberMentorstack(); // save the state for undo
         StringBuilder deletedPersons = new StringBuilder();
         for (Index index : targetIndices) {
             Person personToDelete = lastShownList.get(index.getZeroBased());

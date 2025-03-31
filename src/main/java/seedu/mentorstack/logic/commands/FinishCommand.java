@@ -70,6 +70,7 @@ public class FinishCommand extends Command {
 
         Person finishedPerson = createFinishedPerson(personToFinish, subjectsToFinish);
 
+        model.rememberMentorstack(); // save the state for undo
         model.setPerson(personToFinish, finishedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_FINISH_SUBJECT_SUCCESS, Messages.format(finishedPerson)));
