@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_SECOND_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.logic.Messages;
+import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ModelManager;
 import seedu.mentorstack.model.UserPrefs;
@@ -26,6 +28,26 @@ import seedu.mentorstack.model.person.Person;
 class UnarchiveCommandTest {
 
     private Model model = new ModelManager(getTypicalMentorstack(), new UserPrefs());
+
+    @Test
+    public void execute_success() throws CommandException {
+        Person personToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_SET_FIRST_PERSON);
+        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_SET_FIRST_PERSON);
+        ShowArchiveCommand showArchiveCommand = new ShowArchiveCommand();
+        archiveCommand.execute(model);
+        showArchiveCommand.execute(model);
+        Person personToUnarchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                Messages.format(personToUnarchive));
+
+        ModelManager expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
+        expectedModel.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());
+
+        assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_fail() {
