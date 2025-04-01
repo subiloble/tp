@@ -27,6 +27,8 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Persons: %1$s";
 
+    public static final String MESSAGE_DUPLICATE_ARCHIVE = "This Person is already archived: ";
+
     private final Set<Index> targetIndices;
 
     public ArchiveCommand(Set<Index> targetIndices) {
@@ -45,13 +47,20 @@ public class ArchiveCommand extends Command {
             }
         }
 
+        for (Index index : targetIndices) {
+            if (lastShownList.get(index.getZeroBased()).getIsArchived().testStatus()) {
+                throw new CommandException(MESSAGE_DUPLICATE_ARCHIVE
+                        + Messages.format(lastShownList.get(index.getZeroBased())));
+            }
+        }
+
         ArrayList<Person> personsToArchive = new ArrayList<Person>();
         for (Index index : targetIndices) {
             Person personToArchive = lastShownList.get(index.getZeroBased());
             personsToArchive.add(personToArchive);
         }
 
-        // Perform deletion
+        // Perform archiving
         model.rememberMentorstack(); // save the state for undo
         StringBuilder archivedPersons = new StringBuilder();
         for (Person personToArchive : personsToArchive) {
