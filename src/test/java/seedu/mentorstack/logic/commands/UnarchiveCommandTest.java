@@ -3,7 +3,7 @@ package seedu.mentorstack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.mentorstack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_FIRST_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexSets.INDEX_SET_SECOND_PERSON;
 import static seedu.mentorstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -28,7 +28,7 @@ class UnarchiveCommandTest {
     private Model model = new ModelManager(getTypicalMentorstack(), new UserPrefs());
 
     @Test
-    public void execute_success() {
+    public void execute_fail() {
         Person personToUnarchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_SET_FIRST_PERSON);
 
@@ -38,7 +38,8 @@ class UnarchiveCommandTest {
         ModelManager expectedModel = new ModelManager(model.getMentorstack(), new UserPrefs());
         expectedModel.unarchivePerson(personToUnarchive, personToUnarchive.unarchived());
 
-        assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(unarchiveCommand, model,
+                UnarchiveCommand.MESSAGE_DUPLICATE_UNARCHIVE + Messages.format(personToUnarchive));
     }
 
     @Test
