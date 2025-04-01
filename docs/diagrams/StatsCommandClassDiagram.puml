@@ -1,0 +1,41 @@
+@startuml
+class Command {
+    + execute(model: Model): CommandResult
+}
+
+class StatsCommand {
+    - subject: Subject
+    + StatsCommand()
+    + StatsCommand(subject: Subject)
+    + execute(model: Model): CommandResult
+}
+
+class StatsCommandParser {
+    + parse(args: String): StatsCommand
+}
+
+class Model {
+    + getFilteredPersonList(): List<Person>
+}
+
+class Subject {
+    + Subject(name: String)
+}
+
+class Person {
+    + getGender(): String
+    + getSubjects(): List<Subject>
+}
+
+class CommandResult {
+    + CommandResult(message: String)
+}
+
+Command <|-- StatsCommand
+StatsCommand --> Model
+StatsCommand --> Subject
+Model --> Person
+StatsCommand --> CommandResult
+Person --> Subject
+StatsCommandParser --> StatsCommand
+@enduml
