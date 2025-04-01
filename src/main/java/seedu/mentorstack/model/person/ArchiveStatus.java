@@ -52,4 +52,8 @@ public class ArchiveStatus {
     public String getStatus() {
         return this.isArchived;
     }
+
+    public Boolean testStatus() {
+        return this.isArchived.equals("true");
+    }
 }
