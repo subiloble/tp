@@ -88,6 +88,9 @@ Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
 **Tip:** A person can have any number of subjects (excluding 0)
 </box>
 
+A person can only have F or M as gender inputs
+</box>
+
 Examples:
 * `add n/John Doe g/M p/98765432 e/johnd@example.com s/CS2103`
 * `add n/Betsy Crowe g/F s/CS2103 e/betsycrowe@example.com p/1234567 s/LAJ1201`
@@ -328,9 +331,9 @@ _Details coming soon ..._
 
 Action          | Format, Examples
 ----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com s/CS2103 s/LAJ1201`
+**Add**         | `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL s/SUBJECT…​` <br> e.g., `add n/James Ho g/M p/22224444 e/jamesho@example.com s/CS2103 s/LAJ1201`
 **Clear**       | `clear`
-**Delete**      | `delete INDEX`<br> e.g., `delete 3`
+**Delete**      | `delete INDEX..`<br> e.g., `delete 1 3` 
 **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SUBJECT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**        | `list`

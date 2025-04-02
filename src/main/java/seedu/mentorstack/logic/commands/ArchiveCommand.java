@@ -25,7 +25,8 @@ public class ArchiveCommand extends Command {
             + "Parameters: INDEX1 INDEX2 ... (each must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Persons: %1$s";
+    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Persons: %1$s\n"
+            + "Here is the list of all unarchived persons:";
 
     public static final String MESSAGE_DUPLICATE_ARCHIVE = "This Person is already archived: ";
 

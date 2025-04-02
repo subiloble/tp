@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_SUBJECT + "SUBJECT...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_GENDER + "F"
+            + PREFIX_GENDER + "F "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_SUBJECT + "CS2103 "
