@@ -28,6 +28,8 @@ public class UnarchiveCommand extends Command {
     public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived Persons: %1$s\n"
             + "Here is the list of all archived persons:";
 
+    public static final String MESSAGE_DUPLICATE_UNARCHIVE = "This person is already unarchived: ";
+
     private final Set<Index> targetIndices;
 
     public UnarchiveCommand(Set<Index> targetIndices) {
@@ -46,13 +48,20 @@ public class UnarchiveCommand extends Command {
             }
         }
 
+        for (Index index : targetIndices) {
+            if (!lastShownList.get(index.getZeroBased()).getIsArchived().testStatus()) {
+                throw new CommandException(MESSAGE_DUPLICATE_UNARCHIVE
+                        + Messages.format(lastShownList.get(index.getZeroBased())));
+            }
+        }
+
         ArrayList<Person> personsToUnarchive = new ArrayList<Person>();
         for (Index index : targetIndices) {
             Person personToUnarchive = lastShownList.get(index.getZeroBased());
             personsToUnarchive.add(personToUnarchive);
         }
 
-        // Perform deletion
+        // Perform unarchiving
         model.rememberMentorstack(); // save the state for undo
         StringBuilder unarchivedPersons = new StringBuilder();
         for (Person personToUnarchive : personsToUnarchive) {
