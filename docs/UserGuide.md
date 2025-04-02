@@ -111,6 +111,7 @@ Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE] [e/EMAIL] [s/SUBJECT]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing subjects, the existing subjects of the person will be removed i.e adding of subjects is not cumulative.
+* Cannot edit students who are already archived.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -234,6 +235,7 @@ Examples:
 * Archives a student in Mentorstack.
 * Archives students are moved to the archive list.
 * Input can contain multiple indices.
+* Will display students who are not archived after the command.
 
 Format: `archive INDEX…​`
 
@@ -252,6 +254,7 @@ Format: `showarchive`
 * Unarchived students are moved back to the main list.
 * Input can contain multiple indices.
 * Operation can only be performed on students in the archive list.
+* Will display students who are archived after the command.
 
 Format: `unarchive INDEX…​`
 
