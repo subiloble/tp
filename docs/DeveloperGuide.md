@@ -101,7 +101,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `MentorstackParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,8 +112,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MentorstackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `MentorstackParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -130,8 +130,6 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
 </box>
@@ -145,7 +143,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `MentorstackStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -251,6 +249,20 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Stats feature
+#### Proposed Implementation
+The `StatsCommand` provides statistical insights into the persons stored in MentorStack. It can either display overall statistics or filter by a specified subject.
+#### Execution Flow
+* If a subject is specified, filter the list of persons based on that subject.
+* Count the number of persons, males, and females in the filtered list.
+* Format the results into a string and return as a CommandResult.
+
+<puml src="diagrams/StatsCommandClassDiagram.puml" alt="StatsCommandClassDiagram" />
+
+The following sequence diagram shows how a stats operation goes through the `Logic` component:
+
+<puml src="diagrams/StatsSequenceDiagram-Logic.puml" alt="StatsSequenceDiagram" />
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -291,7 +303,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor   | edit a student’s details                            | update their information                               |
 | `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                             |
 | `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want          |
-|   `*`    | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
+| `**`     | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
+| `**`     | tutor   | View the gender distribution of my students         | adjust my teaching style                               |
 
 *{More to be added}*
 
@@ -384,6 +397,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Mentorstack shows an error message.
 
   Use case ends.
+
+* 2a. The list is empty.
+
+    * 2a1. Mentorstack shows a message indicating no student satisfies the input requirements.
+
+  Use case ends.
+
+**Use case: UC06 - View student distribution by stats**
+
+**MSS**
+
+1.  Tutor enters the stats command with an optional subject name.
+2.  Mentorstack calculates numbers by the filter criteria.
+3.  Mentorstack displays the number of distributions retrieved.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filter or value is invalid.
+
+    * 1a1. Mentorstack shows an error message.
+
+  Use case ends.
+
+* 1b. No subject input
+    * 1b1. Take the filter criteria as the whole data set
+  Back to step 2
 
 * 2a. The list is empty.
 
