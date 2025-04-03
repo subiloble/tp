@@ -45,7 +45,7 @@ public class EditCommandParser extends CommandParser implements Parser<EditComma
         ideal.put("[n/", "John Doe]");
         ideal.put("[e/", "johnd@example.com]");
         ideal.put("[p/", "98765432]");
-        ideal.put("[s/", "maths computer science]");
+        ideal.put("[s/", "CS2103]");
         ideal.put("[g/", "F]");
 
         String missing = super.getMissingArgs(argMultimap, ideal);

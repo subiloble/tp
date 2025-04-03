@@ -285,7 +285,6 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.mentorstack.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException,
-                                                                    ParseWithHintException,
                                                                     ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
@@ -301,10 +300,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException ce) {
+        } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(ce.getMessage());
-            throw ce;
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 }
