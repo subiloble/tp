@@ -37,7 +37,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         logger.log(Level.INFO, "Parsing AddCommand with arguments: {0}", args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SUBJECT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL,
+                        PREFIX_PHONE, PREFIX_SUBJECT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SUBJECT)
                 || !argMultimap.getPreamble().isEmpty()) {

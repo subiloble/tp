@@ -33,6 +33,9 @@ public class DeleteCommand extends Command {
 
     private final Set<Index> targetIndices;
 
+    /**
+     * Deletes a person identified using it's displayed index from Mentorstack.
+     */
     public DeleteCommand(Set<Index> targetIndices) {
         this.targetIndices = targetIndices;
         logger.log(Level.INFO, "DeleteCommand created with target indices: {0}", targetIndices);
@@ -68,7 +71,8 @@ public class DeleteCommand extends Command {
             logger.log(Level.INFO, "Deleted person: {0}", personToDelete);
         }
 
-        logger.log(Level.INFO, "DeleteCommand executed successfully, deleted persons: {0}", deletedPersons.toString().trim());
+        logger.log(Level.INFO, "DeleteCommand executed successfully, deleted persons: {0}",
+                deletedPersons.toString().trim());
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons.toString().trim()));
     }
 

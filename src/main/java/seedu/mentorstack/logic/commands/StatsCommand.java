@@ -32,11 +32,19 @@ public class StatsCommand extends Command {
 
     private final Subject subject;
 
+    /**
+     * Initialise the statistics command with no parameter input
+     */
     public StatsCommand() {
         this.subject = null;
         logger.log(Level.INFO, "StatsCommand created without a subject filter.");
     }
 
+    /**
+     * Initialise the statistics command
+     * filters the students statistics based on the input subject
+     * @param subject
+     */
     public StatsCommand(Subject subject) {
         this.subject = subject;
         logger.log(Level.INFO, "StatsCommand created with subject filter: {0}", subject);
