@@ -55,6 +55,10 @@ public class ArgumentMultimap {
         return new ArrayList<>(argMultimap.get(prefix));
     }
 
+    public HashMap<Prefix, List<String>> getArgMap() {
+        return new HashMap<Prefix, List<String>>(this.argMultimap);
+    }
+
     /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
