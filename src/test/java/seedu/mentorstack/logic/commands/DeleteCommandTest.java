@@ -109,7 +109,10 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(targetIndex));
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + Set.of(targetIndex) + "}";
+
+        // Update expected format to match the actual toString() implementation
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndices=" + Set.of(targetIndex) + "}";
+
         assertEquals(expected, deleteCommand.toString());
     }
 

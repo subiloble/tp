@@ -10,6 +10,8 @@ import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.AddCommand;
@@ -27,18 +29,15 @@ import seedu.mentorstack.model.person.Subject;
  */
 public class AddCommandParser extends CommandParser implements Parser<AddCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
+    private static final Logger logger = Logger.getLogger(AddCommandParser.class.getName());
 
     @Override
     public AddCommand parse(String args) throws ParseException, ParseWithHintException {
+        logger.log(Level.INFO, "Parsing AddCommand with arguments: {0}", args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL, PREFIX_PHONE,
-                        PREFIX_SUBJECT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_EMAIL,
+                        PREFIX_PHONE, PREFIX_SUBJECT);
 
         Map<String, String> ideal = new HashMap<>();
         ideal.put("n/", "John Doe");
@@ -64,10 +63,12 @@ public class AddCommandParser extends CommandParser implements Parser<AddCommand
             PREFIX_EMAIL,
             PREFIX_PHONE,
             PREFIX_SUBJECT) || !argMultimap.getPreamble().isEmpty()) {
+            logger.log(Level.WARNING, "Missing required prefixes or unexpected preamble.");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL);
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -75,6 +76,8 @@ public class AddCommandParser extends CommandParser implements Parser<AddCommand
         Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
 
         Person person = new Person(name, gender, phone, email, subjectList);
+
+        logger.log(Level.INFO, "Successfully parsed AddCommand: {0}", person);
 
         return new AddCommand(person);
     }
