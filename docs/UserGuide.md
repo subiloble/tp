@@ -101,13 +101,13 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a student to the address book.
 
 Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of subjects (excluding 0).
+**Tip:** A person can have any number of subjects (> 0).
 </box>
 
 A person can only have F or M as gender inputs.
@@ -233,7 +233,7 @@ Format: `undo`
 Format: `stats [s/SUBJECT]`
 
 Examples:
-* `stats` shows the statistics of Mentorstack.
+* `stats` shows the gender-based statistics of Mentorstack.
 * `stats s/CS2102` shows the statistics of students currently enrolled in CS2103.
 
 ### Mark a student : `mark`
