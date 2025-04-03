@@ -486,7 +486,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-*{More to be added}*
+**Use case: UC10 - Mark student**
+
+**MSS**
+1. Tutor requests to indicate a student or list of students as marked.
+2. Mentorstack marks the students if they have not been marked.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. Student is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. Student is archived.
+    * 2b1. Mentorstack shows an error message.
+
+**Use case: UC11 - Unmark student**
+
+**MSS**
+1. Tutor requests to indicate a student or list of students as unmarked.
+2. Mentorstack unmarks the students if they have not been unmarked.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. Student is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. Student is archived.
+    * 2b1. Mentorstack shows an error message.
+
+**Use case: UC12 - Finish subject**
+
+**MSS**
+1. Tutor requests to indicate a student's subject as completed.
+2. Mentorstack marks the subject as completed.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. Student is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. Student is archived.
+    * 2b1. Mentorstack shows an error message.
+* 2c. Student is not enrolled in the subject
+    * 2c1. Mentorstack shows an error message.
+
+**Use case: UC13 - Unfinish subject**
+
+**MSS**
+1. Tutor requests to indicate a student's subject as not completed.
+2. Mentorstack marks the subject as not completed.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Student is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. Student is archived.
+    * 2b1. Mentorstack shows an error message.
+* 2c. Student is not enrolled in the subject
+    * 2c1. Mentorstack shows an error message.
 
 
 ### Non-Functional Requirements
