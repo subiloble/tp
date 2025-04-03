@@ -294,8 +294,6 @@ Format: `unarchive INDEX…​`
 Examples:
 * `showarchive` followed by `unarchive 1 3` unarchives the 1st and 3rd student in the archived list.
 
-<div style="page-break-after: always;"></div>
-
 ### Indicate that a student has finished a subject : `finish`
 
 * Indicates that a student has finished a subject.
@@ -325,6 +323,8 @@ Format: `unfinish INDEX s/SUBJECT…​`
 
 Examples:
 * `unfinish 1 s\CS2103` marks CS2103 as not completed by student 1.
+
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
@@ -365,7 +365,6 @@ Furthermore, certain edits can cause Mentorstack to behave in unexpected ways (e
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## FAQ
 
