@@ -641,7 +641,15 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person
+
+    1. Test case: `add n/John Doe g/M p/98765432 e/johnd@example.com s/CS2103`<br>
+       Expected: Student is added to the end of the list with the above details. Details of the added student shown in the status message.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: No person is added. Error details shown in the status message. Can try with other missing fields.
 
 ### Deleting a person
 
@@ -650,7 +658,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -658,12 +666,128 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a person
 
-### Saving data
+1. Editing a person while all persons are being shown
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: `edit 1 s/CS2103`<br>
+       Expected: First student is edited with the above details. Details of the edited student shown in the status message.
 
-1. _{ more test cases …​ }_
+    1. Test case: `edit 1`<br>
+       Expected: No person is edited. Error details shown in the status message. At least one field must be edited.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Finding a person
+
+1. Finds persons with matching name in Mentorstack.
+
+    1. Prerequisites: Student with name `alex` in Mentorstack.
+
+    1. Test case: `find alex`<br>
+       Expected: Students with name containing `alex` is listed.
+
+### Filtering a person by view
+
+1. Finds persons with matching values in Mentorstack.
+
+    1. Test case: `view f/s v/CS`<br>
+       Expected: Students taking `CS` subjects are listed.
+
+    1. Test case: `view`<br>
+       Expected: All students listed.
+
+    1. Test case: `view f/s v/CS f/n v/alex`<br>
+       Expected: Students taking `CS` subjects and name containing `alex` are listed.
+
+   1. Test case: `view f/n`<br>
+       Expected: Filter/value not specified. No error. All students are listed.
+
+### Archiving a person
+
+1. Archives students in Mentorstack.
+
+    1. Prerequisites: Students in the active list in Mentorstack.
+
+    1. Test case: `archive 1`<br>
+       Expected: First student is moved to the archive list. Verify with `showarchive`. Verify that student can no longer be edited.
+
+### Unarchiving a person
+
+1. Unarchives students in Mentorstack.
+
+    1. Prerequisites: Students in the archive list in Mentorstack. Access this list first using `showarchive`
+
+    1. Test case: `unarchive 1`<br>
+       Expected: First student in the archive list is moved back to the active list. Verify with `list`. Verify that student can now be edited.
+
+### Marking a person
+
+1. Marks students in Mentorstack.
+
+    1. Prerequisites: List all students using the `list` command. Multiple persons in the list.
+
+    1. Test case: `mark 1`<br>
+       Expected: First student is marked. Verify that `mark 1` again keeps first student as marked.
+
+    1. Test case: `mark 0`<br>
+       Expected: No student is marked. Error details shown in the status message.
+
+    1. Other incorrect mark commands to try: `mark`, `mark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Unmarking a person
+
+1. Unmarks students in Mentorstack.
+
+    1. Prerequisites: List all students using the `list` command. Multiple persons in the list.
+
+    1. Test case: `unmark 1`<br>
+       Expected: First student is unmarked. Verify that `unmark 1` again keeps first student as unmarked.
+
+    1. Test case: `unmark 0`<br>
+       Expected: No student is unmarked. Error details shown in the status message.
+
+    1. Other incorrect unmark commands to try: `unmark`, `unmark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Mark a student's subject as finished
+
+1. Marks a student's subject as finished in Mentorstack.
+
+    1. Prerequisites: First student in the list must be enrolled in `CS2103` and not enrolled in `CS2104`.
+
+    1. Test case: `finish 1 s/CS2103`<br>
+       Expected: Subject marked as finished. Verify that running the command again simply keeps the subject as finished.
+
+    1. Test case: `finish 1 s/CS2104`<br>
+       Expected: Error details shown in the status message.
+
+### Mark a student's subject as unfinished
+
+1. Marks a student's subject as unfinished in Mentorstack.
+
+    1. Prerequisites: First student in the list must have finished `CS2103` and not enrolled in `CS2104`.
+
+    1. Test case: `unfinish 1 s/CS2103`<br>
+       Expected: Subject marked as unfinished. Verify that running the command again simply keeps the subject as unfinished.
+
+    1. Test case: `unfinish 1 s/CS2104`<br>
+       Expected: Error details shown in the status message.
+
+### Undo
+
+1. Undoes the previous state-changing command in Mentorstack.
+
+    1. Prerequisites: Valid commands have been run that have changed the state of Mentorstack in the current session.
+
+    1. Test case: `undo`<br>
+       Expected: Undoes the previous state-changing command. Mentorstack is restored to the previous state.
+
+    1. Prerequisites: New Mentorstack session.
+   
+    1. Test case: `undo`<br>
+       Expected: No operation undone. Error details shown in the status message.
