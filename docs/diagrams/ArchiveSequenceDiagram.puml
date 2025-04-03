@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant MentorstackParser
+participant ArchiveCommandParser
+participant ArchiveCommand
+participant ModelManager
+
+
+User -> MentorstackParser: parseCommand("archive 1")
+MentorstackParser -> ArchiveCommandParser: new ArchiveCommandParser()
+ArchiveCommandParser -> ArchiveCommandParser: parse("1)
+ArchiveCommandParser -> ArchiveCommand: new ArchiveCommand({1})
+ArchiveCommand -> ModelManager: archivePerson(personToArchive, archivedPerson)
+ModelManager -> ModelManager: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+
+@enduml
