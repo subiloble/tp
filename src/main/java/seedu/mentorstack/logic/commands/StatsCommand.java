@@ -1,6 +1,7 @@
 package seedu.mentorstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.mentorstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -19,7 +20,7 @@ public class StatsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows statistics of the mentor list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows statistics of the Mentorstack.\n"
             + "Usage: " + COMMAND_WORD + " s/[SUBJECT]\n"
             + "Example: " + COMMAND_WORD + " s/CS1010S";
 
@@ -39,9 +40,11 @@ public class StatsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS); // navigate to active list
         List<Person> personList = model.getFilteredPersonList();
 
         Predicate<Person> subjectFilter;
+        Predicate<Person> personFilter;
 
         if (subject == null) {
             subjectFilter = p -> true; // No filtering
@@ -52,6 +55,9 @@ public class StatsCommand extends Command {
         personList = personList.stream()
                 .filter(subjectFilter)
                 .collect(Collectors.toList());
+        personFilter = personList::contains;
+
+        model.updateFilteredPersonList(personFilter);
 
         int totalPersons = personList.size();
         Gender maleGender = new Gender("M");

@@ -57,8 +57,12 @@ public class UnmarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS, unmarkedPersons.toString().trim()));
     }
 
-    private static Person createUnmarkedPerson(Person target) {
+    private static Person createUnmarkedPerson(Person target) throws CommandException {
         assert target != null;
+
+        if (target.getIsArchived().testStatus()) {
+            throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
+        }
 
         return new Person(target.getName(), target.getGender(), target.getPhone(), target.getEmail(),
                 target.getSubjects(), target.getFinishedSubjects(), target.getIsArchived(), false);
