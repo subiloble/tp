@@ -26,7 +26,6 @@ import seedu.mentorstack.logic.LogicManager;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 
 /**
  * The Main Window. Provides the basic application layout containing
