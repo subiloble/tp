@@ -26,7 +26,6 @@ import seedu.mentorstack.logic.LogicManager;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
-import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -285,7 +284,6 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.mentorstack.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException,
-                                                                    ParseWithHintException,
                                                                     ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
@@ -301,10 +299,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException ce) {
+        } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(ce.getMessage());
-            throw ce;
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 }

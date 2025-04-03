@@ -44,6 +44,11 @@ public class MarkCommand extends Command {
             }
         }
 
+        for (Index index : targetIndices) {
+            Person target = lastShownList.get(index.getZeroBased());
+            createMarkedPerson(target); //throws error if person is archived
+        }
+
         model.rememberMentorstack(); // save the state for undo
         StringBuilder markedPersons = new StringBuilder();
 

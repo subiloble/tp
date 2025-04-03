@@ -44,6 +44,11 @@ public class UnmarkCommand extends Command {
             }
         }
 
+        for (Index index : targetIndices) {
+            Person target = lastShownList.get(index.getZeroBased());
+            createUnmarkedPerson(target); //throws error if person is archived
+        }
+
         model.rememberMentorstack(); // save the state for undo
         StringBuilder unmarkedPersons = new StringBuilder();
 
