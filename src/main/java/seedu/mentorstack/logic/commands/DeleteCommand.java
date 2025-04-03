@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.mentorstack.commons.core.index.Index;
 import seedu.mentorstack.commons.util.ToStringBuilder;
@@ -14,7 +16,7 @@ import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from Mentorstack.
+ * Deletes a person identified using its displayed index from Mentorstack.
  */
 public class DeleteCommand extends Command {
 
@@ -27,37 +29,46 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
+    private static final Logger logger = Logger.getLogger(DeleteCommand.class.getName());
+
     private final Set<Index> targetIndices;
 
     public DeleteCommand(Set<Index> targetIndices) {
         this.targetIndices = targetIndices;
+        logger.log(Level.INFO, "DeleteCommand created with target indices: {0}", targetIndices);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Executing DeleteCommand with indices: {0}", targetIndices);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         // Ensure all indices are valid before deletion
         for (Index index : targetIndices) {
             if (index.getZeroBased() >= lastShownList.size()) {
+                logger.log(Level.WARNING, "Invalid index detected: {0}", index);
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
 
         ArrayList<Person> personsToDelete = new ArrayList<>();
-        // Perform deletion
         model.rememberMentorstack(); // save the state for undo
-        StringBuilder deletedPersons = new StringBuilder();
+
         for (Index index : targetIndices) {
             Person personToDelete = lastShownList.get(index.getZeroBased());
             personsToDelete.add(personToDelete);
         }
 
+        StringBuilder deletedPersons = new StringBuilder();
         for (Person personToDelete : personsToDelete) {
             model.deletePerson(personToDelete);
             deletedPersons.append(Messages.format(personToDelete)).append("\n");
+            logger.log(Level.INFO, "Deleted person: {0}", personToDelete);
         }
+
+        logger.log(Level.INFO, "DeleteCommand executed successfully, deleted persons: {0}", deletedPersons.toString().trim());
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons.toString().trim()));
     }
 
@@ -67,7 +78,6 @@ public class DeleteCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof DeleteCommand)) {
             return false;
         }
@@ -79,7 +89,7 @@ public class DeleteCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndices)
+                .add("targetIndices", targetIndices)
                 .toString();
     }
 }
