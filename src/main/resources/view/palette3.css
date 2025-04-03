@@ -1,8 +1,9 @@
 * {
-    -large-theme:#fddae0;
-    -color-card-odd: #ffe5d9;
-    -color-card-even: #ffd8c5;
-    -color-card-selected: #ffcad4;
-    -color-tag: #d8e2dc;
-    -opp-font-color: #9d8189;
+    -large-theme:white;
+    -color-card-odd: #eeeeee;
+    -color-card-even: #dddddd;
+    -color-card-selected: #cccccc;
+    -color-tag: #3e7b91;
+    -color-tag-finish: red;
+    -opp-font-color: black;
 }

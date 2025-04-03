@@ -59,9 +59,6 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem statMenuItem;
 
     @FXML
-    private CheckMenuItem hideCliMenuItem;
-
-    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
@@ -184,27 +181,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    @FXML
-    private void handleCliVisibility() {
-        Map<String, Object> namespace = fxmlLoader.getNamespace();
-        CheckMenuItem hideCliMenuItem = (CheckMenuItem) namespace.get("hideCliMenuItem");
-
-        if (hideCliMenuItem.isSelected()) {
-            commandBoxPlaceholder.setVisible(false);
-            resultDisplayPlaceholder.setVisible(false);
-            commandBoxPlaceholder.setManaged(false);
-            resultDisplayPlaceholder.setManaged(false);
-            hideCliMenuItem.setSelected(true);
-
-        } else {
-            commandBoxPlaceholder.setVisible(true);
-            resultDisplayPlaceholder.setVisible(true);
-            commandBoxPlaceholder.setManaged(true);
-            resultDisplayPlaceholder.setManaged(true);
-            hideCliMenuItem.setSelected(true);
-        }
     }
 
     private ObservableList<String> getCleanStyleSheetObject() {

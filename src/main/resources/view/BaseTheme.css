@@ -362,3 +362,12 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#subjects .finished {
+    -fx-text-fill: -opp-font-color;
+    -fx-background-color: -color-tag-finish;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
