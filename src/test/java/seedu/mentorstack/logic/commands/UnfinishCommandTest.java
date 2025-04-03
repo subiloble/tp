@@ -62,6 +62,17 @@ class UnfinishCommandTest {
     }
 
     @Test
+    public void execute_unfinishSubjectsForArchivedPerson_throwsCommandException() {
+        Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person archivedPerson = person.archived();
+        Set<Subject> subjectsToUnfinish = new HashSet<>(person.getSubjects());
+        model.archivePerson(person, archivedPerson);
+        UnfinishCommand unfinishCommand = new UnfinishCommand(INDEX_FIRST_PERSON, subjectsToUnfinish);
+
+        assertThrows(CommandException.class, () -> unfinishCommand.execute(model));
+    }
+
+    @Test
     public void equals() {
         Set<Subject> subjectsA = new HashSet<>();
         subjectsA.add(new Subject("CS2103"));

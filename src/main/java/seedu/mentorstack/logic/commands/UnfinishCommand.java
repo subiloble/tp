@@ -80,9 +80,14 @@ public class UnfinishCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToUnfinish}
      * unfinished with {@code subjectsToUnfinish}.
      */
-    private static Person createUnfinishedPerson(Person personToUnfinish, Set<Subject> subjectsToUnfinish) {
+    private static Person createUnfinishedPerson(Person personToUnfinish, Set<Subject> subjectsToUnfinish)
+            throws CommandException {
         assert personToUnfinish != null;
         assert subjectsToUnfinish != null;
+
+        if (personToUnfinish.getIsArchived().testStatus()) {
+            throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
+        }
 
         Set<Subject> subjects = personToUnfinish.getSubjects();
         Set<Subject> finishedSubjects = personToUnfinish.getFinishedSubjects();

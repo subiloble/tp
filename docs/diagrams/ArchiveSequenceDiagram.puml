@@ -1,0 +1,18 @@
+@startuml
+actor User
+participant MentorstackParser
+participant ArchiveCommandParser
+participant ArchiveCommand
+participant ModelManager
+
+
+User -> MentorstackParser: parseCommand("archive 1")
+MentorstackParser -> ArchiveCommandParser: new ArchiveCommandParser().parse("1")
+ArchiveCommandParser -> ArchiveCommand: new ArchiveCommand({1})
+ArchiveCommand -> ModelManager: getFilteredPersonList().get(1)
+ModelManager --> ArchiveCommand: personToArchive
+ArchiveCommand -> ModelManager: archivePerson(personToArchive, archivedPerson)
+ModelManager -> ModelManager: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+ModelManager --> User: display the remaining students in the students' list after archive command
+
+@enduml

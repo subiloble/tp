@@ -249,6 +249,20 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Stats feature
+#### Proposed Implementation
+The `StatsCommand` provides statistical insights into the persons stored in MentorStack. It can either display overall statistics or filter by a specified subject.
+#### Execution Flow
+* If a subject is specified, filter the list of persons based on that subject.
+* Count the number of persons, males, and females in the filtered list.
+* Format the results into a string and return as a CommandResult.
+
+<puml src="diagrams/StatsCommandClassDiagram.puml" alt="StatsCommandClassDiagram" />
+
+The following sequence diagram shows how a stats operation goes through the `Logic` component:
+
+<puml src="diagrams/StatsSequenceDiagram-Logic.puml" alt="StatsSequenceDiagram" />
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -282,14 +296,18 @@ Mentorstack helps CS tutors efficiently manage and track student contacts, atten
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                        | So that I can…​                                        |
-|----------|---------|-----------------------------------------------------|--------------------------------------------------------|
-| `* * *`  | tutor   | add a student’s details (name, email, course, year) | keep track of their information                        |
-| `* * *`  | tutor   | remove a student’s details                          | remove a student whose details no longer need to track |
-| `* * *`  | tutor   | edit a student’s details                            | update their information                               |
-| `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                             |
-| `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want          |
-|   `*`    | tutor   | undo an unintended operation                        | quickly correct any mistakes                           |
+| Priority | As a …​  | I want to …​                                         | So that I can…​                                           |
+|----------|---------|-----------------------------------------------------|----------------------------------------------------------|
+| `* * *`  | tutor   | add a student’s details (name, email, course, year) | keep track of their information                          |
+| `* * *`  | tutor   | remove a student’s details                          | remove a student whose details no longer need to track   |
+| `* * *`  | tutor   | edit a student’s details                            | update their information                                 |
+| `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                               |
+| `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want            | 
+| `**`     | tutor   | undo an unintended operation                        | quickly correct any mistakes                             |
+| `**`     | tutor   | View the gender distribution of my students         | adjust my teaching style                                 |
+| `**`     | tutor   | archive a student                                   | focus on current student while not deleting past students|
+| `**`     | tutor   | unarchive a student                                 | add mistakly archived students back                      |
+| `**`     | tutor   | show all archived students                          | check which students are archived                        |
 
 *{More to be added}*
 
@@ -386,6 +404,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
     * 2a1. Mentorstack shows a message indicating no student satisfies the input requirements.
+
+  Use case ends.
+
+**Use case: UC06 - View student distribution by stats**
+
+**MSS**
+
+1.  Tutor enters the stats command with an optional subject name.
+2.  Mentorstack calculates numbers by the filter criteria.
+3.  Mentorstack displays the number of distributions retrieved.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filter or value is invalid.
+
+    * 1a1. Mentorstack shows an error message.
+
+  Use case ends.
+
+* 1b. No subject input
+    * 1b1. Take the filter criteria as the whole data set
+  Back to step 2
+
+* 2a. The list is empty.
+
+    * 2a1. Mentorstack shows a message indicating no student satisfies the input requirements.
+
+  Use case ends.
+
+**Use case: UC07 - Archive students**
+
+**MSS**
+1. Tutor requests to archive a list of students.
+2. Mentorstack archives the corresponding students.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. Students is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. A student is already archived.
+    * 2b1. Mentorstack shows an error message.
+
+
+**Use case: UC08 - Unarchive students**
+
+**MSS**
+1. Tutor requests to unarchive a list of students.
+2. Mentorstack unarchives the corresponding students.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. Students is not in the list.
+    * 2a1. Mentorstack shows an error message.
+* 2b. A student is already unarchived.
+    * 2b1. Mentorstack shows an error message.
+
+**Use case: UC09 - Show all archived students**
+
+**MSS**
+1. Tutor requests to show all archived students.
+2. Mentorstack shows a list of archived students.
 
   Use case ends.
 

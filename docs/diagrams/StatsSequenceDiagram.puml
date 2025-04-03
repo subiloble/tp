@@ -1,0 +1,17 @@
+@startuml
+actor User
+participant MentorstackParser
+participant StatsCommandParser
+participant StatsCommand
+participant Model
+participant CommandResult
+
+User -> MentorstackParser: parseCommand("stats s/CS1010S")
+MentorstackParser -> StatsCommandParser: parse("stats s/CS1010S")
+StatsCommandParser -> StatsCommand: new StatsCommand(Subject("CS1010S"))
+StatsCommand -> Model: getFilteredPersonList()
+Model -> StatsCommand: returns List<Person>
+StatsCommand -> CommandResult: new CommandResult(statisticsMessage)
+CommandResult -> User: display result
+
+@enduml
