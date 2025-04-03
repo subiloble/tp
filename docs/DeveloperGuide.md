@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/Main.java) and [`MainApp`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,7 +84,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -112,11 +112,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `MentorstackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `MentorstackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MentorstackParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `MentorstackParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103-W11-1/tp/blob/master/src/main/java/seedu/mentorstack/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -156,11 +156,11 @@ Classes used by multiple components are in the `seedu.mentorstack.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -249,8 +249,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Stats feature
-#### Proposed Implementation
+### Stats feature
+#### Implementation
 The `StatsCommand` provides statistical insights into the persons stored in MentorStack. It can either display overall statistics or filter by a specified subject.
 #### Execution Flow
 * If a subject is specified, filter the list of persons based on that subject.
@@ -261,12 +261,18 @@ The `StatsCommand` provides statistical insights into the persons stored in Ment
 
 The following sequence diagram shows how a stats operation goes through the `Logic` component:
 
-<puml src="diagrams/StatsSequenceDiagram-Logic.puml" alt="StatsSequenceDiagram" />
+<puml src="diagrams/StatsSequenceDiagram.puml" alt="StatsSequenceDiagram" />
 
-### \[Proposed\] Data archiving
+### Student archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+The `ArchiveCommand` archives students and transfers their data to an archive list stored on Mentorstack.
+It is similar to the active list but student entries cannot be edited.
 
+Given below is a sequence diagram for a sample `ArchiveCommand`
+
+<puml src="diagrams/ArchiveSequenceDiagram.puml" alt="ArchiveSequenceDiagram" />
+
+A similar sequence diagram can be drawn for the `UnarchiveCommand`, which moves the student back to the active list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,20 +302,26 @@ Mentorstack helps CS tutors efficiently manage and track student contacts, atten
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                         | So that I can…​                                           |
-|----------|---------|-----------------------------------------------------|----------------------------------------------------------|
-| `* * *`  | tutor   | add a student’s details (name, email, course, year) | keep track of their information                          |
-| `* * *`  | tutor   | remove a student’s details                          | remove a student whose details no longer need to track   |
-| `* * *`  | tutor   | edit a student’s details                            | update their information                                 |
-| `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                               |
-| `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want            | 
-| `**`     | tutor   | undo an unintended operation                        | quickly correct any mistakes                             |
-| `**`     | tutor   | View the gender distribution of my students         | adjust my teaching style                                 |
-| `**`     | tutor   | archive a student                                   | focus on current student while not deleting past students|
-| `**`     | tutor   | unarchive a student                                 | add mistakly archived students back                      |
-| `**`     | tutor   | show all archived students                          | check which students are archived                        |
+| Priority | As a …​  | I want to …​                                        | So that I can…​                                           |
+|----------|---------|-----------------------------------------------------|-----------------------------------------------------------|
+| `* * *`  | tutor   | add a student’s details (name, email, course, year) | keep track of their information                           |
+| `* * *`  | tutor   | remove a student’s details                          | remove a student whose details no longer need to track    |
+| `* * *`  | tutor   | edit a student’s details                            | update their information                                  |
+| `* * *`  | tutor   | search for a student by name or ID                  | quickly find their details                                |
+| `* * *`  | tutor   | view all students’ information                      | get in touch with the student whenever I want             | 
+| `* *`    | tutor   | undo an unintended operation                        | quickly correct any mistakes                              |
+| `* *`    | tutor   | View the gender distribution of my students         | adjust my teaching style                                  |
+| `* *`    | tutor   | archive a student                                   | focus on current student while not deleting past students |
+| `* *`    | tutor   | unarchive a student                                 | add mistakenly archived students back                     |
+| `* *`    | tutor   | clear all student's details                         | reset the Mentorstack to an empty                         |
+| `* *`    | tutor   | list all student's details                          | see all active students in Mentorstack                    |
+| `* *`    | tutor   | mark students                                       | quickly identify students                                 |
+| `* *`    | tutor   | unmark students                                     | unmark mistakenly marked students                         |
+| `* *`    | tutor   | mark a student's subject as completed               | check if a student has completed a course                 |
+| `* *`    | tutor   | mark a student's subject as uncompleted             | unmark mistakenly marked subjects                         |
+| `* *`    | tutor   | show all archived students                          | check which students are archived                         |
+| `* *`    | tutor   | view help window or hinter command                  | quickly get help to using Mentorstack                     |
 
-*{More to be added}*
 
 ### Use cases
 

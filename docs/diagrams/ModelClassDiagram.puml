@@ -15,10 +15,11 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Email
-class Gender
+Class Gender
 Class Name
 Class Phone
 Class Subject
+Class ArchiveStatus
 
 Class I #FFFFFF
 }
@@ -42,6 +43,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Gender
 Person *--> Subject
+Person *--> ArchiveStatus
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -49,7 +51,8 @@ UniquePersonList -[hidden]right-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Gender
 Gender -[hidden]right-> Email
-Email -[hidden]right->Subject
+Email -[hidden]right-> Subject
+Subject -[hidden]right-> ArchiveStatus
 
 ModelManager --> "~* filtered" Person
 @enduml
