@@ -3,9 +3,14 @@ package seedu.mentorstack.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.commands.Command;
@@ -16,6 +21,7 @@ import seedu.mentorstack.logic.parser.exceptions.ParseException;
 import seedu.mentorstack.model.Model;
 import seedu.mentorstack.model.ReadOnlyMentorstack;
 import seedu.mentorstack.model.person.Person;
+import seedu.mentorstack.model.person.Subject;
 import seedu.mentorstack.storage.Storage;
 
 /**
@@ -69,6 +75,40 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    public Map<String, Integer> getStudentsBySubject() {
+
+        Map<String, Integer> studentsBySubjects = new HashMap<>();
+        List<Person> personList = this.getFilteredPersonList();
+
+        for (Person person : personList) {
+            Set<Subject> subjects = person.getSubjects();
+
+            for (Subject subject : subjects) {
+                String subjectName = subject.toString();
+                studentsBySubjects.put(subjectName, studentsBySubjects.getOrDefault(subjectName, 0) + 1);
+            }
+        }
+
+        return studentsBySubjects;
+    }
+
+    /**
+     * Adds content from Map of subjects and student count to Series object
+     * to be used in charts.
+     */
+
+    public XYChart.Series<String, Number> populateSeries(
+        XYChart.Series<String, Number> series,
+        Map<String, Integer> studentsBySubjects
+    ) {
+
+        for (Map.Entry<String, Integer> entry : studentsBySubjects.entrySet()) {
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+
+        return series;
     }
 
     @Override

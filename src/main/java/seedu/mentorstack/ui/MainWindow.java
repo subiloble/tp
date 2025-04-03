@@ -1,9 +1,18 @@
 package seedu.mentorstack.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -13,9 +22,11 @@ import javafx.stage.Stage;
 import seedu.mentorstack.commons.core.GuiSettings;
 import seedu.mentorstack.commons.core.LogsCenter;
 import seedu.mentorstack.logic.Logic;
+import seedu.mentorstack.logic.LogicManager;
 import seedu.mentorstack.logic.commands.CommandResult;
 import seedu.mentorstack.logic.commands.exceptions.CommandException;
 import seedu.mentorstack.logic.parser.exceptions.ParseException;
+import seedu.mentorstack.logic.parser.exceptions.ParseWithHintException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,10 +47,19 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private Menu themeBar;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem statMenuItem;
+
+    @FXML
+    private CheckMenuItem hideCliMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -49,6 +69,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private BarChart<?, ?> barChart;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -163,8 +186,121 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleCliVisibility() {
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        CheckMenuItem hideCliMenuItem = (CheckMenuItem) namespace.get("hideCliMenuItem");
+
+        if (hideCliMenuItem.isSelected()) {
+            commandBoxPlaceholder.setVisible(false);
+            resultDisplayPlaceholder.setVisible(false);
+            commandBoxPlaceholder.setManaged(false);
+            resultDisplayPlaceholder.setManaged(false);
+            hideCliMenuItem.setSelected(true);
+
+        } else {
+            commandBoxPlaceholder.setVisible(true);
+            resultDisplayPlaceholder.setVisible(true);
+            commandBoxPlaceholder.setManaged(true);
+            resultDisplayPlaceholder.setManaged(true);
+            hideCliMenuItem.setSelected(true);
+        }
+    }
+
+    private ObservableList<String> getCleanStyleSheetObject() {
+        Scene scene = primaryStage.getScene();
+
+        ObservableList<String> stylesheets = scene.getStylesheets();
+
+        // remove all stylesheets
+        for (int i = 0; i < stylesheets.toArray().length; i++) {
+            stylesheets.remove(i);
+        }
+
+        // add back required stylesheets
+        stylesheets.add(getClass().getResource("/view/BaseTheme.css").toExternalForm());
+        stylesheets.add(getClass().getResource("/view/Extensions.css").toExternalForm());
+
+        return stylesheets;
+    }
+
+
+    private void uncheckAllBoxes() {
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        int k = 0;
+        while (namespace.get("helpMenuItem" + String.valueOf(k)) != null) {
+            CheckMenuItem helpMenuItem = (CheckMenuItem) namespace.get("helpMenuItem" + String.valueOf(k));
+            helpMenuItem.setSelected(false);
+            k += 1;
+        }
+    }
+
+    @FXML
+    private void handleThemeSwap0() {
+        getCleanStyleSheetObject().add(
+            getClass().getResource("/view/palette1.css").toExternalForm()
+        );
+        uncheckAllBoxes();
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        CheckMenuItem helpMenuItem = (CheckMenuItem) namespace.get("helpMenuItem" + String.valueOf(0));
+        helpMenuItem.setSelected(true);
+    }
+
+    @FXML
+    private void handleThemeSwap1() {
+        getCleanStyleSheetObject().add(
+            getClass().getResource("/view/palette2.css").toExternalForm()
+        );
+        uncheckAllBoxes();
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        CheckMenuItem helpMenuItem = (CheckMenuItem) namespace.get("helpMenuItem" + String.valueOf(1));
+        helpMenuItem.setSelected(true);
+    }
+
+    @FXML
+    private void handleThemeSwap2() {
+        getCleanStyleSheetObject().add(
+            getClass().getResource("/view/palette3.css").toExternalForm()
+        );
+        uncheckAllBoxes();
+        Map<String, Object> namespace = fxmlLoader.getNamespace();
+        CheckMenuItem helpMenuItem = (CheckMenuItem) namespace.get("helpMenuItem" + String.valueOf(2));
+        helpMenuItem.setSelected(true);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    /**
+     * Triggers from menuItem click. Generates statistics window.
+     */
+    public void handleStatWindow() {
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+
+        xAxis.setLabel("Subjects");
+        yAxis.setLabel("Students");
+        yAxis.setTickUnit(1);
+
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setTitle("Student Distribution");
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("");
+
+        Map<String, Integer> studentsBySubjects = ((LogicManager) logic).getStudentsBySubject();
+
+        series = ((LogicManager) logic).populateSeries(series, studentsBySubjects);
+        barChart.getData().add(series);
+
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Statistics");
+
+        Scene scene = new Scene(barChart, 600, 400);
+        popupStage.setScene(scene);
+        popupStage.show();
     }
 
     /**
@@ -172,7 +308,9 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.mentorstack.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+                                                                    ParseWithHintException,
+                                                                    ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -187,10 +325,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException ce) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
+            resultDisplay.setFeedbackToUser(ce.getMessage());
+            throw ce;
         }
     }
 }
