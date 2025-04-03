@@ -19,7 +19,7 @@
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/mentorstack-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103-W11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for Mentorstack.
 
@@ -65,7 +65,24 @@
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+**Notes about entries in Mentorstack**:
+
+* Each student entry in Mentorstack must have valid parameters for the following:
+  - Name
+  - Gender
+  - Phone
+  - Email
+  - Subject
+
+
+* Students must have 1 or more subjects, each subject can be marked as finished or unfinished.
+* Students can be archived, in which case they will be moved to the archive list where they cannot be edited.
+* Two student entries are considered the same entry if they have the same Name (case-sensitive).
+* Mentorstack does not allow duplicate entries.
+  - `Alex Yeoh` is a duplicate of `Alex Yeoh`, but is a different entry from `alex yeoh`.
+
+
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Viewing help : `help`
@@ -85,10 +102,10 @@ Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL s/SUBJECT…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of subjects (excluding 0)
+**Tip:** A person can have any number of subjects (excluding 0).
 </box>
 
-A person can only have F or M as gender inputs
+A person can only have F or M as gender inputs.
 </box>
 
 Examples:
@@ -111,6 +128,7 @@ Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE] [e/EMAIL] [s/SUBJECT]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing subjects, the existing subjects of the person will be removed i.e adding of subjects is not cumulative.
+* Finished subjects cannot be edited.
 * Cannot edit students who are already archived.
 
 Examples:
@@ -156,15 +174,14 @@ Keyword | Field
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
 * For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
 * For PHONE and EMAIL, partial words will be matched e.g. `123` will match `12345678`, `john` will match `john@doe.com`
-* `view` with invalid arguments will just list all persons.
-* `view` with no arguments will just list all persons.
+* `view` with invalid, incomplete or no arguments will just list all persons.
 * `view` can have multiple filters applied for any field (can be the same field).
 * Persons matching all filters will be returned (i.e. `AND` search).
 
 Examples:
-* `view f/n v/john` returns `john` and `John Doe`
-* `view f/s v/CS` returns all entries taking CS courses
-* `view f/p v/12345678 f/e v/john@doe.com` returns only entries with matching PHONE AND EMAIL<br>
+* `view f/n v/john` returns `john` and `John Doe`.
+* `view f/s v/CS` returns all entries taking CS courses.
+* `view f/p v/12345678 f/e v/john@doe.com` returns only entries partially containing PHONE AND EMAIL.<br>
 
 ### Deleting a person : `delete`
 
@@ -213,6 +230,7 @@ Examples:
 * Marked students will have a red circle next to their name.
 * Input can contain multiple indices.
 * Students remain marked if they have already been marked.
+* Archived students cannot be marked.
 
 Format: `mark INDEX…​`
 
@@ -224,6 +242,7 @@ Examples:
 * Unmarks a student in Mentorstack.
 * Input can contain multiple indices.
 * Students remain unmarked if they have already been unmarked.
+* * Archived students cannot be unmarked.
 
 Format: `unmark INDEX…​`
 
@@ -264,13 +283,14 @@ Examples:
 ### Indicate that a student has finished a subject : `finish`
 
 * Indicates that a student has finished a subject.
-* Finished subjects are still shown but will be marked as red.
+* Finished subjects are still shown but will be marked as a different colour.
 
 Format: `finish INDEX s/SUBJECT…​`
 
 * Input can only contain subjects that students have enrolled in.
 * Input can contain multiple subjects.
 * Finished subjects remain finished.
+* Subjects of archived students cannot be finished.
 
 Examples:
 * `finish 1 s\CS2103` marks CS2103 as completed by student 1.
@@ -285,6 +305,7 @@ Format: `unfinish INDEX s/SUBJECT…​`
 * Input can only contain subjects that students have enrolled in.
 * Input can contain multiple subjects.
 * Unfinished subjects remain unfinished.
+* Subjects of archived students cannot be unfinished.
 
 Examples:
 * `unfinish 1 s\CS2103` marks CS2103 as not completed by student 1.
@@ -294,6 +315,23 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Changing Mentorstack theme
+
+Mentorstack provides 3 visual themes to suit your preferences. You can change the theme by navigating to the View menu.
+
+Number| Theme
+------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1     | Dark
+2     | Pink
+3     | Light
+
+Mentorstack will always launch the Dark theme by default.
+
+### Viewing bar chart statistics
+
+Mentorstack provides users with the option to view the statistics of students in the current active list, sorted by currently enrolled subjects.
+Users may view these statistics by navigating to the View menu.
 
 ### Saving the data
 
@@ -306,13 +344,9 @@ Mentorstack data are saved automatically as a JSON file `[JAR file location]/dat
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, mentorstack will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, Mentorstack will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause Mentorstack to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
