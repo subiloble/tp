@@ -224,7 +224,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
@@ -323,13 +323,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. Required information is missing.
     * 4a1. System shows an error message.
-    * 4a2. System prompts the tutor to enter the missing information. Use case resumes at step 3.
+    * 4a2. System prompts the tutor to enter the missing information. 
+    Use case resumes at step 3.
+
 * 4b. Information input format is invalid.
     * 4b1. System shows an error message.
-    * 4b2. System prompts the tutor to enter information. Use case resumes at step 3.
+    * 4b2. System prompts the tutor to enter information. 
+    Use case resumes at step 3.
+
 *  4c. A student’s information already exists.
     * 4c1. System shows an error message.
-    * 4c2. System prompts the tutor to add a new student or update the existing student. Use case resumes at step 3.
+    * 4c2. System prompts the tutor to add a new student or update the existing student. 
+    Use case resumes at step 3.
 
 **Use case: UC02 - Delete a student**
 
@@ -441,8 +446,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Students is not in the list.
     * 2a1. Mentorstack shows an error message.
+   
+  Use case ends.
+  
 * 2b. A student is already archived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
 
 
 **Use case: UC08 - Unarchive students**
@@ -457,8 +467,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Students is not in the list.
     * 2a1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2b. A student is already unarchived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
 
 **Use case: UC09 - Show all archived students**
 
@@ -480,8 +495,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Student is not in the list.
     * 2a1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2b. Student is archived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
 
 **Use case: UC11 - Unmark student**
 
@@ -495,8 +515,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Student is not in the list.
     * 2a1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2b. Student is archived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
 
 **Use case: UC12 - Finish subject**
 
@@ -510,10 +535,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Student is not in the list.
     * 2a1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2b. Student is archived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2c. Student is not enrolled in the subject
     * 2c1. Mentorstack shows an error message.
+
+  Use case ends.
 
 **Use case: UC13 - Unfinish subject**
 
@@ -527,11 +560,42 @@ Use case ends.
 
 * 2a. Student is not in the list.
     * 2a1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2b. Student is archived.
     * 2b1. Mentorstack shows an error message.
+
+  Use case ends.
+
 * 2c. Student is not enrolled in the subject
     * 2c1. Mentorstack shows an error message.
 
+  Use case ends.
+
+
+**Use case: UC14 - Undo an unintended operation**
+
+**Precondition**
+
+1. The user has performed at least one action that modifies the application state (e.g., adding, editing, or deleting student data).
+
+**MSS**
+
+1.  Tutor enters the undo command.
+2.  Mentorstack reverts the last operation that modified the data storage.
+3.  Mentorstack displays a success message.
+4.  Mentorstack displays a description for the operation that is undone.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no operation to undo - undo is not valid.
+
+    * 1a1. Mentorstack shows a message indicating no previous operation exists.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
