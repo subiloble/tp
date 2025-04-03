@@ -312,10 +312,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add student details**
 
 **MSS**
-1. Tutor requests to add a new student
-2. System displays the required input format to add student information
-3. Tutor enters student's information
-4. System creates a new student profile
+1. Tutor requests to add a new student.
+2. System displays the required input format to add student information.
+3. Tutor enters student's information.
+4. System creates a new student profile.
 
     Use case ends.
 
@@ -340,10 +340,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
-2.  System shows a list of students
-3.  Tutor requests to delete a specific student in the list
-4.  System deletes the person
+1.  Tutor requests to list students.
+2.  System shows a list of students.
+3.  Tutor requests to delete a specific student in the list.
+4.  System deletes the person.
 
     Use case ends.
 
@@ -351,8 +351,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User inputs the student ID and the updated information of the corresponding student
-2.  Mentorstack shows a message of successful updating
+1.  User inputs the student ID and the updated information of the corresponding student.
+2.  Mentorstack shows a message of successful updating.
 
     Use case ends.
 
@@ -368,14 +368,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User inputs the search key
-2.  Mentorstack shows a list of students that match the search key and are ready to further commands
+1.  User inputs the search key.
+2.  Mentorstack shows a list of students that match the search key and are ready to further commands.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. There is no matching student
+* 2a. There is no matching student.
 
     * 2a1. Mentorstack shows an error message.
 
@@ -424,8 +424,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1b. No subject input
-    * 1b1. Take the filter criteria as the whole data set
+* 1b. No subject input.
+    * 1b1. Take the filter criteria as the whole data set.
   Back to step 2
 
 * 2a. The list is empty.
@@ -568,7 +568,7 @@ Use case ends.
 
   Use case ends.
 
-* 2c. Student is not enrolled in the subject
+* 2c. Student is not enrolled in the subject.
     * 2c1. Mentorstack shows an error message.
 
   Use case ends.

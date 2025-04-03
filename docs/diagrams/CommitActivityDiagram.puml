@@ -8,10 +8,9 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits Mentorstack])
-    :Purge redundant states;
+if () then ([command will make changes to Mentorstack])
     :Save Mentorstack to
-    mentorstackList;
+    history;
 else ([else])
 endif
 stop
