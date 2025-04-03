@@ -57,8 +57,12 @@ public class MarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, markedPersons.toString().trim()));
     }
 
-    private static Person createMarkedPerson(Person target) {
+    private static Person createMarkedPerson(Person target) throws CommandException {
         assert target != null;
+
+        if (target.getIsArchived().testStatus()) {
+            throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
+        }
 
         return new Person(target.getName(), target.getGender(), target.getPhone(), target.getEmail(),
                 target.getSubjects(), target.getFinishedSubjects(), target.getIsArchived(), true);
