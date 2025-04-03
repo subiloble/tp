@@ -85,7 +85,7 @@ public class FinishCommand extends Command {
         assert personToFinish != null;
         assert subjectsToFinish != null;
 
-        if (personToFinish.getIsArchived().isArchived.equals("true")) {
+        if (personToFinish.getIsArchived().testStatus()) {
             throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
         }
 

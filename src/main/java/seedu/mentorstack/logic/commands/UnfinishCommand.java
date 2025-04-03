@@ -85,7 +85,7 @@ public class UnfinishCommand extends Command {
         assert personToUnfinish != null;
         assert subjectsToUnfinish != null;
 
-        if (personToUnfinish.getIsArchived().isArchived.equals("true")) {
+        if (personToUnfinish.getIsArchived().testStatus()) {
             throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
         }
 
