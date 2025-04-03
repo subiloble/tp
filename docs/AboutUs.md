@@ -16,7 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/subiloble)] [[portfolio](team/subiloble.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Undo/View Commands
 
 ### Ng Jia Quan
 
@@ -26,7 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/quantin96.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Edit/Mark/Finish Commands
 
 ### She Yuting
 
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/sheyuting.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Add/Delete/Stats Commands
 
 ### Zhang Leran
 
@@ -46,7 +46,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/zlllllr.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Archive/Find Commands
 
 ### Willie Tay
 
@@ -56,4 +56,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/ioubread.md)]
 
 * Role: Developer
-* Responsibilities: [TBD]
+* Responsibilities: UI/Hinter
