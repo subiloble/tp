@@ -13,6 +13,7 @@
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -26,6 +27,7 @@
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mentorstack.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -43,6 +45,7 @@
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -84,6 +87,8 @@
 
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -135,6 +140,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower s/CS2103` Edits the name of the 2nd person to be `Betsy Crower` and changes their subjects to only `CS2103`.
 
+<div style="page-break-after: always;"></div>
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -151,7 +158,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering persons by specific predicates: `view`
 
@@ -205,6 +215,8 @@ Clears all entries from Mentorstack.
 
 Format: `clear`
 
+<div style="page-break-after: always;"></div>
+
 ### Undo an operation : `undo`
 
 * Undoes the previous operation in Mentorstack.
@@ -249,6 +261,8 @@ Format: `unmark INDEX…​`
 Examples:
 * `list` followed by `unmark 1 3` unmarks the 1st and 3rd student in the current list.
 
+<div style="page-break-after: always;"></div>
+
 ### Archive a student : `archive`
 
 * Archives a student in Mentorstack.
@@ -279,6 +293,8 @@ Format: `unarchive INDEX…​`
 
 Examples:
 * `showarchive` followed by `unarchive 1 3` unarchives the 1st and 3rd student in the archived list.
+
+<div style="page-break-after: always;"></div>
 
 ### Indicate that a student has finished a subject : `finish`
 
@@ -349,6 +365,7 @@ Furthermore, certain edits can cause Mentorstack to behave in unexpected ways (e
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -363,6 +380,7 @@ Furthermore, certain edits can cause Mentorstack to behave in unexpected ways (e
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
