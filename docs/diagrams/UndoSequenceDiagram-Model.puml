@@ -4,18 +4,29 @@ skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedMentorstack" as VersionedMentorstack MODEL_COLOR
+participant ":Mentorstack" as Mentorstack MODEL_COLOR
+participant ":History" as History MODEL_COLOR
 end box
 
-[-> Model : undoMentorstack()
+[-> Model : undo()
 activate Model
 
-Model -> VersionedMentorstack : undo()
-activate VersionedMentorstack
+Model -> Model : canUndo()
 
-VersionedMentorstack -> VersionedMentorstack :resetData(ReadOnlyMentorstack)
-VersionedMentorstack --> Model :
-deactivate VersionedMentorstack
+alt canUndo() == true
+    Model -> History : pop()
+    activate History
+
+    History --> Model : ReadOnlyMentorstack
+    deactivate History
+
+    Model -> Mentorstack : resetData(ReadOnlyMentorstack)
+
+    activate Mentorstack
+
+    Mentorstack --> Model :
+    deactivate Mentorstack
+end
 
 [<-- Model
 deactivate Model
