@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Mentorstack. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_GENDER + "GENDER"
+            + PREFIX_GENDER + "GENDER "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_SUBJECT + "SUBJECT...\n"

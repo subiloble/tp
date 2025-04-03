@@ -55,6 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_EDIT_ARCHIVED_PERSON = "This person is archived.";
+    public static final String MESSAGE_SUBJECT_COMPLETED = "This person has already completed given subjects.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -87,10 +88,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (personToEdit.getIsArchived().testStatus()) {
-            throw new CommandException(MESSAGE_EDIT_ARCHIVED_PERSON);
-        }
-
         model.rememberMentorstack(); // save the state for undo
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -101,7 +98,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -115,8 +113,25 @@ public class EditCommand extends Command {
         ArchiveStatus updatedIsArchive = personToEdit.getIsArchived();
         boolean updatedIsMarked = personToEdit.getIsMarked();
 
+        if (updatedIsArchive.testStatus()) {
+            throw new CommandException(MESSAGE_EDIT_ARCHIVED_PERSON);
+        }
+
+        if (checkFinishedSubjectsConflict(updatedSubject, updatedFinishSubject)) {
+            throw new CommandException(MESSAGE_SUBJECT_COMPLETED);
+        }
+
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail,
                 updatedSubject, updatedFinishSubject, updatedIsArchive, updatedIsMarked);
+    }
+
+    private static boolean checkFinishedSubjectsConflict(Set<Subject> subjects, Set<Subject> finishedSubjects) {
+        for (Subject s : subjects) {
+            if (finishedSubjects.contains(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

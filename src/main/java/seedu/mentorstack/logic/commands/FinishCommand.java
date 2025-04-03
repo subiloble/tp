@@ -80,9 +80,14 @@ public class FinishCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToFinish}
      * finished with {@code subjectsToFinish}.
      */
-    private static Person createFinishedPerson(Person personToFinish, Set<Subject> subjectsToFinish) {
+    private static Person createFinishedPerson(Person personToFinish, Set<Subject> subjectsToFinish)
+            throws CommandException {
         assert personToFinish != null;
         assert subjectsToFinish != null;
+
+        if (personToFinish.getIsArchived().isArchived.equals("true")) {
+            throw new CommandException(Messages.MESSAGE_IS_ARCHIVED);
+        }
 
         Set<Subject> subjects = personToFinish.getSubjects();
         Set<Subject> finishedSubjects = personToFinish.getFinishedSubjects();
