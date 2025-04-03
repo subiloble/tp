@@ -30,7 +30,7 @@ deactivate MentorstackParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoMentorstack()
+UndoCommand -> Model : undo()
 activate Model
 
 Model --> UndoCommand
