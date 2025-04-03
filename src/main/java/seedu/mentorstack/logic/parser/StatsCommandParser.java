@@ -3,6 +3,8 @@ package seedu.mentorstack.logic.parser;
 import static seedu.mentorstack.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.mentorstack.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import seedu.mentorstack.logic.commands.StatsCommand;
@@ -16,24 +18,31 @@ import seedu.mentorstack.model.person.Subject;
  */
 public class StatsCommandParser implements Parser<StatsCommand> {
 
+    private static final Logger logger = Logger.getLogger(StatsCommandParser.class.getName());
+
     @Override
     public StatsCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Parsing StatsCommand with arguments: {0}", args);
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
+            logger.log(Level.INFO, "No arguments provided, returning StatsCommand without filtering.");
             return new StatsCommand();
         }
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SUBJECT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_SUBJECT) || !argMultimap.getPreamble().isEmpty()) {
+            logger.log(Level.WARNING, "Invalid command format for StatsCommand.");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
         }
+
         Subject subject;
         try {
             subject = ParserUtil.parseSubjects(argMultimap.getValue(PREFIX_SUBJECT).get());
+            logger.log(Level.INFO, "Successfully parsed subject: {0}", subject);
         } catch (ParseException pe) {
+            logger.log(Level.WARNING, "Failed to parse subject in StatsCommand.", pe);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe);
         }
 
