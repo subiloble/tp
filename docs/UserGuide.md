@@ -186,7 +186,7 @@ Keyword | Field
 * For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
 * For PHONE and EMAIL, partial words will be matched e.g. `123` will match `12345678`, `john` will match `john@doe.com`
 * `view` with no arguments will just list all persons.
-* `view` will also list all persons when given invalid, incomplete arguments or number of filters does not match number of values.
+* `view` will also list all persons when given invalid format e.g.`view 123` or number of filters does not match number of values e.g. `f/n f/n f/n v/bob`.
 * `view` returns error message `Invalid filter type or value.` if the format is correct but there are some invalid filters or values.
 * `view` can have multiple filters applied for any field (can be the same field) e.g. `view f/n v/bob f/n v/jes`. 
 * Persons matching all filters will be returned (i.e. `AND` search).
