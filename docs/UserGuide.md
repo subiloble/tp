@@ -63,7 +63,8 @@
   e.g. `[s/SUBJECT]…​` can be used as `s/CS2103`, `s/CS2103 s/LAJ1201` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.<br>
+except for `view` where one filter-value pair is treated as one parameter e.g. `view f/s v/CS f/n v/al` is equivalent to `view f/n v/al f/s v/CS`
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -169,7 +170,7 @@ Filters persons based on values specified for different fields.
 
 Format: `view [[f/FIELD] [v/VALUE]]…​`
 
-* Field can take in 4 possible values:
+* Field can take in 6 possible values:
 
 Keyword | Field
 --------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,20 +179,25 @@ Keyword | Field
 **`p`** | PHONE, filters entries containing VALUE
 **`e`** | EMAIL, filters entries containing VALUE
 **`s`** | SUBJECT, filters entries containing VALUE
-**`a`** | ARCHIVED, filters entries by archived status (t for archived, f for non-archived)
+**`a`** | ARCHIVED, filters entries by archived status (t for archived, any other value for non-archived)
 
 * Values are case-insensitive.
 * For NAME and SUBJECT, partial words will be matched e.g. `Han` will match `Hans`, `CS` will match `CS2103`
 * For SUBJECT, only unfinished subjects will be considered e.g. finished subjects are not counted by the filter.
 * For PHONE and EMAIL, partial words will be matched e.g. `123` will match `12345678`, `john` will match `john@doe.com`
-* `view` with invalid, incomplete or no arguments will just list all persons.
-* `view` can have multiple filters applied for any field (can be the same field).
+* `view` with no arguments will just list all persons.
+* `view` will also list all persons when given invalid, incomplete arguments or number of filters does not match number of values.
+* `view` returns error message `Invalid filter type or value.` if the format is correct but there are some invalid filters or values.
+* `view` can have multiple filters applied for any field (can be the same field) e.g. `view f/n v/bob f/n v/jes`. 
 * Persons matching all filters will be returned (i.e. `AND` search).
 
 Examples:
 * `view f/n v/john` returns `john` and `John Doe`.
 * `view f/s v/CS` returns all entries taking CS courses.
 * `view f/p v/12345678 f/e v/john@doe.com` returns only entries partially containing PHONE AND EMAIL.<br>
+* `view f/a v/` returns all unarchived entries
+* `view f/a f/n f/n f/n v/` returns all entries since number of values does not match number of filters
+* `view f/abcde v/` returns `Invalid filter type or value.` as it is in the correct format but the filter is invalid
 
 ### Deleting a person : `delete`
 
